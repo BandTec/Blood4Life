@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "731dddc3-0794-459b-8de0-8ee9da4c8a6e",
+		"name": "B4L",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "logar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"daniel.juncks@bandtec.com.br\",\n    \"senha\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users/doador",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"doador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logar adm",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/adm?email=blood4life@bandtec.com.br&senha=12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"adm"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "blood4life@bandtec.com.br"
+						},
+						{
+							"key": "senha",
+							"value": "12345"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deslogar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
