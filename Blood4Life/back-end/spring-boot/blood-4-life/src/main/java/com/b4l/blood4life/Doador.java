@@ -1,13 +1,23 @@
 package com.b4l.blood4life;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Doador extends Usuario {
 
+    private Integer idDoador;
+    private Date dtNascimento;
+    private String cpf;
+    private String telefone;
     private String tipoSanguineo;
 
-    public Doador(Integer id, String nome, Date nascimento, String email, String senha, String tipoSanguineo) {
-        super(id, nome, nascimento, email, senha);
+
+    public Doador(String nome, String email, String senha, Integer idDoador, Date dtNascimento, String cpf, String telefone, String tipoSanguineo) {
+        super(nome, email, senha);
+        this.idDoador = idDoador;
+        this.dtNascimento = dtNascimento;
+        this.cpf = cpf;
+        this.telefone = telefone;
         this.tipoSanguineo = tipoSanguineo;
     }
 
@@ -19,6 +29,46 @@ public class Doador extends Usuario {
     @Override
     public void alterarPerfil() {
 
+    }
+
+    public String getDataNascFormatada() {
+        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
+
+        String dataNascFormatada = formatador.format(dtNascimento);
+
+        return dataNascFormatada;
+    }
+
+    public Integer getIdDoador() {
+        return idDoador;
+    }
+
+    public void setIdDoador(Integer idDoador) {
+        this.idDoador = idDoador;
+    }
+
+    public Date getDtNascimento() {
+        return dtNascimento;
+    }
+
+    public void setDtNascimento(Date dtNascimento) {
+        this.dtNascimento = dtNascimento;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getTipoSanguineo() {

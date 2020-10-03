@@ -1,13 +1,11 @@
 package com.b4l.blood4life;
 
-import java.util.Date;
-
 public class AdministradorHospitalar extends Usuario {
 
     private Integer idAdm;
 
-    public AdministradorHospitalar(Integer id, String nome, Date nascimento, String email, String senha, Integer idAdm) {
-        super(id, nome, nascimento, email, senha);
+    public AdministradorHospitalar(String nome, String email, String senha, Integer idAdm) {
+        super(nome, email, senha);
         this.idAdm = idAdm;
     }
 

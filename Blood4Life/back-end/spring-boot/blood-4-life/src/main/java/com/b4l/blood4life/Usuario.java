@@ -1,21 +1,14 @@
 package com.b4l.blood4life;
 
-import org.springframework.http.ResponseEntity;
-
-import java.util.Date;
-
 public abstract class Usuario {
 
-    private Integer id;
     private String nome;
-    private Date nascimento;
     private String email;
     private String senha;
 
-    public Usuario(Integer id, String nome, Date nascimento, String email, String senha) {
-        this.id = id;
+
+    public Usuario(String nome, String email, String senha) {
         this.nome = nome;
-        this.nascimento = nascimento;
         this.email = email;
         this.senha = senha;
     }
@@ -32,28 +25,12 @@ public abstract class Usuario {
 
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Date getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Date nascimento) {
-        this.nascimento = nascimento;
     }
 
     public String getEmail() {
