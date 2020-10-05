@@ -18,5 +18,20 @@ public class TesteGravacao {
 
         GravarArquivo.gravarDoador(lista, true);
         GravarArquivo.gravarDoador(lista, false);
+
+        ListaObj<Hospital> hospitais = new ListaObj(3);
+
+        Hospital h1 = new Hospital(0,"Albert", "Localização 01");
+        Hospital h2 = new Hospital(1,"Albert 2", "Localização 02");
+        Hospital h3 = new Hospital(2,"Albert 3", "Localização 03");
+
+        hospitais.adiciona(h1);
+        hospitais.adiciona(h2);
+        hospitais.adiciona(h3);
+
+        RegistroHospital registroHospital = new RegistroHospital();
+
+        registroHospital.escrever(hospitais, true);
+
     }
 }
