@@ -1,4 +1,4 @@
-package com.b4l.blood4life;
+package com.b4l.blood4life.dominios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,13 +8,12 @@ public class Hospital {
     private Integer id;
     private String nome;
     private String localizacao;
-    //private List<Usuario> usuarioList;
+
 
     public Hospital(Integer id, String nome, String localizacao) {
         this.id = id;
         this.nome = nome;
         this.localizacao = localizacao;
-        //this.usuarioList = new ArrayList<>();
     }
 
     public void exibirBanco(){

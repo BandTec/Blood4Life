@@ -1,4 +1,4 @@
-package com.b4l.blood4life;
+package com.b4l.blood4life.dominios;
 
 public class Sangue {
 

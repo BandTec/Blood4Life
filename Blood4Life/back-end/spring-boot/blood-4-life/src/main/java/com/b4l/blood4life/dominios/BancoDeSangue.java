@@ -1,4 +1,6 @@
-package com.b4l.blood4life;
+package com.b4l.blood4life.dominios;
+
+import com.b4l.blood4life.dominios.Sangue;
 
 import java.util.ArrayList;
 import java.util.List;

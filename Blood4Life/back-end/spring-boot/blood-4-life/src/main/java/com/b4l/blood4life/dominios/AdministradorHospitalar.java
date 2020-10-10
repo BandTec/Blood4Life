@@ -1,28 +1,27 @@
-package com.b4l.blood4life;
+package com.b4l.blood4life.dominios;
 
-public abstract class Usuario {
 
+
+public class AdministradorHospitalar  {
+
+    private Integer idAdm;
     private String nome;
     private String email;
     private String senha;
 
-
-    public Usuario(String nome, String email, String senha) {
+    public AdministradorHospitalar(Integer idAdm, String nome, String email, String senha) {
+        this.idAdm = idAdm;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-    public abstract void cadastrar();
-
-    public abstract void alterarPerfil();
-
-    public void logar(String email, String senha) {
-
+    public Integer getIdAdm() {
+        return idAdm;
     }
 
-    public void excluirPerfil(String senha) {
-
+    public void setIdAdm(Integer idAdm) {
+        this.idAdm = idAdm;
     }
 
     public String getNome() {
@@ -48,4 +47,5 @@ public abstract class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
 }

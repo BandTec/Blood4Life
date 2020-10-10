@@ -1,4 +1,4 @@
-package com.b4l.blood4life;
+package com.b4l.blood4life.controladores;
 
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/users")
-public class UsuarioController {
+public class LoginController {
 
     boolean autenticado;
 
