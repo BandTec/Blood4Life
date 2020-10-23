@@ -1,27 +1,41 @@
 package com.b4l.blood4life.dominios;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+@Entity
+public class AdministradorHospitalar {
 
-public class AdministradorHospitalar  {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    private Integer idAdm;
+    @NotBlank
+    @Size(min = 2, max = 45)
     private String nome;
+
+    @Email
+    @NotBlank
+    @Size(min = 10, max = 60)
     private String email;
+
+    @NotBlank
+    @Size(min = 8, max = 16)
     private String senha;
 
-    public AdministradorHospitalar(Integer idAdm, String nome, String email, String senha) {
-        this.idAdm = idAdm;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+    @NotNull
+    @ManyToOne
+    private Hospital hospital;
+
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getIdAdm() {
-        return idAdm;
-    }
-
-    public void setIdAdm(Integer idAdm) {
-        this.idAdm = idAdm;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -48,4 +62,11 @@ public class AdministradorHospitalar  {
         this.senha = senha;
     }
 
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 }

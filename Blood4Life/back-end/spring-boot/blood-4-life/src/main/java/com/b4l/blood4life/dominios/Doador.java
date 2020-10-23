@@ -14,73 +14,57 @@ public class Doador{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDoador;
+    private Integer id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 2, max = 45)
     private String nome;
 
-    @NotNull
     @Email
+    @NotBlank
     @Size(min = 10, max = 60)
     private String email;
 
-    @NotNull
+    @NotBlank
     @Size(min = 8, max = 16)
     private String senha;
+
+    @NotBlank
+    @Size(min = 11, max = 11)
+    private String cpf;
 
     @Past
     @NotNull
     private Date dtNascimento;
 
-    @NotNull
-    @Size(min = 11, max = 11)
-    private String cpf;
-
-    @NotNull
-    @Size(min = 11, max = 11)
+    @NotBlank
+    @Size(min = 10, max = 11)
     private String telefone;
 
+    @NotBlank
     @Size(min = 2, max = 3)
     private String tipoSanguineo;
 
-    @NotNull
-    @Size(min = 1, max = 1)
-    private String genero;
-
-    public Doador() {
-    }
+    @NotBlank
+    private char genero;
 
     public Doador(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public Doador(Integer idDoador, String nome, String email, String senha, Date dtNascimento, String cpf, String telefone, String tipoSanguineo, String genero) {
-        this.idDoador = idDoador;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.dtNascimento = dtNascimento;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.tipoSanguineo = tipoSanguineo;
-        this.genero = genero;
-    }
-
     public String formatarDataNascFormatada() {
-        SimpleDateFormat formatador = new SimpleDateFormat("yyyy-MM-dd");
-
-        String dataNascFormatada = formatador.format(dtNascimento);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dataNascFormatada = simpleDateFormat.format(dtNascimento);
 
         return dataNascFormatada;
     }
 
-    public Integer getIdDoador() {
-        return idDoador;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdDoador(Integer idDoador) {
-        this.idDoador = idDoador;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -107,20 +91,20 @@ public class Doador{
         this.senha = senha;
     }
 
-    public Date getDtNascimento() {
-        return dtNascimento;
-    }
-
-    public void setDtNascimento(Date dtNascimento) {
-        this.dtNascimento = dtNascimento;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Date getDtNascimento() {
+        return dtNascimento;
+    }
+
+    public void setDtNascimento(Date dtNascimento) {
+        this.dtNascimento = dtNascimento;
     }
 
     public String getTelefone() {
@@ -139,11 +123,11 @@ public class Doador{
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public String getGenero() {
+    public char getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(char genero) {
         this.genero = genero;
     }
 }

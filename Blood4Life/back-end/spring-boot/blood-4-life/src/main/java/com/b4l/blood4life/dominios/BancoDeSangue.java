@@ -1,36 +1,57 @@
 package com.b4l.blood4life.dominios;
 
-import com.b4l.blood4life.dominios.Sangue;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Entity
 public class BancoDeSangue {
 
-    private List<Sangue> sangueList;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    public BancoDeSangue(List<Sangue> sangueList) {
-        this.sangueList = new ArrayList<>();
+    @NotBlank
+    @Size(min = 2, max = 3)
+    private String tipoSangue;
+
+    @NotNull
+    private Double qtdAtual;
+
+    @NotNull
+    @ManyToOne
+    private Hospital hospital;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void validarSangue(){
-
-    }
-    public void filtrarQuantidade(Sangue s){
-
-    }
-    public void cadastrarSangue (Sangue s){
-
-    }
-    public void atualizarQtdSangue() {
-
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public List<Sangue> getSangueList() {
-        return sangueList;
+    public String getTipoSangue() {
+        return tipoSangue;
     }
 
-    public void setSangueList(List<Sangue> sangueList) {
-        this.sangueList = sangueList;
+    public void setTipoSangue(String tipoSangue) {
+        this.tipoSangue = tipoSangue;
+    }
+
+    public Double getQtdAtual() {
+        return qtdAtual;
+    }
+
+    public void setQtdAtual(Double qtdAtual) {
+        this.qtdAtual = qtdAtual;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 }
