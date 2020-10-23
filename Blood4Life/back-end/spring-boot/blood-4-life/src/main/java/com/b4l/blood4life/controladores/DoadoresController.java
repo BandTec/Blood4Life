@@ -20,16 +20,9 @@ public class DoadoresController {
     @Autowired
     private DoadoresRepository repository;
 
-
-    @PostMapping()
-    public ResponseEntity criarDoador(@RequestBody @Valid Doador novoDoador) {
-        repository.save(novoDoador);
-        return ResponseEntity.created(null).build();
-    }
-
     @GetMapping()
     public ResponseEntity listar(@RequestParam(required = false) String tipoSanguineo) {
-        Doador doador =  new Doador(tipoSanguineo);
+        Doador doador = new Doador(tipoSanguineo);
         List<Doador> doadoresFiltrados = repository.findAll(Example.of(doador));
         if (tipoSanguineo == null) {
             if (repository.count() > 0){
@@ -46,32 +39,38 @@ public class DoadoresController {
         }
     }
 
+    @GetMapping("/{idDoador}")
+    public ResponseEntity buscarUm(@PathVariable Integer idDoador){
+        Optional<Doador> doadorOptional = repository.findById(idDoador);
+        return ResponseEntity.of(doadorOptional);
+    }
+
+    @PostMapping()
+    public ResponseEntity criarDoador(@RequestBody @Valid Doador novoDoador) {
+        repository.save(novoDoador);
+        return ResponseEntity.created(null).build();
+    }
+
     @PutMapping("/{idDoador}")
-    public ResponseEntity alterarDoador(@PathVariable int idDoador,@Valid @RequestBody Doador novoDoador){
+    public ResponseEntity alterarDoador(@PathVariable int idDoador,
+                                        @Valid @RequestBody Doador novoDoador){
         if (repository.existsById(idDoador)){
-            novoDoador.setIdDoador(idDoador);
+            novoDoador.setId(idDoador);
             repository.save(novoDoador);
             return ResponseEntity.ok().build();
-        }else {
-            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{idDoador}")
     public ResponseEntity excluirDoador(@PathVariable int idDoador){
         if (repository.existsById(idDoador)){
-        repository.deleteById(idDoador);
-        return ResponseEntity.ok().build();
-        }else{
-            return ResponseEntity.notFound().build();
+            repository.deleteById(idDoador);
+            return ResponseEntity.ok().build();
         }
-    }
 
-
-    @GetMapping("/{idDoador}")
-    public ResponseEntity buscarUm(@PathVariable Integer idDoador){
-        Optional<Doador> doadorOptional = repository.findById(idDoador);
-        return ResponseEntity.of(doadorOptional);
+        return ResponseEntity.notFound().build();
     }
 
 
