@@ -32,7 +32,7 @@ public class HospitalController {
     }
 
     @PostMapping
-    public ResponseEntity adicionarHospital(@RequestBody @Valid Hospital hospital) {
+    public ResponseEntity adicionaHospital(@RequestBody @Valid Hospital hospital) {
         hospitalRepository.save(hospital);
 
         return ResponseEntity.created(null).build();
