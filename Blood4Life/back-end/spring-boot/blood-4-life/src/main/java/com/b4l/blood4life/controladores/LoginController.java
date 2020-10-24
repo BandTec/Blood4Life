@@ -1,57 +1,83 @@
 package com.b4l.blood4life.controladores;
 
+import com.b4l.blood4life.dominios.AdministradorHospitalar;
+import com.b4l.blood4life.dominios.Doador;
+import com.b4l.blood4life.repositorios.AdministradorHospitalarRepository;
+import com.b4l.blood4life.repositorios.DoadoresRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpSession;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class LoginController {
 
-    boolean autenticado;
+    @Autowired
+    DoadoresRepository doadoresRepository;
+
+    @Autowired
+    AdministradorHospitalarRepository admRepository;
 
     @PostMapping("/doador")
-    public ResponseEntity logarDoador(@RequestParam String email, @RequestParam String senha){
+    public ResponseEntity loginDoador(
+            @RequestParam @Email @NotBlank @Size(min = 10, max = 60) String email,
+            @RequestParam @NotBlank @Size(min = 8, max = 16) String senha,
+            HttpSession session
+    ) {
+        Doador doador = doadoresRepository.findByCredentials(email, senha);
 
-        if(autenticado){
-            return ResponseEntity.badRequest().build();
-        }
-        else{
-            if (email.equals("daniel.juncks@bandtec.com.br") && senha.equals("12345")){
-                autenticado = true;
-                return ResponseEntity.ok("Autenticado com sucesso!");
+        try {
+            if (doador.getId() == null) {
+                throw new Exception("Erro");
             }
-            else{
-                autenticado = false;
-                return ResponseEntity.status(404).build();
-            }
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
+
+        if (email.equals(doador.getEmail()) && senha.equals(doador.getSenha())) {
+            session.setAttribute("usuarioLogado", doador);
+            return ResponseEntity.ok("Usuário válido");
+        }
+
+        return ResponseEntity.ok("Email ou senha inválida!");
     }
+
     @PostMapping("/adm")
-    public ResponseEntity logarAdm(@RequestParam String email, @RequestParam String senha){
+    public ResponseEntity loginAdm(
+            @RequestParam @Email @NotBlank @Size(min = 10, max = 60) String email,
+            @RequestParam @NotBlank @Size(min = 8, max = 16) String senha,
+            HttpSession session
+    ) {
+        AdministradorHospitalar adm = admRepository.findByCredentials(email, senha);
 
-        if(autenticado){
-            return ResponseEntity.badRequest().build();
-        }
-        else{
-            if (email.equals("blood4life@bandtec.com.br") && senha.equals("12345")){
-                autenticado = true;
-                return ResponseEntity.ok("Autenticado com sucesso!");
+        try {
+            if (adm.getId() == null) {
+                throw new Exception();
             }
-            else{
-                autenticado = false;
-                return ResponseEntity.status(404).build();
-            }
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
         }
+
+        if (email.equals(adm.getEmail()) && senha.equals(adm.getSenha())) {
+            session.setAttribute("usuarioLogado", adm);
+            return ResponseEntity.ok("Usuário válido");
+        }
+
+        return ResponseEntity.ok("Email ou senha inválida!");
     }
 
-    @DeleteMapping
-    public ResponseEntity deslogar(){
-        if (autenticado){
-            autenticado = false;
-            return ResponseEntity.status(200).build();
-        }
-        else{
-            return ResponseEntity.status(500).build();
-        }
+    @PostMapping("/logout")
+    public ResponseEntity efetuarLogout(HttpSession session) {
+        session.invalidate();
+
+        return ResponseEntity.ok().build();
     }
 }
