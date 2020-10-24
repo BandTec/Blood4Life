@@ -48,6 +48,18 @@ public class Doador{
     @NotBlank
     private char genero;
 
+    // Construtor default necessário para gerar erro na query
+    public Doador() {
+    }
+
+    public Doador(
+            @Email @NotBlank @Size(min = 10, max = 60) String email,
+            @NotBlank @Size(min = 8, max = 16) String senha
+    ) {
+        this.email = email;
+        this.senha = senha;
+    }
+
     public Doador(String tipoSanguineo) {
         this.tipoSanguineo = tipoSanguineo;
     }
