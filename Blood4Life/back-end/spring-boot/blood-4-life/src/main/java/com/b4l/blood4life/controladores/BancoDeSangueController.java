@@ -16,11 +16,9 @@ public class BancoDeSangueController {
 
     @GetMapping
     public ResponseEntity getBancosDeSangue() {
-        if (bancoDeSangueRepository.count() > 0) {
-            return ResponseEntity.ok(bancoDeSangueRepository.findAll());
-        }
-
-        return ResponseEntity.noContent().build();
+        return bancoDeSangueRepository.count() > 0
+                ? ResponseEntity.ok(bancoDeSangueRepository.findAll())
+                : ResponseEntity.noContent().build();
     }
 
 }
