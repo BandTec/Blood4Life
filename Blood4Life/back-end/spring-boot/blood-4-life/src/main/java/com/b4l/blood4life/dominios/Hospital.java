@@ -2,7 +2,10 @@ package com.b4l.blood4life.dominios;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -127,5 +130,4 @@ public class Hospital {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
 }
