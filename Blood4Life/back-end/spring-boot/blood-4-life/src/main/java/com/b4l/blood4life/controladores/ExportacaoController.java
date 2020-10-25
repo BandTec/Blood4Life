@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +26,12 @@ public class ExportacaoController {
 
     @GetMapping(value = "/txt/doadores", produces = {"text/plain"})
     @ResponseBody
-    public ResponseEntity exportarTXT() {
+    public ResponseEntity exportarTXT(HttpSession session) {
+
+        if (session.getAttribute("usuarioLogado") == null) {
+            return ResponseEntity.status(401).build();
+        }
+
         List<Doador> doadores = doadoresRepository.findAll();
         ListaObj<Doador> listaDoadores = new ListaObj<>((int) doadoresRepository.count());
         Integer contaRegistros = 0;
@@ -56,7 +62,12 @@ public class ExportacaoController {
 
     @GetMapping(value = "/csv/doadores", produces = {"text/csv"})
     @ResponseBody
-    public ResponseEntity exportarCSV() {
+    public ResponseEntity exportarCSV(HttpSession session) {
+
+        if (session.getAttribute("usuarioLogado") == null) {
+            return ResponseEntity.status(401).build();
+        }
+
         List<Doador> doadores = doadoresRepository.findAll();
         ListaObj<Doador> listaDoadores = new ListaObj<>((int) doadoresRepository.count());
 

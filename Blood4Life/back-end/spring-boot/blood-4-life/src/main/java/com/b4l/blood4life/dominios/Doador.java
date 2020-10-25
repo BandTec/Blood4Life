@@ -60,9 +60,6 @@ public class Doador{
         this.senha = senha;
     }
 
-    public Doador(String tipoSanguineo) {
-        this.tipoSanguineo = tipoSanguineo;
-    }
 
     public String formatarDataNascFormatada() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
