@@ -1,4 +1,4 @@
-<div style="width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center">
+<div style="width: 100%; background-color: red; display: flex; flex-direction: column; justify-content: center; align-items: center">
   <h1>BLOOD 4 LIFE</h1>
   <img src="/readme-assets/logo.png" height="150px" />
   <h4 text-align="center">
