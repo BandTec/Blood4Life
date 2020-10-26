@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-public class Doador{
+public class Doador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +41,10 @@ public class Doador{
     @Size(min = 10, max = 11)
     private String telefone;
 
-    @NotBlank
     @Size(min = 2, max = 3)
     private String tipoSanguineo;
 
-    @NotBlank
-    private char genero;
+    private Character genero;
 
     // Construtor default necessário para gerar erro na query
     public Doador() {
@@ -132,11 +130,11 @@ public class Doador{
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public char getGenero() {
+    public Character getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(Character genero) {
         this.genero = genero;
     }
 }

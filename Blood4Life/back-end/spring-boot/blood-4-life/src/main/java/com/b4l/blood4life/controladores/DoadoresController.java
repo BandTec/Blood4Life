@@ -3,6 +3,7 @@ package com.b4l.blood4life.controladores;
 import com.b4l.blood4life.dominios.Doador;
 import com.b4l.blood4life.repositorios.DoadoresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +19,34 @@ public class DoadoresController {
     @Autowired
     private DoadoresRepository repository;
 
-    @GetMapping
-    public ResponseEntity getDoadores(
+    @GetMapping()
+    public ResponseEntity listar(
+            @RequestParam(required = false) String tipoSanguineo,
             HttpSession session
     ) {
+
         if (session.getAttribute("usuarioLogado") == null) {
             return ResponseEntity.status(401).build();
         }
 
-        if (repository.count() > 0) {
-            List<Doador> doadores = repository.findAll();
-            return ResponseEntity.ok(doadores);
-        }
+        Doador doador = new Doador();
+        doador.setTipoSanguineo(tipoSanguineo);
 
-        return ResponseEntity.noContent().build();
+        List<Doador> doadoresFiltrados = repository.findAll(Example.of(doador));
+
+        if (tipoSanguineo == null) {
+            if (repository.count() > 0) {
+                return ResponseEntity.ok(repository.findAll());
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+        } else {
+            if (!doadoresFiltrados.isEmpty()) {
+                return ResponseEntity.ok(doadoresFiltrados);
+            } else {
+                return ResponseEntity.noContent().build();
+            }
+        }
     }
 
     @GetMapping("/{idDoador}")
@@ -49,7 +64,7 @@ public class DoadoresController {
 
     @PostMapping()
     public ResponseEntity criarDoador(
-            @RequestBody @Valid Doador novoDoador,
+            @Valid @RequestBody Doador novoDoador,
             HttpSession session
     ) {
         if (session.getAttribute("usuarioLogado") == null) {
@@ -95,24 +110,6 @@ public class DoadoresController {
 
         return ResponseEntity.notFound().build();
     }
-
-//    @GetMapping()
-//    public ResponseEntity listar(@RequestParam(required = false) String tipoSanguineo) {
-//        Doador doador = new Doador(tipoSanguineo);
-//        List<Doador> doadoresFiltrados = repository.findAll(Example.of(doador));
-//        if (tipoSanguineo == null) {
-//            if (repository.count() > 0){
-//                return ResponseEntity.ok(repository.findAll());
-//            }else {
-//                return ResponseEntity.noContent().build();
-//            }
-//        } else {
-//            if (doadoresFiltrados.isEmpty()){
-//                return ResponseEntity.noContent().build();
-//            }else{
-//                return ResponseEntity.ok(doadoresFiltrados);
-//            }
-//        }
-//    }
-
 }
+
+
