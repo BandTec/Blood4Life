@@ -32,7 +32,7 @@ public class LoginController {
             @RequestParam @NotBlank @Size(min = 8, max = 16) String senha,
             HttpSession session
     ) {
-        Doador doador = doadoresRepository.findByCredentials(email, senha);
+        Doador doador = doadoresRepository.findByEmailAndSenha(email, senha);
 
         try {
             if (doador.getId() == null) {
@@ -56,7 +56,7 @@ public class LoginController {
             @RequestParam @NotBlank @Size(min = 8, max = 16) String senha,
             HttpSession session
     ) {
-        AdministradorHospitalar adm = admRepository.findByCredentials(email, senha);
+        AdministradorHospitalar adm = admRepository.findByEmailAndSenha(email, senha);
 
         try {
             if (adm.getId() == null) {
