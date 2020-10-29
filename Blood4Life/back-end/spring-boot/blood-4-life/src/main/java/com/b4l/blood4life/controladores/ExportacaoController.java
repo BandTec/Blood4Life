@@ -118,8 +118,18 @@ public class ExportacaoController {
 
         for (int i = 0; i < listaHospitais.getTamanho(); i++) {
             Hospital h = listaHospitais.getElemento(i);
-            hospitaisTxt += String.format("01%-45s%-14s%-30s%-30s%-30s%8s%-30s%-2s%-11s%n", h.getNome(), h.getCnpj(),
-                    h.getCidade(), h.getRua(), h.getBairro(), h.getCep(), h.getComplemento(), h.getUf(), h.getTelefone());
+            hospitaisTxt += String.format(
+                    "01%-45s%-14s%-30s%-30s%-30s%8s%-30s%-2s%-11s%n",
+                    h.getNome(),
+                    h.getCnpj(),
+                    h.getEndereco().getCidade(),
+                    h.getEndereco().getRua(),
+                    h.getEndereco().getBairro(),
+                    h.getEndereco().getCep(),
+                    h.getEndereco().getComplemento(),
+                    h.getEndereco().getUf(),
+                    h.getTelefone()
+            );
             contaRegistros++;
         }
 
@@ -151,8 +161,18 @@ public class ExportacaoController {
 
         for (int i = 0; i < listaHospitais.getTamanho(); i++) {
             Hospital h = listaHospitais.getElemento(i);
-            hospitaisCsv += String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s%n", h.getNome(), h.getCnpj(),
-                    h.getCidade(), h.getRua(), h.getBairro(), h.getCep(), h.getComplemento(), h.getUf(), h.getTelefone());
+            hospitaisCsv += String.format(
+                    "%s;%s;%s;%s;%s;%s;%s;%s;%s%n",
+                    h.getNome(),
+                    h.getCnpj(),
+                    h.getEndereco().getCidade(),
+                    h.getEndereco().getRua(),
+                    h.getEndereco().getBairro(),
+                    h.getEndereco().getCep(),
+                    h.getEndereco().getComplemento(),
+                    h.getEndereco().getUf(),
+                    h.getTelefone()
+            );
         }
 
         HttpHeaders headers = new HttpHeaders();
