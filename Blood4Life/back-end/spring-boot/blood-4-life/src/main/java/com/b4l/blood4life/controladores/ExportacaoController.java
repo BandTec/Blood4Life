@@ -32,10 +32,6 @@ public class ExportacaoController {
     @ResponseBody
     public ResponseEntity exportarDoadoresTXT() {
 
-//        if (session.getAttribute("usuarioLogado") == null) {
-//            return ResponseEntity.status(401).build();
-//        }
-
         List<Doador> doadores = doadoresRepository.findAll();
         ListaObj<Doador> listaDoadores = new ListaObj<>((int) doadoresRepository.count());
         Integer contaRegistros = 0;
@@ -51,8 +47,7 @@ public class ExportacaoController {
 
         for (int i = 0; i < listaDoadores.getTamanho(); i++) {
             Doador d = listaDoadores.getElemento(i);
-            doadoresTxt += String.format("01%-45s%-10s%11s%11s%-3s%n", d.getNome(), d.formatarDataNascFormatada(),
-                    d.getCpf(), d.getTelefone(), d.getTipoSanguineo());
+            doadoresTxt += d.toString();
             contaRegistros++;
         }
 
@@ -68,10 +63,6 @@ public class ExportacaoController {
     @GetMapping(value = "/csv/doadores", produces = {"text/csv"})
     @ResponseBody
     public ResponseEntity exportarDoadoresCSV() {
-
-//        if (session.getAttribute("usuarioLogado") == null) {
-//            return ResponseEntity.status(401).build();
-//        }
 
         List<Doador> doadores = doadoresRepository.findAll();
         ListaObj<Doador> listaDoadores = new ListaObj<>((int) doadoresRepository.count());
@@ -99,10 +90,6 @@ public class ExportacaoController {
     @ResponseBody
     public ResponseEntity exportarHospitaisTXT() {
 
-//        if (session.getAttribute("usuarioLogado") == null) {
-//            return ResponseEntity.status(401).build();
-//        }
-
         List<Hospital> hospitais = hospitalRepository.findAll();
         ListaObj<Hospital> listaHospitais = new ListaObj<>((int) hospitalRepository.count());
         Integer contaRegistros = 0;
@@ -118,18 +105,7 @@ public class ExportacaoController {
 
         for (int i = 0; i < listaHospitais.getTamanho(); i++) {
             Hospital h = listaHospitais.getElemento(i);
-            hospitaisTxt += String.format(
-                    "01%-45s%-14s%-30s%-30s%-30s%8s%-30s%-2s%-11s%n",
-                    h.getNome(),
-                    h.getCnpj(),
-                    h.getEndereco().getCidade(),
-                    h.getEndereco().getRua(),
-                    h.getEndereco().getBairro(),
-                    h.getEndereco().getCep(),
-                    h.getEndereco().getComplemento(),
-                    h.getEndereco().getUf(),
-                    h.getTelefone()
-            );
+            hospitaisTxt += h.toString();
             contaRegistros++;
         }
 
@@ -145,10 +121,6 @@ public class ExportacaoController {
     @GetMapping(value = "/csv/hospitais", produces = {"text/csv"})
     @ResponseBody
     public ResponseEntity exportarHospitaisCSV() {
-
-//        if (session.getAttribute("usuarioLogado") == null) {
-//            return ResponseEntity.status(401).build();
-//        }
 
         List<Hospital> hospitais = hospitalRepository.findAll();
         ListaObj<Hospital> listaHospitais = new ListaObj<>((int) hospitalRepository.count());

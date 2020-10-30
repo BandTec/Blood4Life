@@ -139,4 +139,10 @@ public class Doador {
     public void setGenero(Character genero) {
         this.genero = genero;
     }
+
+    @Override
+    public String toString() {
+        return String.format("01%-45s%-10s%11s%11s%-3s%n", getNome(),formatarDataNascFormatada(),
+                getCpf(), getTelefone(), getTipoSanguineo());
+    }
 }
