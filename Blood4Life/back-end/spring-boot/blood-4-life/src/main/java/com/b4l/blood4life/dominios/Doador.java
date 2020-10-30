@@ -1,11 +1,13 @@
 package com.b4l.blood4life.dominios;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -16,20 +18,20 @@ public class Doador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotNull
     @Size(min = 2, max = 45)
     private String nome;
 
     @Email
-    @NotBlank
+    @NotNull
     @Size(min = 10, max = 60)
     private String email;
 
-    @NotBlank
+    @NotNull
     @Size(min = 8, max = 16)
     private String senha;
 
-    @NotBlank
+    @NotNull
     @Size(min = 11, max = 11)
     private String cpf;
 
@@ -37,7 +39,7 @@ public class Doador {
     @NotNull
     private Date dtNascimento;
 
-    @NotBlank
+    @NotNull
     @Size(min = 10, max = 11)
     private String telefone;
 
@@ -51,8 +53,8 @@ public class Doador {
     }
 
     public Doador(
-            @Email @NotBlank @Size(min = 10, max = 60) String email,
-            @NotBlank @Size(min = 8, max = 16) String senha
+            @Email @NotNull @Size(min = 10, max = 60) String email,
+            @NotNull @Size(min = 8, max = 16) String senha
     ) {
         this.email = email;
         this.senha = senha;
