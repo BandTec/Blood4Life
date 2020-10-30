@@ -6,7 +6,6 @@ import com.b4l.blood4life.repositorios.DoadoresRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Example;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +28,7 @@ public class DoadorService {
                     : ResponseEntity.noContent().build();
         }
 
-        Doador doador = new Doador();
-        doador.setTipoSanguineo(tipoSanguineo);
-        List<Doador> doadoresFiltrados = doadoresRepository.findAll(Example.of(doador));
+        List<Doador> doadoresFiltrados = doadoresRepository.findAllByTipoSanguineo(tipoSanguineo);
 
         return doadoresFiltrados.isEmpty()
                 ? ResponseEntity.noContent().build()
