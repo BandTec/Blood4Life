@@ -9,5 +9,7 @@ public interface DoadoresRepository extends JpaRepository<Doador, Integer> {
 
     Doador findByEmailAndSenha(String email, String senha);
 
+    Boolean existsByEmailAndSenha(String email, String senha);
+
     List<Doador> findAllByTipoSanguineo(String tipoSanguineo);
 }
