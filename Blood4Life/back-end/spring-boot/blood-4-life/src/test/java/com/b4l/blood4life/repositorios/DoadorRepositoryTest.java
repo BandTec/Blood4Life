@@ -2,7 +2,10 @@ package com.b4l.blood4life.repositorios;
 
 import com.b4l.blood4life.dominios.Doador;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,12 +24,14 @@ import java.time.LocalDate;
 @SpringBootTest
 @ActiveProfiles("test")
 @ExtendWith(SpringExtension.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DoadorRepositoryTest {
 
     @Autowired
-    DoadoresRepository repository;
+    DoadoresRepository doadoresRepository;
 
     @Test
+    @Order(1)
     public void deveRetornarUmDoadorComAsMesmasCredenciais() {
         // (1) Cenário
         Doador doador = new Doador.Builder()
@@ -41,15 +46,26 @@ public class DoadorRepositoryTest {
                 .setGenero('M')
                 .build();
 
-        repository.save(doador);
+        doadoresRepository.save(doador);
 
         // (2) Ação/Execução
-        Doador doadorEncontrado = repository
+        Doador doadorEncontrado = doadoresRepository
                 .findByEmailAndSenha("usuario@email.com", "senha123");
 
         Boolean resultado = doador.equals(doadorEncontrado);
 
         // (3) Verificação
         Assertions.assertThat(resultado).isTrue();
+    }
+
+    @Test
+    @Order(2)
+    public void deveRetornarFalsoQuandoNaoHouverUmDoadorComAsCredenciaisInformadas() {
+        doadoresRepository.deleteAll();
+
+        Boolean resultado = doadoresRepository
+                .existsByEmailAndSenha("exemplo@email.com", "senha123");
+
+        Assertions.assertThat(resultado).isFalse();
     }
 }
