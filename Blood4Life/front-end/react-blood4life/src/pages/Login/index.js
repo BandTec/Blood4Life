@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style.js';
 import loginImg from '../../assets/login.svg';
-import mapa from '../../assets/map.png';
+import hospital from '../../assets/hospital.png';
 
 export default function Login() {
 
@@ -15,7 +15,7 @@ export default function Login() {
             </Link>
             <br />
             <Link to="/cadastro">
-                CADASTRAR-n
+                CADASTRAR
                 <img src="" />  
             </Link>
             
@@ -24,7 +24,7 @@ export default function Login() {
                 <S.header>Login</S.header>
                 <S.content>
                     <S.imagemFundo>
-                        <img src={loginImg} />
+                        <img src={hospital} />
                     </S.imagemFundo>
                     <S.formulario>
                         <S.grupoFormulario>
