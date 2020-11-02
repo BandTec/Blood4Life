@@ -79,7 +79,7 @@ export const grupoFormulario = styled.div`
 
 
 export const footer = styled.button`
-    margin-top: 1em;
+    margin-top: 0.5em;
 `;
 
 

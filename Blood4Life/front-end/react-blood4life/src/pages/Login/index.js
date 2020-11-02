@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import * as S from './style.js';
 import loginImg from '../../assets/login.svg';
+import mapa from '../../assets/map.png';
 
 export default function Login() {
 
     return (
         <>
-        
             <h1>ESSA É A TELA DE LOGIN</h1>
             <Link to="/">
                 HOME
@@ -16,9 +15,10 @@ export default function Login() {
             </Link>
             <br />
             <Link to="/cadastro">
-                CADASTRAR-SE
-                <img src="" />
+                CADASTRAR-n
+                <img src="" />  
             </Link>
+            
 
             <S.containerBase>
                 <S.header>Login</S.header>
