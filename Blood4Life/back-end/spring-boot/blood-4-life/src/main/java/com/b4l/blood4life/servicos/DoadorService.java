@@ -2,12 +2,14 @@ package com.b4l.blood4life.servicos;
 
 import com.b4l.blood4life.dominios.Doador;
 import com.b4l.blood4life.event.RecursoCriadoEvent;
+import com.b4l.blood4life.exception.ResourceNotFoundException;
 import com.b4l.blood4life.repositorios.DoadoresRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -21,6 +23,7 @@ public class DoadorService {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    // TODO: Refatorar => findAllByTipoSanguineo
     public ResponseEntity<List<Doador>> buscarTodos(String tipoSanguineo) {
         if (tipoSanguineo == null) {
             return doadoresRepository.count() > 0
@@ -35,42 +38,39 @@ public class DoadorService {
                 : ResponseEntity.ok(doadoresFiltrados);
     }
 
-    public ResponseEntity<Doador> buscarPeloId(Integer id) {
-        if (!doadoresRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
+    public Doador buscarPeloId(Integer id) {
+        verificarSeDoadorExiste(id);
 
-        Doador doador = doadoresRepository.findById(id).get();
-        return ResponseEntity.ok(doador);
+        Doador doadorEncontrado = doadoresRepository.findById(id).get();
+        return doadorEncontrado;
     }
 
+
+    @Transactional
     public Doador adicionar(Doador doador, HttpServletResponse response) {
         Doador doadorSalvo = doadoresRepository.save(doador);
-
-        publisher.publishEvent(
-                new RecursoCriadoEvent(this, response, doadorSalvo.getId())
-        );
-
+        publisher.publishEvent(new RecursoCriadoEvent(this, response, doadorSalvo.getId()));
         return doadorSalvo;
     }
 
-    public ResponseEntity<Doador> atualizarPeloId(Integer id, Doador doador) {
-        if (!doadoresRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
+    public Doador atualizarPeloId(Integer id, Doador doador) {
+        verificarSeDoadorExiste(id);
 
-        Doador doadorSalvo = doadoresRepository.save(doador);
-        BeanUtils.copyProperties(doador, doadorSalvo, "id");
-        return ResponseEntity.ok().build();
+        Doador hospitalAtualizado = doadoresRepository.save(doador);
+        BeanUtils.copyProperties(doador, hospitalAtualizado, "id");
+        return hospitalAtualizado;
     }
 
-    public ResponseEntity<Doador> deletarPeloId(Integer id) {
-        if (!doadoresRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
+    public void deletarPeloId(Integer id) {
+        verificarSeDoadorExiste(id);
 
         doadoresRepository.deleteById(id);
-        return ResponseEntity.ok().build();
+    }
+
+    private void verificarSeDoadorExiste(Integer id) {
+        if (!doadoresRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Doador não encontrado para o ID: " + id);
+        }
     }
 
 }

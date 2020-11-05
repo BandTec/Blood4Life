@@ -18,36 +18,46 @@ public class HospitalController {
     @Autowired
     HospitalService hospitalService;
 
+    // TODO: Criar uma exception caso a lista esteja vazia
     @GetMapping
     public ResponseEntity<List<Hospital>> buscarTodosHospitais() {
         return hospitalService.buscarTodos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Hospital> buscarHospitalPeloId(@PathVariable Integer id) {
-        return hospitalService.buscarPeloId(id);
+    @ResponseStatus(HttpStatus.OK)
+    public Hospital buscarHospitalPeloId(@PathVariable Integer id) {
+        Hospital hospitalEncontrado = hospitalService.buscarPeloId(id);
+
+        return hospitalEncontrado;
     }
 
     @PostMapping
-    public ResponseEntity<Hospital> adicionarHospital(
+    @ResponseStatus(HttpStatus.CREATED)
+    public Hospital adicionarHospital(
             @RequestBody @Valid Hospital hospital,
             HttpServletResponse response
     ) {
         Hospital hospitalAdicionado = hospitalService.adicionar(hospital, response);
-        return ResponseEntity.status(HttpStatus.CREATED).body(hospitalAdicionado);
+
+        return hospitalAdicionado;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Hospital> atualizarHospitalPeloId(
+    @ResponseStatus(HttpStatus.OK)
+    public Hospital atualizarHospitalPeloId(
             @PathVariable Integer id,
             @Valid @RequestBody Hospital hospital
     ) {
-        return hospitalService.atualizarPeloId(id, hospital);
+        Hospital hospitalAtualizado = hospitalService.atualizarPeloId(id, hospital);
+
+        return hospitalAtualizado;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Hospital> deletarHospitalPeloId(@PathVariable Integer id) {
-        return hospitalService.deletarPeloId(id);
+    @ResponseStatus(HttpStatus.OK)
+    public void deletarHospitalPeloId(@PathVariable Integer id) {
+        hospitalService.deletarPeloId(id);
     }
 
 }

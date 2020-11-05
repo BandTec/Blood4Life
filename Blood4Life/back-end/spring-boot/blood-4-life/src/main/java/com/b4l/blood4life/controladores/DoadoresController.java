@@ -18,6 +18,7 @@ public class DoadoresController {
     @Autowired
     private DoadorService doadorService;
 
+    // TODO: Criar uma exception caso a lista esteja vazia
     @GetMapping()
     public ResponseEntity<List<Doador>> buscarTodosDoadores(
             @RequestParam(required = false) String tipoSanguineo
@@ -26,11 +27,14 @@ public class DoadoresController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Doador> buscarDoadorPeloId(@PathVariable Integer id) {
-        return doadorService.buscarPeloId(id);
+    @ResponseStatus(HttpStatus.OK)
+    public Doador buscarDoadorPeloId(@PathVariable Integer id) {
+        Doador doadorEncontrado = doadorService.buscarPeloId(id);
+        return doadorEncontrado;
     }
 
     @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Doador> adicionarDoador(
             @Valid @RequestBody Doador doador,
             HttpServletResponse response
@@ -40,16 +44,19 @@ public class DoadoresController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Doador> atualizarDoadorPeloId(
+    @ResponseStatus(HttpStatus.OK)
+    public Doador atualizarDoadorPeloId(
             @PathVariable Integer id,
             @Valid @RequestBody Doador doador
     ) {
-        return doadorService.atualizarPeloId(id, doador);
+        Doador doadorAtualizado = doadorService.atualizarPeloId(id, doador);
+        return doadorAtualizado;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Doador> deletarDoadorPeloId(@PathVariable Integer id) {
-        return doadorService.deletarPeloId(id);
+    @ResponseStatus(HttpStatus.OK)
+    public void deletarDoadorPeloId(@PathVariable Integer id) {
+        doadorService.deletarPeloId(id);
     }
 }
 

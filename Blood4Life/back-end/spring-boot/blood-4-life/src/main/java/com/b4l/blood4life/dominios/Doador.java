@@ -19,13 +19,13 @@ public class Doador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @Size(min = 2, max = 45)
+    @NotNull(message = "{nome.not.null}")
+    @Size(min = 2, max = 45, message = "{nome.min.max}")
     private String nome;
 
-    @Email
-    @NotNull
-    @Size(min = 10, max = 60)
+    @Email(message = "{email.not.valid}")
+    @NotNull(message = "{email.not.null}")
+    @Size(min = 10, max = 60, message = "{email.mix.max}")
     private String email;
 
     @NotNull
