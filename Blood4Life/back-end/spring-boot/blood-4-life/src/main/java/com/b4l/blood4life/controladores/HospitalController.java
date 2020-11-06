@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -18,40 +17,31 @@ public class HospitalController {
     @Autowired
     HospitalService hospitalService;
 
-    // TODO: Criar uma exception caso a lista esteja vazia
     @GetMapping
     public ResponseEntity<List<Hospital>> buscarTodosHospitais() {
-        return hospitalService.buscarTodos();
+        List<Hospital> hospitais = hospitalService.buscarTodos();
+        return ResponseEntity.status(HttpStatus.OK).body(hospitais);
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Hospital buscarHospitalPeloId(@PathVariable Integer id) {
+    public ResponseEntity<Hospital> buscarHospitalPeloId(@PathVariable Integer id) {
         Hospital hospitalEncontrado = hospitalService.buscarPeloId(id);
-
-        return hospitalEncontrado;
+        return ResponseEntity.status(HttpStatus.OK).body(hospitalEncontrado);
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Hospital adicionarHospital(
-            @RequestBody @Valid Hospital hospital,
-            HttpServletResponse response
-    ) {
-        Hospital hospitalAdicionado = hospitalService.adicionar(hospital, response);
-
-        return hospitalAdicionado;
+    public ResponseEntity<Hospital> adicionarHospital(@RequestBody @Valid Hospital hospital) {
+        Hospital hospitalAdicionado = hospitalService.adicionar(hospital);
+        return ResponseEntity.status(HttpStatus.CREATED).body(hospitalAdicionado);
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Hospital atualizarHospitalPeloId(
+    public ResponseEntity<Hospital> atualizarHospitalPeloId(
             @PathVariable Integer id,
             @Valid @RequestBody Hospital hospital
     ) {
         Hospital hospitalAtualizado = hospitalService.atualizarPeloId(id, hospital);
-
-        return hospitalAtualizado;
+        return ResponseEntity.status(HttpStatus.OK).body(hospitalAtualizado);
     }
 
     @DeleteMapping("/{id}")

@@ -1,17 +1,15 @@
 package com.b4l.blood4life.servicos;
 
 import com.b4l.blood4life.dominios.Hospital;
-import com.b4l.blood4life.event.RecursoCriadoEvent;
+import com.b4l.blood4life.exception.NoContentException;
 import com.b4l.blood4life.exception.ResourceNotFoundException;
 import com.b4l.blood4life.repositorios.HospitalRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,15 +22,14 @@ public class HospitalService {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    // TODO: Refatorar
-    public ResponseEntity<List<Hospital>> buscarTodos() {
+    public List<Hospital> buscarTodos() {
         List<Hospital> hospitais = hospitalRepository.findAll();
 
         if (hospitais.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            throw new NoContentException("Não há Hospitais cadastrados.");
         }
 
-        return ResponseEntity.ok(hospitais);
+        return hospitais;
     }
 
     public Hospital buscarPeloId(Integer id) {
@@ -43,9 +40,8 @@ public class HospitalService {
     }
 
     @Transactional
-    public Hospital adicionar(Hospital hospital, HttpServletResponse response) {
+    public Hospital adicionar(Hospital hospital) {
         Hospital hospitalSalvo = hospitalRepository.save(hospital);
-        publisher.publishEvent(new RecursoCriadoEvent(this, response, hospitalSalvo.getId()));
         return hospitalSalvo;
     }
 

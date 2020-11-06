@@ -1,18 +1,17 @@
 package com.b4l.blood4life.servicos;
 
 import com.b4l.blood4life.dominios.Doador;
-import com.b4l.blood4life.event.RecursoCriadoEvent;
+import com.b4l.blood4life.exception.NoContentException;
 import com.b4l.blood4life.exception.ResourceNotFoundException;
 import com.b4l.blood4life.repositorios.DoadoresRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoadorService {
@@ -23,33 +22,37 @@ public class DoadorService {
     @Autowired
     private ApplicationEventPublisher publisher;
 
-    // TODO: Refatorar => findAllByTipoSanguineo
-    public ResponseEntity<List<Doador>> buscarTodos(String tipoSanguineo) {
+    public List<Doador> buscarTodos(String tipoSanguineo) {
         if (tipoSanguineo == null) {
-            return doadoresRepository.count() > 0
-                    ? ResponseEntity.ok(doadoresRepository.findAll())
-                    : ResponseEntity.noContent().build();
+            List<Doador> doadores = doadoresRepository.findAll();
+
+            if (doadores.isEmpty()) {
+                throw new NoContentException("Não há Doadores cadastrados.");
+            }
+
+            return doadores;
         }
 
         List<Doador> doadoresFiltrados = doadoresRepository.findAllByTipoSanguineo(tipoSanguineo);
 
-        return doadoresFiltrados.isEmpty()
-                ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(doadoresFiltrados);
+        if (doadoresFiltrados.isEmpty()) {
+            throw new NoContentException("Não há Doadores cadastrados com o tipo sanguíneo " + tipoSanguineo);
+        }
+
+        return doadoresFiltrados;
     }
 
     public Doador buscarPeloId(Integer id) {
         verificarSeDoadorExiste(id);
 
-        Doador doadorEncontrado = doadoresRepository.findById(id).get();
-        return doadorEncontrado;
+        Optional<Doador> doadorEncontrado = doadoresRepository.findById(id);
+        return doadorEncontrado.get();
     }
 
 
     @Transactional
-    public Doador adicionar(Doador doador, HttpServletResponse response) {
+    public Doador adicionar(Doador doador) {
         Doador doadorSalvo = doadoresRepository.save(doador);
-        publisher.publishEvent(new RecursoCriadoEvent(this, response, doadorSalvo.getId()));
         return doadorSalvo;
     }
 

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -18,39 +17,33 @@ public class DoadoresController {
     @Autowired
     private DoadorService doadorService;
 
-    // TODO: Criar uma exception caso a lista esteja vazia
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<Doador>> buscarTodosDoadores(
             @RequestParam(required = false) String tipoSanguineo
     ) {
-        return doadorService.buscarTodos(tipoSanguineo);
+        List<Doador> doadores = doadorService.buscarTodos(tipoSanguineo);
+        return ResponseEntity.status(HttpStatus.OK).body(doadores);
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Doador buscarDoadorPeloId(@PathVariable Integer id) {
+    public ResponseEntity<Doador> buscarDoadorPeloId(@PathVariable Integer id) {
         Doador doadorEncontrado = doadorService.buscarPeloId(id);
-        return doadorEncontrado;
+        return ResponseEntity.status(HttpStatus.OK).body(doadorEncontrado);
     }
 
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Doador> adicionarDoador(
-            @Valid @RequestBody Doador doador,
-            HttpServletResponse response
-    ) {
-        Doador doadorAdicionado = doadorService.adicionar(doador, response);
+    @PostMapping
+    public ResponseEntity<Doador> adicionarDoador(@Valid @RequestBody Doador doador) {
+        Doador doadorAdicionado = doadorService.adicionar(doador);
         return ResponseEntity.status(HttpStatus.CREATED).body(doadorAdicionado);
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Doador atualizarDoadorPeloId(
+    public ResponseEntity<Doador> atualizarDoadorPeloId(
             @PathVariable Integer id,
             @Valid @RequestBody Doador doador
     ) {
         Doador doadorAtualizado = doadorService.atualizarPeloId(id, doador);
-        return doadorAtualizado;
+        return ResponseEntity.status(HttpStatus.OK).body(doadorAtualizado);
     }
 
     @DeleteMapping("/{id}")
@@ -58,6 +51,7 @@ public class DoadoresController {
     public void deletarDoadorPeloId(@PathVariable Integer id) {
         doadorService.deletarPeloId(id);
     }
+
 }
 
 
