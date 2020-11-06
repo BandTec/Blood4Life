@@ -61,10 +61,8 @@ public class DoadorRepositoryTest {
     @Test
     @Order(2)
     public void deveRetornarFalsoQuandoNaoHouverUmDoadorComAsCredenciaisInformadas() {
-        doadoresRepository.deleteAll();
-
         Boolean resultado = doadoresRepository
-                .existsByEmailAndSenha("exemplo@email.com", "senha123");
+                .existsByEmailAndSenha("exemplo@exemplo.com", "exemplo123");
 
         Assertions.assertThat(resultado).isFalse();
     }

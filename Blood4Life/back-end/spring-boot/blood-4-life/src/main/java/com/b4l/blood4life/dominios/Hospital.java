@@ -1,15 +1,20 @@
 package com.b4l.blood4life.dominios;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "hospital")
 public class Hospital {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_hospital")
     private Integer id;
 
     @NotNull
@@ -20,12 +25,22 @@ public class Hospital {
     @Length(max = 14)
     private String cnpj;
 
-    @Embedded
-    private Endereco endereco;
-
     @NotNull
     @Length(min = 10, max = 11)
     private String telefone;
+
+    @Embedded
+    private Endereco endereco;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "doadores_hospital",
+            joinColumns = {@JoinColumn(name = "id_hospital")},
+            inverseJoinColumns = {@JoinColumn(name = "id_doador")})
+    private List<Doador> doadores = new ArrayList<>();
+
+    public Hospital() {
+    }
 
     public Integer getId() {
         return id;
@@ -65,6 +80,14 @@ public class Hospital {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public List<Doador> getDoadores() {
+        return doadores;
+    }
+
+    public void setDoadores(List<Doador> doadores) {
+        this.doadores = doadores;
     }
 
     @Override

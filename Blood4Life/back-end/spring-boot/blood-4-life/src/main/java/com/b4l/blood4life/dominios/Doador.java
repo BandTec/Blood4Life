@@ -1,22 +1,23 @@
 package com.b4l.blood4life.dominios;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "doador")
 public class Doador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_doador")
     private Integer id;
 
     @NotNull(message = "{nome.not.null}")
@@ -48,6 +49,9 @@ public class Doador {
     private String tipoSanguineo;
 
     private Character genero;
+
+    @ManyToMany(mappedBy = "doadores")
+    private List<Hospital> hospitais = new ArrayList<>();
 
     // Construtor default necessário para NÃO gerar erro na query
     public Doador() {
@@ -136,6 +140,14 @@ public class Doador {
 
     public void setDtNascimento(LocalDate dtNascimento) {
         this.dtNascimento = dtNascimento;
+    }
+
+    public List<Hospital> getHospitais() {
+        return hospitais;
+    }
+
+    public void setHospitais(List<Hospital> hospitais) {
+        this.hospitais = hospitais;
     }
 
     @Override
