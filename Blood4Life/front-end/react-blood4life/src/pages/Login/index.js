@@ -1,22 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as S from './style.js';
-import imgLogin from '../../assets/loginImg.png';
 import b4lLogo from '../../assets/b4l-logo.png';
 import imgEmailUser from '../../assets/email-user.png';
 import imgSenhaUser from '../../assets/senha-user.png';
+import imgAdminFundo from '../../assets/imgFundoAdmir.png';
+import imgLogin from '../../assets/loginImg.png';
 
 export default function Login() {
+
+    const [imgAdmin, setimgAdmin] = useState();
+
     return (
         <>
 
+
             <S.container>
+            <button style={{position: "fixed",border:"none",outline:"none" ,zIndex:999, bottom: "0", left:"0", 
+            backgroundColor:"White", height: "50px", width: "50px"}}
+            
+            onClick={()=> setimgAdmin(!imgAdmin)}
+            
+            ></button>
 
 
                 <S.divesquerda>
-
                     <S.divLogo>
                         <S.imgLogo src={b4lLogo} />
-
                     </S.divLogo>
                     <S.divestrutura>
                         <S.divInputs>
@@ -48,11 +57,18 @@ export default function Login() {
                         </S.divBotao>
                     </S.divestrutura>
                 </S.divesquerda>
-                <S.divdireita>
-
-                    <S.imglogin src={imgLogin} />
-
-                </S.divdireita>
+                    {
+                        imgAdmin
+                        ?
+                    <S.divdireita style={{backgroundColor: "#FAE4E1"}}>
+                        <S.imglogin src={imgAdminFundo} />
+                    </S.divdireita>
+                        :
+                    <S.divdireita>
+                        <S.imglogin src={imgLogin} />
+                    </S.divdireita>
+                    
+                    }
 
             </S.container>
 
