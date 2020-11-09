@@ -1,94 +1,129 @@
 import styled from 'styled-components';
-/*
-export const nome = tipo;
-*/
 
-export const containerBase = styled.div`
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    /* border: 1px solid red; */
-    
-`;
+export const divSalsichao = styled.div`
+    display: flex;
+    height: 10vh;
+    width: 25vw;
+    align-items: center;
+    justify-content: center;
+    background-color: #7DABFA;
+    border-radius: 0px 50px 50px 0px;
+    margin-top: 30px;
 
-
-export const teste = styled.div`
-    width:50%;
-    flex-direction:column;
-    border:solid 1px red;
-`;
-
-export const header = styled.div`
-    font-size:30px;
-    font-family:"Open Sans", sans-serif;
-`;
-
-export const content = styled.div`
-    display:flex;
-    flex-direction:column;
-`;
-
-export const formulario = styled.form`
-    display:flex;
-    flex-direction:column;
-    /* align-self:fit-content; 
-    align-itens:center*/
-    /* margin-left: auto;
-    margin-right: auto;  */
-    align-items:center;
-    font-size:25px;
-    label{
-        font-size: 30px;
+    img {
+        margin-right: 15px;
+        width: 20vw;
     }
+`;
+
+export const conteudo = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const containerImagem = styled.div`
+    img {
+        width: 50vw;
+        height: 50vh;
+    }
+`;
+
+export const containerForm = styled.div`
+    background-color: #7DABFA;
+    width: 80vw;
+    height: 77vh;
+    border-radius: 30px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        color: #FFF;
+        margin-top: 4%;
+        margin-left: 6%;
+        align-self: flex-start;
+    }
+
+    label {
+        color: #FFF;
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        font-weight: 500;
+    }
+
     input {
-        margin-top:12px;
-        min-width:20em;
-        height:35px;
-        padding: 0px 10px;
-        font-size:16px;
-        font-family: "Open Sans", sans-serif;
-        border:0;
-        background-color: #f3f3f3;
-        border-radius:4px;
-        margin-bottom:30px;
-        transition: all 250ms ease-in-out;
-    } 
-    &:focus {
-            outline: none;
-            box-shadow: gray;
-          }
-    
-`;
-
-export const imagemFundo = styled.div`
-    
-    img{
-        width:30%;
-        margin-left: 630px;
+        width: 100%;
+        height: 5vh;
+        border-style: none;
+        border-radius: 50px;
+        padding-left: 4%;
+        outline: 0;
+        ::placeholder {
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 19px;
+            letter-spacing: 0.15em;
+            color: rgba(0, 0, 0, 0.5);
+        }
     }
+
+    select {
+        width: 100%;
+        height: 5vh;
+        align-self: center;
+        border-style: none;
+        border-radius: 50px;
+        background: #FFF;
+        padding-left: 4%;
+        outline: 0;
+        ::placeholder {
+            font-weight: bold;
+            margin-top: 5px;
+            font-size: 19px;
+            letter-spacing: 0.15em;
+            color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
 `;
 
-export const grupoFormulario = styled.div`
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        width:fit-content; 
+export const divDaDiv = styled.div`
+    width: 80%;
+    height: 70vh;
+    /* background-color: red; */
 `;
 
-
-export const footer = styled.button`
-    margin-top: 0.5em;
+export const divLinha = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 `;
 
+export const divColuna = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    /* background-color: green; */
+`;
 
-export const botaoLogar = styled.button`
-  font-size: 21px;
-  padding: 5px 20px;
-  border: 0px;
-  background-color: #3498db;
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
+export const signUpButton = styled.div`
+    margin-top: 2%;
+    margin-bottom: 1%;
+    button {
+        width: 17vw;
+        padding: 5%;
+        font-size: 32px;
+        color: #FFF;
+        background-color: #E75D52;
+        border-radius: 100px;
+        border-style: none;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
+        outline: 0;
+    }
 `;
