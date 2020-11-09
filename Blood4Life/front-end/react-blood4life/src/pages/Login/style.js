@@ -1,94 +1,196 @@
 import styled from 'styled-components';
-/*
-export const nome = tipo;
-*/
 
-export const containerBase = styled.div`
-    width:100%;
-    height:100%;
+export const container = styled.div`
+    width:100vw;
+    height:100vh;
     display:flex;
-    flex-direction:column;
-    align-items:center;
-    /* border: 1px solid red; */
-    
 `;
 
-
-export const teste = styled.div`
+export const divesquerda = styled.div`
     width:50%;
-    flex-direction:column;
-    border:solid 1px red;
+    height:100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+
 `;
 
-export const header = styled.div`
-    font-size:30px;
-    font-family:"Open Sans", sans-serif;
+export const divestrutura = styled.div`
+    width:100%;
+    height:80%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 `;
 
-export const content = styled.div`
-    display:flex;
-    flex-direction:column;
+export const divdireita = styled.div`
+    width:50%;
+    height:100%;
+    background-color:rgba(125, 171, 250, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
-export const formulario = styled.form`
-    display:flex;
-    flex-direction:column;
-    /* align-self:fit-content; 
-    align-itens:center*/
-    /* margin-left: auto;
-    margin-right: auto;  */
+export const imglogin = styled.img`
+    max-width:100%;
+`;
+
+export const divLogo = styled.div`
+    height:15%;
+    width: 68%;
+    background-color: rgba(125, 171, 250, 1);
+    display: flex;
+    border-radius:100vw;
+    justify-content: center;
     align-items:center;
-    font-size:25px;
-    label{
-        font-size: 30px;
-    }
-    input {
-        margin-top:12px;
-        min-width:20em;
-        height:35px;
-        padding: 0px 10px;
-        font-size:16px;
-        font-family: "Open Sans", sans-serif;
-        border:0;
-        background-color: #f3f3f3;
-        border-radius:4px;
-        margin-bottom:30px;
-        transition: all 250ms ease-in-out;
-    } 
-    &:focus {
-            outline: none;
-            box-shadow: gray;
-          }
+    min-width:100px;
+    margin-top:5%;
+
+`;
+
+export const imgLogo = styled.img`
+    max-width: 100%;
+`;
+
+export const divInputs = styled.div`
+    width: 70%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+
+    `;
+
+export const divEmail = styled.div`
+    width: 100%;
+    height: 30%;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
     
 `;
 
-export const imagemFundo = styled.div`
-    
-    img{
-        width:70%;
-        margin-left:100px;
-    }
+export const inputEmail = styled.input`
+    width:80%;
+    height:40%;
+    display:flex;
+    border-radius:100vw;
+    border-color:  rgba(125, 171, 250, 1);
+    padding: 5%;
+    outline: none;  
+
 `;
 
-export const grupoFormulario = styled.div`
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        width:fit-content; 
-`;
-
-
-export const footer = styled.button`
-    margin-top: 1em;
+export const imgEmailUser = styled.img`
+    max-width: 100%;
 `;
 
 
-export const botaoLogar = styled.button`
-  font-size: 21px;
-  padding: 5px 20px;
-  border: 0px;
-  background-color: #3498db;
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
+export const divSenha = styled.div`
+    width: 100%;
+    height: 30%;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+`;
+
+export const inputSenha = styled.input`
+    width:80%;
+    height:40%;
+    display:flex;
+    border-radius:100vw;
+    border-color:  rgba(125, 171, 250, 1);
+    padding: 5%;
+    box-sizing: border-box;
+    outline: none;  
+`;
+
+export const imgSenhaUser = styled.img`
+    max-width: 100%;
+`;
+
+export const divResto = styled.div`
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    `;
+
+export const divLembrar = styled.div`
+    width: 30%;
+    height: 70%;
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    align-items:center;
+    margin-left:15%;
+
+`;
+
+export const lblLembrar = styled.label`
+    color:black;
+    font-style:normal;
+    font-size: 1.1em;
+    display: flex;
+    cursor:pointer;
+`;
+
+export const checkLembrar = styled.input`
+    cursor:pointer;
+`;
+
+export const divEsqueceu = styled.div`
+    width: 40%;
+    height: 70%;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+`;
+
+export const lblEsqueceu = styled.label`
+    color:black;
+    font-style:normal;
+    font-size: 1.1em;
+    display: flex;
+    cursor:pointer;
+
+
+`;
+
+export const divBotao = styled.div`
+    width: 70%;
+    height: 28%;
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    `;
+
+export const btnLogar = styled.button`
+    width:30%;
+    height: 40%;
+    background-color: rgba(125, 171, 250, 1);
+    border-radius: 100vw;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    border:none;
+    min-width:50px;
+    cursor:pointer;
+    outline: none; 
+
+`;
+
+export const lblbotao = styled.label`
+    color:rgba(255, 243, 243, 1);
+    font-style:normal;
+    font-size: 1.4em;
+    display: flex;
+    cursor:pointer;
+
 `;
