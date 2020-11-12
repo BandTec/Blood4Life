@@ -19,25 +19,25 @@ export default function Cadastro() {
                 <S.containerForm>
                     <h1>Informações Pessoais</h1>
                     <S.divDaDiv>
-                        <S.divColuna style={{width: '100%'}}>
+                        <S.divColuna style={{ width: '100%' }}>
                             <label htmlFor="">Nome: *</label>
-                            <input type="text" placeholder=""/>
+                            <input type="text" placeholder="" />
                         </S.divColuna>
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Email: *</label>
-                                <input type="email" placeholder=""/>
+                                <input type="email" placeholder="" />
                             </S.divColuna>
 
                             <S.divColuna>
                                 <label htmlFor="">Confirmar Email: *</label>
-                                <input type="email" placeholder=""/>
+                                <input type="email" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Data de Nascimento: *</label>
-                                <input type="date"/>
+                                <input type="date" />
                             </S.divColuna>
 
                             <S.divColuna>
@@ -58,19 +58,20 @@ export default function Cadastro() {
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Senha: *</label>
-                                <input type="password" placeholder=""/>
+                                <input type="password" placeholder="" />
                             </S.divColuna>
 
                             <S.divColuna>
                                 <label htmlFor="">Confirmar Senha: *</label>
-                                <input type="password" placeholder=""/>
+                                <input type="password" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>
                     </S.divDaDiv>
+                    <S.signUpButton>
+                        <button>Cadastrar</button>
+                    </S.signUpButton>
                 </S.containerForm>
-                <S.signUpButton>
-                    <button>Cadastrar</button>
-                </S.signUpButton>
+
             </S.conteudo>
         </>
     );
