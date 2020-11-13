@@ -1,50 +1,78 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style.js';
-import cadastro from '../../assets/cadastro.svg';
+import logo from '../../assets/logo.svg';
+import imagemForm from '../../assets/imagem-form.svg';
 
 export default function Cadastro() {
     return (
         <>
-            <h1>ESSA É A TELA DE CADASTRO</h1>
-            <Link to="/">
-                HOME
-                <img src="" />
-            </Link>
-            <br/>
-            <Link to="/login">
-                LOGIN
-                <img src="" />
-            </Link>
+            <S.divSalsichao>
+                <Link to="/">
+                    <img src={logo} alt='Logo Blood4Life' />
+                </Link>
+            </S.divSalsichao>
+            <S.conteudo>
+                <S.containerImagem>
+                    <img src={imagemForm} alt='Imagem de cadastro' />
+                </S.containerImagem>
+                <S.containerForm>
+                    <h1>Informações Pessoais</h1>
+                    <S.divDaDiv>
+                        <S.divColuna style={{ width: '100%' }}>
+                            <label htmlFor="">Nome: *</label>
+                            <input type="text" placeholder="" />
+                        </S.divColuna>
+                        <S.divLinha>
+                            <S.divColuna>
+                                <label htmlFor="">Email: *</label>
+                                <input type="email" placeholder="" />
+                            </S.divColuna>
 
-            <S.containerBase>
-                <S.header>Cadastro</S.header>
-                <S.content>
-                    <S.imagemFundo>
-                        <img src={cadastro} />
-                    </S.imagemFundo>
-                    <S.formulario>
-                        <S.grupoFormulario>
-                            <label htmlFor="username">Username</label>
-                            <input id="txtUsername" type="text" name="username" placeholder="username" />
-                        </S.grupoFormulario>
-                        <S.grupoFormulario>
-                            <label htmlFor="email">Email</label>
-                            <input id="txtEmail" type="email" name="email" placeholder="email" />
-                        </S.grupoFormulario>
-                        <S.grupoFormulario>
-                            <label htmlFor="password">Password</label>
-                            <input id="txtSenha" type="password" name="password" placeholder="password" />
-                        </S.grupoFormulario>
-                    </S.formulario>
-                </S.content>
-                <S.footer>
-                    <S.botaoLogar >
-                        Login
-                     </S.botaoLogar>
-                </S.footer>
-            </S.containerBase>
+                            <S.divColuna>
+                                <label htmlFor="">Confirmar Email: *</label>
+                                <input type="email" placeholder="" />
+                            </S.divColuna>
+                        </S.divLinha>
+                        <S.divLinha>
+                            <S.divColuna>
+                                <label htmlFor="">Data de Nascimento: *</label>
+                                <input type="date" />
+                            </S.divColuna>
 
+                            <S.divColuna>
+                                <label htmlFor="">Tipo Sanguíneo:</label>
+                                <select name="" id="">
+                                    <option value="">Não sei meu tipo sanguíneo</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                </select>
+                            </S.divColuna>
+                        </S.divLinha>
+                        <S.divLinha>
+                            <S.divColuna>
+                                <label htmlFor="">Senha: *</label>
+                                <input type="password" placeholder="" />
+                            </S.divColuna>
+
+                            <S.divColuna>
+                                <label htmlFor="">Confirmar Senha: *</label>
+                                <input type="password" placeholder="" />
+                            </S.divColuna>
+                        </S.divLinha>
+                    </S.divDaDiv>
+                    <S.signUpButton>
+                        <button>Cadastrar</button>
+                    </S.signUpButton>
+                </S.containerForm>
+
+            </S.conteudo>
         </>
     );
 }

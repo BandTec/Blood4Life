@@ -123,7 +123,7 @@ export const divResto = styled.div`
     `;
 
 export const divLembrar = styled.div`
-    width: 30%;
+    width: 32%;
     height: 70%;
     display:flex;
     flex-direction:row;
