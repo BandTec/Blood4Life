@@ -1,5 +1,7 @@
 package com.b4l.blood4life.dominios;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -50,6 +52,7 @@ public class Doador {
 
     private Character genero;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "doadores")
     private List<Hospital> hospitais = new ArrayList<>();
 
