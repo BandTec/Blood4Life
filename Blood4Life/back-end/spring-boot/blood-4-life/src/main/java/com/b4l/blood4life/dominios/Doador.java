@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,15 +36,15 @@ public class Doador {
     @Size(min = 8, max = 16)
     private String senha;
 
-    @NotNull
+//    @NotNull
     @Size(min = 11, max = 11)
     private String cpf;
 
     @Past
     @NotNull
-    private LocalDate dtNascimento;
+    private Date dtNascimento;
 
-    @NotNull
+//    @NotNull
     @Size(min = 10, max = 11)
     private String telefone;
 
@@ -74,7 +75,7 @@ public class Doador {
             @Email @NotNull @Size(min = 10, max = 60) String email,
             @NotNull @Size(min = 8, max = 16) String senha,
             @NotNull @Size(min = 11, max = 11) String cpf,
-            @Past @NotNull LocalDate dtNascimento,
+            @Past @NotNull Date dtNascimento,
             @NotNull @Size(min = 10, max = 11) String telefone,
             @Size(min = 2, max = 3) String tipoSanguineo,
             Character genero
@@ -90,7 +91,7 @@ public class Doador {
         this.genero = genero;
     }
 
-    public LocalDate getDtNascimento() {
+    public Date getDtNascimento() {
         return dtNascimento;
     }
 
@@ -141,7 +142,7 @@ public class Doador {
         this.cpf = cpf;
     }
 
-    public void setDtNascimento(LocalDate dtNascimento) {
+    public void setDtNascimento(Date dtNascimento) {
         this.dtNascimento = dtNascimento;
     }
 
@@ -252,8 +253,8 @@ public class Doador {
             return this;
         }
 
-        public Doador build() {
-            return new Doador(id, nome, email, senha, cpf, dtNascimento, telefone, tipoSanguineo, genero);
-        }
+//        public Doador build() {
+//            return new Doador(id, nome, email, senha, cpf, dtNascimento, telefone, tipoSanguineo, genero);
+//        }
     }
 }

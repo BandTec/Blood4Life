@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.html.Option;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import javax.websocket.server.PathParam;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -44,11 +47,13 @@ public class LoginController {
 
         if (email.equals(doador.getEmail()) && senha.equals(doador.getSenha())) {
             session.setAttribute("usuarioLogado", doador);
-            return ResponseEntity.ok("Usuário válido");
+            return ResponseEntity.ok(doador);
         }
 
         return ResponseEntity.ok("Email ou senha inválida!");
     }
+
+
 
     @PostMapping("/adm")
     public ResponseEntity loginAdm(
@@ -81,3 +86,19 @@ public class LoginController {
         return ResponseEntity.ok().build();
     }
 }
+
+
+//    @PostMapping("/login")
+//    public ResponseEntity logar(@PathParam("email") String email, @PathParam("senha") String senha, HttpSession session){
+//        Optional<Doador> doador = doadoresRepository.findByEmailAndSenha(email,senha);
+//
+//        if (doador.isPresent()) {
+//            session.setAttribute("usuarioLogado", doador);
+//            return ResponseEntity.ok("Usuário válido");
+//        }else {
+//            System.out.println(email);
+//            System.out.println(senha);
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//    }

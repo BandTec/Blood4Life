@@ -3,8 +3,42 @@ import { Link } from 'react-router-dom';
 import * as S from './style.js';
 import logo from '../../assets/logo.svg';
 import imagemForm from '../../assets/imagem-form.svg';
+import { useHistory } from 'react-router-dom';
+import api from '../../services/api.js';
 
 export default function Cadastro() {
+
+    const hist = useHistory();
+
+    async function handleRegister(){
+
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const emailConfirmado = document.getElementById('emailConfirmado').value;
+        const dtNascimento = document.getElementById('dtNascimento').value;
+        const tipoSanguineo = document.getElementById('tipoSanguineo').value;
+        const senha = document.getElementById('senha').value;
+        const senhaConfirmada = document.getElementById('senhaConfirmada').value;
+
+
+        const doador = {
+            nome,
+            email,
+            senha,
+            dtNascimento,
+            tipoSanguineo
+        }
+
+        await api.post('/doadores', doador)
+        .then(res => {
+            alert('Cadastrado com sucesso!');
+        })
+        .catch(err => {
+            console.log("Erro:", err);
+        });
+    
+    }
+    
     return (
         <>
             <S.divSalsichao>
@@ -21,28 +55,28 @@ export default function Cadastro() {
                     <S.divDaDiv>
                         <S.divColuna style={{ width: '100%' }}>
                             <label htmlFor="">Nome: *</label>
-                            <input type="text" placeholder="" />
+                            <input id="nome" type="text" placeholder="" />
                         </S.divColuna>
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Email: *</label>
-                                <input type="email" placeholder="" />
+                                <input id="email" type="email" placeholder="" />
                             </S.divColuna>
 
                             <S.divColuna>
                                 <label htmlFor="">Confirmar Email: *</label>
-                                <input type="email" placeholder="" />
+                                <input id="emailConfirmado" type="email" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Data de Nascimento: *</label>
-                                <input type="date" />
+                                <input id="dtNascimento" type="date" />
                             </S.divColuna>
 
                             <S.divColuna>
                                 <label htmlFor="">Tipo Sanguíneo:</label>
-                                <select name="" id="">
+                                <select name="" id="tipoSanguineo">
                                     <option value="">Não sei meu tipo sanguíneo</option>
                                     <option value="A+">A+</option>
                                     <option value="A-">A-</option>
@@ -58,17 +92,17 @@ export default function Cadastro() {
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Senha: *</label>
-                                <input type="password" placeholder="" />
+                                <input id="senha" type="password" placeholder="" />
                             </S.divColuna>
 
                             <S.divColuna>
                                 <label htmlFor="">Confirmar Senha: *</label>
-                                <input type="password" placeholder="" />
+                                <input id="senhaConfirmada" type="password" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>
                     </S.divDaDiv>
                     <S.signUpButton>
-                        <button>Cadastrar</button>
+                        <button onClick={handleRegister}>Cadastrar</button>
                     </S.signUpButton>
                 </S.containerForm>
 
