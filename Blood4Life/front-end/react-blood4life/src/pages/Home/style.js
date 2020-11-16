@@ -31,6 +31,25 @@ export const imgLogo = styled.img`
 `;
 
 export const buttonEntrar = styled.button`
+    padding: 1.5vh 4vw;
+    margin-left: 70vh;
+    font-size: 1.7em;
+    color: #5580CB;
+    background-color: white;
+    border: 0.3vw solid #5580CB;
+    border-radius: 100vh;
+    cursor: pointer; 
+    :focus{
+     outline-style: none;
+    }
+
+    &:hover {
+        background-color: #7DABFA;
+        color: white;
+    }
+`;
+
+export const buttonEntrarAdm = styled.button`
     margin-right: 1%;
     padding: 1.5vh 4vw;
     font-size: 1.7em;
@@ -39,12 +58,16 @@ export const buttonEntrar = styled.button`
     border: 0.3vw solid #5580CB;
     border-radius: 100vh;
     cursor: pointer; 
+    :focus{
+     outline-style: none;
+    }
 
     &:hover {
         background-color: #7DABFA;
         color: white;
     }
 `;
+
 // * FIM NAVBAR
 
 
@@ -115,6 +138,9 @@ export const buttonCadastrar = styled.button`
     border: 0.3vw solid #5580CB;
     border-radius: 100vh;
     cursor: pointer; 
+    :focus{
+     outline-style: none;
+    }
 
     &:hover {
         background-color: #7DABFA;
@@ -174,6 +200,9 @@ export const buttonLowExposureImage = styled.button`
     border: 0.3vw solid #5580CB;
     border-radius: 100vh;
     cursor: pointer; 
+    :focus{
+     outline-style: none;
+    }
 
     &:hover {
         background-color: #7DABFA;
@@ -266,6 +295,9 @@ export const buttonOQueFazemos = styled.button`
     border: 0.3vw solid #5580CB;
     border-radius: 100vh;
     cursor: pointer; 
+    :focus{
+     outline-style: none;
+    }
 
     &:hover {
         background-color: #7DABFA;
@@ -340,6 +372,9 @@ export const buttonLorem = styled.button`
     border: 0.3vw solid #5580CB;
     border-radius: 100vh;
     cursor: pointer; 
+    :focus{
+     outline-style: none;
+    }
 
     &:hover {
         background-color: #7DABFA;

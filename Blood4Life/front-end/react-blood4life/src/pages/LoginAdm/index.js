@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import * as S from './style.js';
@@ -6,13 +6,12 @@ import b4lLogo from '../../assets/b4l-logo.png';
 import imgEmailUser from '../../assets/email-user.png';
 import imgSenhaUser from '../../assets/senha-user.png';
 import imgAdminFundo from '../../assets/imgFundoAdmir.png';
-import imgLogin from '../../assets/loginImg.png';
+
 
 import api from '../../services/api';
 
-export default function Login() {
+export default function LoginAdm() {
 
-    const [imgAdmin, setimgAdmin] = useState();
 
     const hist = useHistory();
 
@@ -23,7 +22,7 @@ export default function Login() {
 
         await api.post(`/user/doador?email=${email}&senha=${senha}`)
         .then(res => {
-            localStorage.setItem("doador", JSON.stringify(res.data));
+            localStorage.setItem("adm", JSON.stringify(res.data));
             console.log(res.data);
             hist.push('/');
         }).catch(error =>{
@@ -38,15 +37,7 @@ export default function Login() {
 
     return (
         <>
-
-
             <S.container>
-            <button style={{position: "fixed",border:"none",outline:"none" ,zIndex:999, bottom: "0", left:"0", 
-            backgroundColor:"White", height: "50px", width: "50px"}}
-            onClick={()=> setimgAdmin(!imgAdmin)}
-            ></button>
-
-
                 <S.divesquerda>
                     <S.divLogo>
                         <Link to="/">
@@ -84,10 +75,11 @@ export default function Login() {
                     </S.divestrutura>
                 </S.divesquerda>
                     {
-                    <S.divdireita>
-                        <S.imglogin src={imgLogin} />
+
+                    <S.divdireita style={{backgroundColor: "#FAE4E1"}}>
+                        <S.imglogin src={imgAdminFundo} />
                     </S.divdireita>
-                    
+
                     }
 
             </S.container>

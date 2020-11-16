@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
+import { useHistory } from 'react-router-dom';
 
 import logo from '../../assets/b4l-logo.png';
 import logoHeart from '../../assets/logo-heart.png'
@@ -26,6 +27,8 @@ import linkedin from '../../assets/linkedin-vector.png';
 
 export default function Home() {
     
+    const hist = useHistory();
+
     return (
         <>
             {/* NAVBAR */}
@@ -35,14 +38,21 @@ export default function Home() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center"
-                    }} to="/cadastro">
+                    }} to="/">
                         <S.imgLogo src={logo}/>
                     </Link>
                 </S.divLogoSalsichao>
                 {/* <Link to="/login"> */}
-                    <S.buttonEntrar onClick={() => {window.alert('VOCÊ CLICOU EM ENTRAR!')}}>
-                        Entrar
+                    <Link to="/login">
+                    <S.buttonEntrar>
+                        Doador
                     </S.buttonEntrar>
+                    </Link>
+                    <Link to="/loginAdm">
+                    <S.buttonEntrarAdm>
+                        Adm
+                    </S.buttonEntrarAdm>
+                    </Link>
                 {/* </Link> */}
             </S.navbar>
 
@@ -53,7 +63,7 @@ export default function Home() {
                     <S.divTextContainer>
                         <S.pHome>“Doar sangue é um ato de amor e soliedariedade”</S.pHome>
                         {/* <Link to="/cadastro"> */}
-                            <S.buttonCadastrar onClick={() => {window.alert('VOCÊ CLICOU EM CADASTRAR!')}}>
+                            <S.buttonCadastrar onClick={() => {hist.push('/cadastro')}}>
                                 Cadastrar-se
                             </S.buttonCadastrar>
                         {/* </Link> */}
@@ -72,7 +82,7 @@ export default function Home() {
                         <S.titleLowExposureImage>
                             Quando você doa sangue, pode salvar a vida de várias famílias, inclusive a sua!
                         </S.titleLowExposureImage>
-                        <S.buttonLowExposureImage onClick={() => {window.alert('VOCÊ CLICOU EM SAIBA MAIS!')}}>
+                        <S.buttonLowExposureImage onClick={() => {hist.push('/cadastro')}}>
                             Saiba mais
                         </S.buttonLowExposureImage>
                     </S.divLowExposureImageContainer>
