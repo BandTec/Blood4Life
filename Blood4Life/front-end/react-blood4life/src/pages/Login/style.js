@@ -30,7 +30,7 @@ export const divestrutura = styled.div`
 export const divdireita = styled.div`
     width:50%;
     height:100%;
-    background-color:rgba(125, 171, 250, 1);
+    background-color:#7DABFA;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +43,7 @@ export const imglogin = styled.img`
 export const divLogo = styled.div`
     height:15%;
     width: 68%;
-    background-color: rgba(125, 171, 250, 1);
+    background-color: #7DABFA;
     display: flex;
     border-radius:100vw;
     justify-content: center;
@@ -80,7 +80,7 @@ export const inputEmail = styled.input`
     height:40%;
     display:flex;
     border-radius:100vw;
-    border-color:  rgba(125, 171, 250, 1);
+    border-color:  #7DABFA;
     padding: 5%;
     outline: none;  
 
@@ -104,7 +104,7 @@ export const inputSenha = styled.input`
     height:40%;
     display:flex;
     border-radius:100vw;
-    border-color:  rgba(125, 171, 250, 1);
+    border-color:  #7DABFA;
     padding: 5%;
     box-sizing: border-box;
     outline: none;  
@@ -174,7 +174,7 @@ export const divBotao = styled.div`
 export const btnLogar = styled.button`
     width:30%;
     height: 40%;
-    background-color: rgba(125, 171, 250, 1);
+    background-color: #7DABFA;
     border-radius: 100vw;
     display: flex;
     justify-content:center;

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './style';
-import { useHistory } from 'react-router-dom';
 
 import logo from '../../assets/b4l-logo.png';
 import logoHeart from '../../assets/logo-heart.png'
@@ -27,33 +26,39 @@ import linkedin from '../../assets/linkedin-vector.png';
 
 export default function Home() {
     
-    const hist = useHistory();
-
     return (
         <>
             {/* NAVBAR */}
             <S.navbar>
                 <S.divLogoSalsichao>
-                    <Link style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center"
-                    }} to="/">
-                        <S.imgLogo src={logo}/>
-                    </Link>
+                    <S.imgLogo src={logo}/>
                 </S.divLogoSalsichao>
-                {/* <Link to="/login"> */}
-                    <Link to="/login">
-                    <S.buttonEntrar>
-                        Doador
-                    </S.buttonEntrar>
-                    </Link>
-                    <Link to="/loginAdm">
+
+                <Link to={
+                    {
+                        pathname: "/login",
+                        loginProps: {
+                            admin: true,
+                        }
+                    }
+                    }>
                     <S.buttonEntrarAdm>
-                        Adm
+                        Administrativo
                     </S.buttonEntrarAdm>
-                    </Link>
-                {/* </Link> */}
+                </Link>
+               
+                <Link to={
+                    {
+                        pathname: "/login",
+                        loginProps: {
+                            admin: false,
+                        }
+                    }
+                    }>
+                    <S.buttonEntrar>
+                        Entrar
+                    </S.buttonEntrar>
+                </Link>
             </S.navbar>
 
             {/* HEADER */}
@@ -62,11 +67,17 @@ export default function Home() {
                 <S.divHeaderContainer>
                     <S.divTextContainer>
                         <S.pHome>“Doar sangue é um ato de amor e soliedariedade”</S.pHome>
-                        {/* <Link to="/cadastro"> */}
-                            <S.buttonCadastrar onClick={() => {hist.push('/cadastro')}}>
+                        <Link to="/cadastro" style={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            textDecoration: "none"
+                        }} >
+                            <S.buttonCadastrar>
                                 Cadastrar-se
                             </S.buttonCadastrar>
-                        {/* </Link> */}
+                        </Link>
                     </S.divTextContainer>
                     <S.divImageContainer>
                         <S.imgHome src={homeImage}/>
@@ -82,9 +93,18 @@ export default function Home() {
                         <S.titleLowExposureImage>
                             Quando você doa sangue, pode salvar a vida de várias famílias, inclusive a sua!
                         </S.titleLowExposureImage>
-                        <S.buttonLowExposureImage onClick={() => {hist.push('/cadastro')}}>
-                            Saiba mais
-                        </S.buttonLowExposureImage>
+                        <Link to="/cadastro" style={{
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            textDecoration: "none"
+                        }} > 
+                            <S.buttonLowExposureImage>
+                                Saiba mais
+                            </S.buttonLowExposureImage>
+                        </Link>
                     </S.divLowExposureImageContainer>
                 </S.sectionLowExposureImage>
                 <S.sectionOQueFazemos>
@@ -127,9 +147,18 @@ export default function Home() {
                                 </S.pItemOQueFazemos> 
                             </S.divItemOQueFazemos>
                         </S.divItensOQueFazemosContainer>
-                        <S.buttonOQueFazemos onClick={() => {window.alert('VOCÊ CLICOU EM SAIBA MAIS!')}}>
-                            Saiba mais
-                        </S.buttonOQueFazemos>
+                        <Link to="/cadastro" style={{
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            textDecoration: "none"
+                        }} >
+                            <S.buttonOQueFazemos>
+                                Saiba mais
+                            </S.buttonOQueFazemos>
+                        </Link>
                     </S.divOQueFazemosContainer>
                 </S.sectionOQueFazemos>
                 <S.sectionLorem>
@@ -144,9 +173,18 @@ export default function Home() {
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra eget nunc a porttitor. Aenean elementum ac enim quis blandit. Proin congue dictum mi quis mattis. Donec vehicula, ipsum ac mollis bibendum, ante odio fermentum turpis, a ornare quam ante ut purus. 
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra eget nunc a porttitor. Aenean elementum ac enim quis blandit. Proin congue dictum mi quis mattis. Donec vehicula, ipsum ac mollis bibendum, ante odio fermentum turpis, a ornare quam ante ut purus.
                         </S.pLorem>
-                        <S.buttonLorem onClick={() => {window.alert('VOCÊ CLICOU EM SAIBA MAIS!')}}>
-                            Saiba mais
-                        </S.buttonLorem>
+                        <Link to="/cadastro" style={{
+                            width: "100%",
+                            height: "100%",
+                            display: "flex",
+                            justifyContent: "flex-start",
+                            alignItems: "center",
+                            textDecoration: "none"
+                        }} >
+                            <S.buttonLorem>
+                                Saiba mais
+                            </S.buttonLorem>
+                        </Link>
                     </S.divLoremText>
                     <S.divLoremImg>
                         <S.imgLorem src={armBandaid}/>

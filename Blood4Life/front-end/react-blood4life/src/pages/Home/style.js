@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 // * NAVBAR
 export const navbar = styled.nav`
-    background-color: #f1f1f1;
-    position: fixed;
+    background-image: linear-gradient(
+        0deg,
+        #F7FAFF,
+        #FFFFFF
+    );
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 999;
@@ -19,55 +23,47 @@ export const divLogoSalsichao = styled.div`
     height: 13vh;
     border-bottom-right-radius: 100vh;
     border-top-right-radius: 100vh;
-    background-color: #5580CB;
+    background-color: #7DABFA;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* &:hover {
+        background-color: #5580CB;
+    } */
 `;
 
 export const imgLogo = styled.img`
     max-width: 60%;
-    max-height: 10%;
+    max-height: 100%;
+`;
+
+export const buttonEntrarAdm = styled.button`
+    font-size: 1.7em;
+    color: #7DABFA;
+    background: none;
+    border: none;
+    cursor: pointer; 
+
+    &:hover {
+        color: #5580CB;
+        text-decoration: underline;
+    }
 `;
 
 export const buttonEntrar = styled.button`
     padding: 1.5vh 4vw;
-    margin-left: 70vh;
     font-size: 1.7em;
-    color: #5580CB;
+    color: #7DABFA;
     background-color: white;
-    border: 0.3vw solid #5580CB;
+    border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
-    :focus{
-     outline-style: none;
-    }
 
     &:hover {
-        background-color: #7DABFA;
+        background-color: #5580CB;
         color: white;
     }
 `;
-
-export const buttonEntrarAdm = styled.button`
-    margin-right: 1%;
-    padding: 1.5vh 4vw;
-    font-size: 1.7em;
-    color: #5580CB;
-    background-color: white;
-    border: 0.3vw solid #5580CB;
-    border-radius: 100vh;
-    cursor: pointer; 
-    :focus{
-     outline-style: none;
-    }
-
-    &:hover {
-        background-color: #7DABFA;
-        color: white;
-    }
-`;
-
 // * FIM NAVBAR
 
 
@@ -126,7 +122,7 @@ export const pHome = styled.p`
     line-height: 1.5;
     font-size: 3.0em;
     padding: 0;
-    color: #5580CB;
+    color: #7DABFA;
 `;
 
 export const buttonCadastrar = styled.button`
@@ -134,16 +130,13 @@ export const buttonCadastrar = styled.button`
     padding: 2vh 5vw;
     font-size: 2em;
     color: white;
-    background-color: #5580CB;
-    border: 0.3vw solid #5580CB;
+    background-color: #7DABFA;
+    border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
-    :focus{
-     outline-style: none;
-    }
 
     &:hover {
-        background-color: #7DABFA;
+        background-color: #5580CB;
     }
 `;
 // * FIM HEADER
@@ -196,16 +189,13 @@ export const buttonLowExposureImage = styled.button`
     padding: 2vh 5vw;
     font-size: 2em;
     color: white;
-    background-color: #5580CB;
-    border: 0.3vw solid #5580CB;
+    background-color: #7DABFA;
+    border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
-    :focus{
-     outline-style: none;
-    }
 
     &:hover {
-        background-color: #7DABFA;
+        background-color: #5580CB;
     }
 `;
 
@@ -233,7 +223,7 @@ export const titleOQueFazemos = styled.p`
     word-wrap: break-word;
     line-height: 1.5;
     font-size: 3.0em;
-    color: #5580CB;
+    color: #7DABFA;
 `;
 
 export const divItensOQueFazemosContainer = styled.div`
@@ -291,16 +281,13 @@ export const buttonOQueFazemos = styled.button`
     padding: 2vh 5vw;
     font-size: 2em;
     color: white;
-    background-color: #5580CB;
-    border: 0.3vw solid #5580CB;
+    background-color: #7DABFA;
+    border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
-    :focus{
-     outline-style: none;
-    }
 
     &:hover {
-        background-color: #7DABFA;
+        background-color: #5580CB;
     }
 `;
 // -- FIM sessão "O que fazemos"
@@ -351,7 +338,7 @@ export const subtitleLorem = styled.p`
     word-wrap: break-word;
     line-height: 1.5;
     font-size: 3.0em;   
-    color: #5580CB;
+    color: #7DABFA;
 `;
 
 export const pLorem = styled.p`
@@ -368,16 +355,13 @@ export const buttonLorem = styled.button`
     padding: 2vh 5vw;
     font-size: 2em;
     color: white;
-    background-color: #5580CB;
-    border: 0.3vw solid #5580CB;
+    background-color: #7DABFA;
+    border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
-    :focus{
-     outline-style: none;
-    }
 
     &:hover {
-        background-color: #7DABFA;
+        background-color: #5580CB;
     }
 `;
 // FIM sessão "Lorem Ipsum (CAMISETA VERMELHA - O QUE COLOCAREMOS AQUI?)"
@@ -385,7 +369,7 @@ export const buttonLorem = styled.button`
 
 // * FOOTER
 export const footer = styled.footer`
-    background-color: #5580CB;
+    background-color: #7DABFA;
     height: 70vh;
     width: 100%;
 `;

@@ -5,25 +5,23 @@ import * as S from './style.js';
 import b4lLogo from '../../assets/b4l-logo.png';
 import imgEmailUser from '../../assets/email-user.png';
 import imgSenhaUser from '../../assets/senha-user.png';
-import imgAdminFundo from '../../assets/imgFundoAdmir.png';
-import imgLogin from '../../assets/loginImg.png';
+import imgAdmin from '../../assets/imgFundoAdmir.png';
+import imgDoador from '../../assets/loginImg.png';
 
 import api from '../../services/api';
 
-export default function Login() {
-
-    const [imgAdmin, setimgAdmin] = useState();
+export default function Login(props) {
 
     const hist = useHistory();
 
-    async function handleLogin() {
+    async function handleLoginDoador() {
 
         const email = document.getElementById('txtUseremail').value;
         const senha = document.getElementById('txtUsersenha').value;
 
         await api.post(`/user/doador?email=${email}&senha=${senha}`)
         .then(res => {
-            localStorage.setItem("doador", JSON.stringify(res.data));
+            localStorage.setItem("adm", JSON.stringify(res.data));
             console.log(res.data);
             hist.push('/');
         }).catch(error =>{
@@ -36,21 +34,42 @@ export default function Login() {
         });
     }
 
+    async function handleLoginAdm() {
+
+        const email = document.getElementById('txtUseremail').value;
+        const senha = document.getElementById('txtUsersenha').value;
+
+        await api.post(`/user/doador?email=${email}&senha=${senha}`)
+        .then(res => {
+            localStorage.setItem("doador", JSON.stringify(res.data));
+            console.log(res.data);
+            // hist.push('/');
+        }).catch(error =>{
+            if(error!==undefined&&error.response.status === 404){
+                console.log(error);
+                alert('Credenciais invalidas');
+            } else {
+                alert('Problemas de conexão')
+            }
+        });
+    }
+
     return (
         <>
-
-
+        {
+            props.location.loginProps === undefined 
+            ?
+            (hist.push('/'))
+            :
             <S.container>
-            <button style={{position: "fixed",border:"none",outline:"none" ,zIndex:999, bottom: "0", left:"0", 
-            backgroundColor:"White", height: "50px", width: "50px"}}
-            onClick={()=> setimgAdmin(!imgAdmin)}
-            ></button>
-
-
                 <S.divesquerda>
                     <S.divLogo>
-                        <Link to="/">
-                        <S.imgLogo src={b4lLogo} />
+                        <Link style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center"
+                            }} to="/">
+                                <S.imgLogo src={b4lLogo}/>
                         </Link>
                     </S.divLogo>
                     <S.divestrutura>
@@ -61,7 +80,7 @@ export default function Login() {
                             </S.divEmail>
                             <S.divSenha>
                                 <S.imgSenhaUser src={imgSenhaUser} />
-                                <S.inputSenha id="txtUsersenha" type="password"  placeholder="Senha" />
+                                <S.inputSenha id="txtUsersenha" type="text"  placeholder="Senha" />
                             </S.divSenha>
 
                             <S.divResto>
@@ -77,22 +96,33 @@ export default function Login() {
                         </S.divInputs>
 
                         <S.divBotao>
-                            <S.btnLogar onClick={handleLogin}>
-                                <S.lblbotao >Entrar</S.lblbotao>
+                        {
+                            props.location.loginProps.admin
+                            ?
+                            <S.btnLogar onClick={handleLoginAdm}>
+                                <S.lblbotao>Acessar</S.lblbotao>
                             </S.btnLogar>
+                            :
+                            <S.btnLogar onClick={handleLoginDoador}>
+                                <S.lblbotao>Entrar</S.lblbotao>
+                            </S.btnLogar>
+                        }
                         </S.divBotao>
                     </S.divestrutura>
                 </S.divesquerda>
                     {
-                    <S.divdireita>
-                        <S.imglogin src={imgLogin} />
+                        props.location.loginProps.admin
+                        ?
+                    <S.divdireita style={{backgroundColor: "#FAE4E1"}}>
+                        <S.imglogin src={imgAdmin} />
                     </S.divdireita>
-                    
+                        :
+                    <S.divdireita>
+                        <S.imglogin src={imgDoador} />
+                    </S.divdireita>
                     }
-
-            </S.container>
-
-
+            </S.container> 
+        }
         </>
     )
 }
