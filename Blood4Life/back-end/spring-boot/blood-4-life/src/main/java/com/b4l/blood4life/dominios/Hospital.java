@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,15 @@ public class Hospital {
     @NotNull
     @Length(max = 45)
     private String nome;
+
+    @Email(message = "{email.not.valid}")
+    @NotNull(message = "{email.not.null}")
+    @Size(min = 10, max = 60, message = "{email.mix.max}")
+    private String email;
+
+    @NotNull
+    @Size(min = 8, max = 16)
+    private String senha;
 
     @NotNull
     @Length(max = 14)
@@ -56,6 +67,22 @@ public class Hospital {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getCnpj() {

@@ -2,8 +2,10 @@ package com.b4l.blood4life.controladores;
 
 import com.b4l.blood4life.dominios.AdministradorHospitalar;
 import com.b4l.blood4life.dominios.Doador;
+import com.b4l.blood4life.dominios.Hospital;
 import com.b4l.blood4life.repositorios.AdministradorHospitalarRepository;
 import com.b4l.blood4life.repositorios.DoadoresRepository;
+import com.b4l.blood4life.repositorios.HospitalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +30,9 @@ public class LoginController {
 
     @Autowired
     AdministradorHospitalarRepository admRepository;
+
+    @Autowired
+    HospitalRepository hospitalRepository;
 
     @PostMapping("/doador")
     public ResponseEntity loginDoador(
@@ -78,6 +83,29 @@ public class LoginController {
 
         return ResponseEntity.ok("Email ou senha inválida!");
     }
+
+    @PostMapping("/hospital")
+    public ResponseEntity loginHospital(
+            @RequestParam @Email @NotBlank @Size(min = 10, max = 60) String email,
+            @RequestParam @NotBlank @Size(min = 8, max = 16) String senha){
+
+        Hospital hospital = hospitalRepository.findByEmailAndSenha(email, senha);
+
+        try {
+            if (hospital.getId() == null) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+
+        if (email.equals(hospital.getEmail()) && senha.equals(hospital.getSenha())) {
+            return ResponseEntity.ok("Usuário válido");
+        }
+
+        return ResponseEntity.ok("Email ou senha inválida!");
+    }
+
 
     @PostMapping("/logout")
     public ResponseEntity efetuarLogout(HttpSession session) {
