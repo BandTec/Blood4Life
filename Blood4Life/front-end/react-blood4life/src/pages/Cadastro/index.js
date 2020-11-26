@@ -31,14 +31,37 @@ export default function Cadastro() {
 
         await api.post('/doadores', doador)
         .then(res => {
-            alert('Cadastrado com sucesso!');
+            alert("Cadastrado com sucesso!");
         })
         .catch(err => {
-            console.log("Erro:", err);
+            if (nome === "") {
+                alert("Nome não pode ser em branco");
+            } else if (nome.length < 2 || nome.length > 45) {
+                alert("Nome tem que ter no mínimo 2 e no máximo 45 lecaracterestras");
+            }
+            
+            if (email === "") {
+                alert("E-mail não pode ser em branco");
+            } else if (email.length < 10 || email.length > 60) {
+                alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
+            }
+
+            if (email !== emailConfirmado) {
+                alert("E-mails não correspondem");
+            }
+
+            if (senha === ""){
+                alert("Senha não pode estar em branco");
+            } else if (senha.length < 8 || senha.length > 16) {
+                alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
+            }
+
+            if (senha !== senhaConfirmada) {
+                alert("Senhas não correspondem");
+            }      
         });
-    
     }
-    
+
     return (
         <>
             <S.divSalsichao>
@@ -59,12 +82,12 @@ export default function Cadastro() {
                         </S.divColuna>
                         <S.divLinha>
                             <S.divColuna>
-                                <label htmlFor="">Email: *</label>
+                                <label htmlFor="">E-mail: *</label>
                                 <input id="email" type="email" placeholder="" />
                             </S.divColuna>
 
                             <S.divColuna>
-                                <label htmlFor="">Confirmar Email: *</label>
+                                <label htmlFor="">Confirmar E-mail: *</label>
                                 <input id="emailConfirmado" type="email" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>
@@ -75,7 +98,7 @@ export default function Cadastro() {
                             </S.divColuna>
 
                             <S.divColuna>
-                                <label htmlFor="">Tipo Sanguíneo:</label>
+                                <label htmlFor=""> Tipo Sanguíneo: </label>
                                 <select name="" id="tipoSanguineo">
                                     <option value="">Não sei meu tipo sanguíneo</option>
                                     <option value="A+">A+</option>

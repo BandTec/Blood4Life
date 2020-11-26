@@ -64,12 +64,16 @@ export const containerForm = styled.div`
         border-radius: 50px;
         padding-left: 4%;
         outline: 0;
+        font-family: 'Roboto';
         ::placeholder {
             font-weight: bold;
             margin-top: 5px;
             font-size: 19px;
             letter-spacing: 0.15em;
             color: rgba(0, 0, 0, 0.5);
+        }
+        ::-webkit-calendar-picker-indicator {
+            margin-right: 3%;
         }
     }
 
@@ -82,6 +86,7 @@ export const containerForm = styled.div`
         background: #FFF;
         padding-left: 4%;
         outline: 0;
+        font-family: 'Roboto';
         ::placeholder {
             font-weight: bold;
             margin-top: 5px;
@@ -90,7 +95,6 @@ export const containerForm = styled.div`
             color: rgba(0, 0, 0, 0.5);
         }
     }
-
 `;
 
 export const divDaDiv = styled.div`
@@ -110,6 +114,7 @@ export const divColuna = styled.div`
     display: flex;
     flex-direction: column;
     width: 45%;
+    
     /* background-color: green; */
 `;
 
