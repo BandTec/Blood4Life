@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import * as S from './style.js';
 import logo from '../../assets/logo.svg';
 import imagemForm from '../../assets/imagem-form.svg';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import api from '../../services/api.js';
 
 export default function Cadastro() {
 
-    const hist = useHistory();
+    // const hist = useHistory();
 
     async function handleRegister(){
 

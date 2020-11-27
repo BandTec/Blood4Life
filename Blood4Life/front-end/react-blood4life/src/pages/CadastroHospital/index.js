@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import * as S from './style.js';
 import logo from '../../assets/logo.svg';
 import imagemLoginAdm from '../../assets/img-login-adm.svg';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 export default function Cadastro() {
 
-    const hist = useHistory();
+    // const hist = useHistory();
 
     // async function handleRegister(){
 
@@ -53,6 +53,17 @@ export default function Cadastro() {
                             <label htmlFor="">Nome: *</label>
                             <input id="nome" type="text" placeholder="" />
                         </S.divColuna>
+                        <S.divLinha>
+                            <S.divColuna>
+                                <label htmlFor="">Endereço: *</label>
+                                <input id="endereco" type="text" placeholder="" />
+                            </S.divColuna>
+
+                            <S.divColuna>
+                                <label htmlFor="">CNPJ: *</label>
+                                <input id="cnpj" type="text" placeholder="" />
+                            </S.divColuna>
+                        </S.divLinha>
                         <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">Email: *</label>

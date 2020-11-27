@@ -58,6 +58,7 @@ export const buttonEntrar = styled.button`
     border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
+    margin-right: 1vh;
 
     &:hover {
         background-color: #5580CB;
@@ -134,6 +135,8 @@ export const buttonCadastrar = styled.button`
     border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
+    outline:none;
+
 
     &:hover {
         background-color: #5580CB;
@@ -182,6 +185,13 @@ export const titleLowExposureImage = styled.p`
     line-height: 1.5;
     font-size: 3.0em;
     color: white;
+    a{
+    max-width: 10%;
+    line-height: 1.5;
+    font-size: 1.0em;
+    color: white;
+    text-decoration:none;
+    }
 `;
 
 export const buttonLowExposureImage = styled.button`
@@ -285,6 +295,7 @@ export const buttonOQueFazemos = styled.button`
     border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
+    outline:none;
 
     &:hover {
         background-color: #5580CB;
@@ -359,6 +370,7 @@ export const buttonLorem = styled.button`
     border: 0.3vw solid #7DABFA;
     border-radius: 100vh;
     cursor: pointer; 
+    outline:none;
 
     &:hover {
         background-color: #5580CB;
@@ -390,6 +402,14 @@ export const titleFooter = styled.p`
     line-height: 1.5;
     font-size: 3.0em;   
     color: white;
+
+    a{
+        color:#ffff;
+        scroll-behavior: smooth;
+        text-decoration: none;
+        overflow-y: scroll;
+
+    }
 `;
 
 export const divFooterBody = styled.div`

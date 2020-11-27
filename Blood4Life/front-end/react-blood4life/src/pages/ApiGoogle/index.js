@@ -5,11 +5,11 @@ import TextField, { Input } from "@material/react-text-field";
 import MaterialIcon from "@material/react-material-icon";
 import Restaurante from '../../assets/restaurante-fake.png';
 // import Slider from "react-slick";
-import { Card, HospitaisCard, Modal, Map} from '../../components';
+import { Card, HospitaisCard,  Map} from '../../components';
 
 export default function ApiGoogle() {
   const [inputValue, setInputValue] = useState("");
-  const [modalOPened, setModalOpened] = useState(false);
+  // ModalCompo const [modalOPened, setModalOpened] = useState(false);
 
   const settings = {
       dots: false,
@@ -46,7 +46,7 @@ export default function ApiGoogle() {
                 <Card title="braian" src={Restaurante} />
             </S.Carousel>
           </S.divSearch>
-          <button onClick={() => setModalOpened(true)} >Abrir Modal</button>
+         {/* <button onClick={() => setModalOpened(true)} >Abrir Modal</button> */}
           <HospitaisCard/>
           <HospitaisCard/>
           <HospitaisCard/>

@@ -34,7 +34,7 @@ export const containerImagem = styled.div`
 export const containerForm = styled.div`
     background-color: #7DABFA;
     width: 80vw;
-    height: 76vh;
+    height: 85vh;
     border-radius: 30px;
     margin-top: 50px;
     margin-bottom: 2%;
@@ -114,7 +114,7 @@ export const divColuna = styled.div`
 `;
 
 export const signUpButton = styled.div`
-    margin-top: 3%;
+    margin-top: 2%;
     margin-bottom: 3%;
     button {
         cursor: pointer;
