@@ -23,6 +23,7 @@ export default function Login(props) {
         .then(res => {
             localStorage.setItem("adm", JSON.stringify(res.data));
             console.log(res.data);
+            alert('Logado com sucesso!');
             hist.push('/');
         }).catch(error =>{
             if(error!==undefined&&error.response.status === 404){
@@ -43,6 +44,7 @@ export default function Login(props) {
         .then(res => {
             localStorage.setItem("hospital", JSON.stringify(res.data));
             console.log(res.data);
+            alert('Logado com sucesso!');
             hist.push('/');
         }).catch(error =>{
             if(error!==undefined&&error.response.status === 404){
@@ -80,7 +82,7 @@ export default function Login(props) {
                             </S.divEmail>
                             <S.divSenha>
                                 <S.imgSenhaUser src={imgSenhaUser} />
-                                <S.inputSenha id="txtUsersenha" type="text"  placeholder="Senha" />
+                                <S.inputSenha id="txtUsersenha" type="password"  placeholder="Senha" />
                             </S.divSenha>
 
                             <S.divResto>

@@ -64,6 +64,7 @@ export const containerForm = styled.div`
         border-radius: 50px;
         padding-left: 4%;
         outline: 0;
+        font-family: 'Roboto';
         ::placeholder {
             font-weight: bold;
             margin-top: 5px;
@@ -82,6 +83,7 @@ export const containerForm = styled.div`
         background: #FFF;
         padding-left: 4%;
         outline: 0;
+        font-family: 'Roboto';
         ::placeholder {
             font-weight: bold;
             margin-top: 5px;

@@ -28,6 +28,16 @@ export default function Cadastro() {
             senha,           
         }
 
+        if (senha !== senhaConfirmada) {
+            alert("Senhas não correspondem");
+            return;
+        }
+
+        if (email !== emailConfirmado) {
+            alert("E-mails não correspondem");
+            return;
+        }
+
         await api.post('/hospitais', Hospital)
         .then(res => {
             alert('Hospital cadastrado com sucesso!');
@@ -53,19 +63,11 @@ export default function Cadastro() {
                 alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
             }
 
-            if (email !== emailConfirmado) {
-                alert("E-mails não correspondem");
-            }
-
             if (senha === ""){
                 alert("Senha não pode estar em branco");
             } else if (senha.length < 8 || senha.length > 16) {
                 alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
-            }
-
-            if (senha !== senhaConfirmada) {
-                alert("Senhas não correspondem");
-            }      
+            }  
         });
     }
     
@@ -100,12 +102,12 @@ export default function Cadastro() {
                         </S.divLinha>
                         <S.divLinha>
                             <S.divColuna>
-                                <label htmlFor="">Email: *</label>
+                                <label htmlFor="">E-mail: *</label>
                                 <input id="email" type="email" placeholder="" />
                             </S.divColuna>
 
                             <S.divColuna>
-                                <label htmlFor="">Confirmar Email: *</label>
+                                <label htmlFor="">Confirmar E-mail: *</label>
                                 <input id="emailConfirmado" type="email" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>

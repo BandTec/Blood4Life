@@ -29,6 +29,16 @@ export default function Cadastro() {
             tipoSanguineo
         }
 
+        if (senha !== senhaConfirmada) {
+            alert("Senhas não correspondem");
+            return;
+        }
+
+        if (email !== emailConfirmado) {
+            alert("E-mails não correspondem");
+            return;
+        }
+
         await api.post('/doadores', doador)
         .then(res => {
             alert("Cadastrado com sucesso!");
@@ -37,7 +47,7 @@ export default function Cadastro() {
             if (nome === "") {
                 alert("Nome não pode ser em branco");
             } else if (nome.length < 2 || nome.length > 45) {
-                alert("Nome tem que ter no mínimo 2 e no máximo 45 lecaracterestras");
+                alert("Nome tem que ter no mínimo 2 e no máximo 45 caracteres");
             }
             
             if (email === "") {
@@ -46,19 +56,11 @@ export default function Cadastro() {
                 alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
             }
 
-            if (email !== emailConfirmado) {
-                alert("E-mails não correspondem");
-            }
-
             if (senha === ""){
                 alert("Senha não pode estar em branco");
             } else if (senha.length < 8 || senha.length > 16) {
                 alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
-            }
-
-            if (senha !== senhaConfirmada) {
-                alert("Senhas não correspondem");
-            }      
+            }   
         });
     }
 

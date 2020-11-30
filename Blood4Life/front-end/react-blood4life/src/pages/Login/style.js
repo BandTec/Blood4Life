@@ -82,8 +82,8 @@ export const inputEmail = styled.input`
     border-radius:100vw;
     border-color:  #7DABFA;
     padding: 5%;
-    outline: none;  
-
+    outline: none;
+    font-family: 'Roboto';
 `;
 
 export const imgEmailUser = styled.img`
@@ -107,7 +107,8 @@ export const inputSenha = styled.input`
     border-color:  #7DABFA;
     padding: 5%;
     box-sizing: border-box;
-    outline: none;  
+    outline: none;
+    font-family: 'Roboto';
 `;
 
 export const imgSenhaUser = styled.img`
