@@ -3,37 +3,71 @@ import { Link } from 'react-router-dom';
 import * as S from './style.js';
 import logo from '../../assets/logo.svg';
 import imagemLoginAdm from '../../assets/img-login-adm.svg';
-// import { useHistory } from 'react-router-dom';
+import api from '../../services/api.js';
 
 export default function Cadastro() {
 
-    // const hist = useHistory();
 
-    // async function handleRegister(){
-
-    //     const nome = document.getElementById('nome').value;
-    //     const email = document.getElementById('email').value;
-    //     const emailConfirmado = document.getElementById('emailConfirmado').value;
-    //     const senha = document.getElementById('senha').value;
-    //     const senhaConfirmada = document.getElementById('senhaConfirmada').value;
+    async function handleRegister(){
 
 
-    //     const administrativo = {
-    //         nome,
-    //         email,
-    //         senha,
-    //     }
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const cnpj = document.getElementById('cnpj').value;
+        const telefone = document.getElementById('telefone').value;
+        const emailConfirmado = document.getElementById('emailConfirmado').value;
+        const senha = document.getElementById('senha').value;
+        const senhaConfirmada = document.getElementById('senhaConfirmada').value;
 
-    //     await api.post('/hospitais', administrativo)
-    //     .then(res => {
-    //         alert('Cadastrado com sucesso!');
-    //         hist.push("/");
-    //     })
-    //     .catch(err => {
-    //         console.log("Erro:", err);
-    //     });
-    // onClick={handleRegister}
-    // }
+
+        const Hospital = {
+            nome,
+            cnpj,
+            telefone,
+            email,
+            senha,           
+        }
+
+        await api.post('/hospitais', Hospital)
+        .then(res => {
+            alert('Hospital cadastrado com sucesso!');
+        })
+        .catch(err => {
+            if (nome === "") {
+                alert("Nome não pode ser em branco");
+            } else if (nome.length < 2 || nome.length > 45) {
+                alert("Nome tem que ter no mínimo 2 e no máximo 45 lecaracterestras");
+            }
+
+            if (cnpj === ""){
+                alert("CNPJ não pode ser em branco");
+            }
+
+            if (telefone === ""){
+                alert("Telefone não pode ser em branco");
+            }
+            
+            if (email === "") {
+                alert("E-mail não pode ser em branco");
+            } else if (email.length < 10 || email.length > 60) {
+                alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
+            }
+
+            if (email !== emailConfirmado) {
+                alert("E-mails não correspondem");
+            }
+
+            if (senha === ""){
+                alert("Senha não pode estar em branco");
+            } else if (senha.length < 8 || senha.length > 16) {
+                alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
+            }
+
+            if (senha !== senhaConfirmada) {
+                alert("Senhas não correspondem");
+            }      
+        });
+    }
     
     return (
         <>
@@ -50,18 +84,18 @@ export default function Cadastro() {
                     <h1>Informações Pessoais</h1>
                     <S.divDaDiv>
                         <S.divColuna style={{ width: '100%' }}>
-                            <label htmlFor="">Nome: *</label>
+                            <label htmlFor="">Nome do Hospital: *</label>
                             <input id="nome" type="text" placeholder="" />
                         </S.divColuna>
-                        <S.divLinha>
-                            <S.divColuna>
-                                <label htmlFor="">Endereço: *</label>
-                                <input id="endereco" type="text" placeholder="" />
-                            </S.divColuna>
-
+                        <S.divLinha>        
                             <S.divColuna>
                                 <label htmlFor="">CNPJ: *</label>
                                 <input id="cnpj" type="text" placeholder="" />
+                            </S.divColuna>
+
+                            <S.divColuna>
+                                <label htmlFor="">Telefone: *</label>
+                                <input id="telefone" type="text" placeholder="" />
                             </S.divColuna>
                         </S.divLinha>
                         <S.divLinha>
@@ -88,7 +122,7 @@ export default function Cadastro() {
                         </S.divLinha>
                     </S.divDaDiv>
                     <S.signUpButton>
-                        <button >Cadastrar</button>
+                         <button onClick={handleRegister}>Cadastrar</button>
                     </S.signUpButton>
                 </S.containerForm>
 

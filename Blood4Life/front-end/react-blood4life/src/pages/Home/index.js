@@ -43,7 +43,7 @@ export default function Home() {
             },
           }}
         >
-          <S.buttonEntrarAdm>Administrativo</S.buttonEntrarAdm>
+          <S.buttonEntrarAdm>Hospital</S.buttonEntrarAdm>
         </Link>
 
         <Link
@@ -91,7 +91,7 @@ export default function Home() {
           <S.imgLowExposureImage src={backgroundSectionLowExposure} />
           <S.divLowExposureImageContainer>
             <S.titleLowExposureImage>
-              <a target="_blank" href="https://www.minhavida.com.br/saude/materias/11475-uma-unica-doacao-de-sangue-pode-salvar-ate-quatro-vidas#:~:text=A%20biom%C3%A9dica%20Cinthya%20Duran%20explica,utilizados%20em%20diversas%20situa%C3%A7%C3%B5es%20cl%C3%ADnicas.">
+              <a target="_blank" rel="noopener noreferrer" href="https://www.minhavida.com.br/saude/materias/11475-uma-unica-doacao-de-sangue-pode-salvar-ate-quatro-vidas#:~:text=A%20biom%C3%A9dica%20Cinthya%20Duran%20explica,utilizados%20em%20diversas%20situa%C3%A7%C3%B5es%20cl%C3%ADnicas.">
                 Quando você doa sangue, pode salvar a vida de várias famílias,
                 inclusive a sua!
               </a>
@@ -193,21 +193,18 @@ export default function Home() {
               <S.divFooterContactContainer>
                 <S.divFooterContact>
                   <S.imgFooterContact
-                    onClick={() => window.alert("VOCÊ CLICOU NO PHONE")}
                     src={phone}
                   />
                   <S.pFooterContact>+55 11 99999-9999</S.pFooterContact>
                 </S.divFooterContact>
                 <S.divFooterContact>
                   <S.imgFooterContact
-                    onClick={() => window.alert("VOCÊ CLICOU NO ENDEREÇO")}
                     src={mail}
                   />
                   <S.pFooterContact>blood4life@bandtec.com.br</S.pFooterContact>
                 </S.divFooterContact>
                 <S.divFooterContact>
                   <S.imgFooterContact
-                    onClick={() => window.alert("VOCÊ CLICOU NO ENDEREÇO")}
                     src={location}
                   />
                   <S.pFooterContact>

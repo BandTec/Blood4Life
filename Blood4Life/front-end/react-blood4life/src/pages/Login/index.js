@@ -34,16 +34,16 @@ export default function Login(props) {
         });
     }
 
-    async function handleLoginAdm() {
+    async function handleLoginHospital() {
 
         const email = document.getElementById('txtUseremail').value;
         const senha = document.getElementById('txtUsersenha').value;
 
-        await api.post(`/user/doador?email=${email}&senha=${senha}`)
+        await api.post(`/user/hospital?email=${email}&senha=${senha}`)
         .then(res => {
-            localStorage.setItem("doador", JSON.stringify(res.data));
+            localStorage.setItem("hospital", JSON.stringify(res.data));
             console.log(res.data);
-            // hist.push('/');
+            hist.push('/');
         }).catch(error =>{
             if(error!==undefined&&error.response.status === 404){
                 console.log(error);
@@ -99,7 +99,7 @@ export default function Login(props) {
                         {
                             props.location.loginProps.admin
                             ?
-                            <S.btnLogar onClick={handleLoginAdm}>
+                            <S.btnLogar onClick={handleLoginHospital}>
                                 <S.lblbotao>Acessar</S.lblbotao>
                             </S.btnLogar>
                             :
