@@ -1,5 +1,57 @@
 import styled from 'styled-components';
 
+
+export const buttonScrollTop = styled.button`
+    box-sizing: border-box;
+    height: 10vh;
+    width: 10vh;
+    position: fixed; 
+    bottom: 5vh;
+    right: 5vh;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;        
+    background-color: #5580CB;
+    border: 0.1px solid white;
+    border-radius: 100vw;
+    outline: none;
+
+    animation: fadeIn 0.5s;
+    transition: opacity 0.4s;
+    opacity: 0.5;
+    cursor: pointer;
+
+    .buttonScrollTop {
+        color: white;
+        height: 100%;
+        width: 100%;
+    }
+
+    &&:hover {
+        height: 11vh;
+        opacity: 1;
+        transition: 1s;
+
+        .buttonScrollTop {
+            margin-bottom: 1vh;
+            height: auto;
+            color: white;
+            transition: 1s;
+        }
+
+    }
+
+    @keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+`;
+
 // * NAVBAR
 export const navbar = styled.nav`
     background-image: linear-gradient(

@@ -1,6 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import * as S from "./style";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import * as S from './style';
+
+import { FaArrowCircleUp } from 'react-icons/fa';
 
 import logo from "../../assets/b4l-logo.png";
 import logoHeart from "../../assets/logo-heart.png";
@@ -27,8 +29,32 @@ import linkedin from "../../assets/linkedin-vector.png";
 export default function Home() {
 
 
+  const [mostrarButtonTopo, setMostrarButtonTopo] = useState(false)
+
+  const checkScrollTop = () => {
+    if (!mostrarButtonTopo && window.pageYOffset > 400) {
+      setMostrarButtonTopo(true)
+    } else if (mostrarButtonTopo && window.pageYOffset <= 400) {
+      setMostrarButtonTopo(false)
+    }
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  window.addEventListener('scroll', checkScrollTop)
+
   return (
     <>
+
+      <S.buttonScrollTop
+        style={{
+          display: mostrarButtonTopo ? 'flex' : 'none'
+        }}
+        onClick={() => scrollTop()}>
+        <FaArrowCircleUp className="buttonScrollTop" />
+      </S.buttonScrollTop>
       {/* NAVBAR */}
       <S.navbar>
         <S.divLogoSalsichao id="logoSalsichao">
@@ -64,7 +90,7 @@ export default function Home() {
         <S.divHeaderContainer>
           <S.divTextContainer>
             <S.pHome>“Doar sangue é um ato de amor e soliedariedade”</S.pHome>
-            
+
             <Link
               to="/cadastro"
               style={{
@@ -144,9 +170,9 @@ export default function Home() {
                 textDecoration: "none",
                 outlineStyle: "none",
               }}
->
+            >
               <S.buttonOQueFazemos>
-                  Tornar-se doador
+                Tornar-se doador
               </S.buttonOQueFazemos>
             </Link>
           </S.divOQueFazemosContainer>
