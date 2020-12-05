@@ -6,7 +6,6 @@ import com.b4l.blood4life.exception.ResourceNotFoundException;
 import com.b4l.blood4life.repositorios.DoadoresRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,7 @@ public class DoadorService {
     DoadoresRepository doadoresRepository;
 
     @Autowired
-    private ApplicationEventPublisher publisher;
+    private BrasilAPIService brasilAPIService;
 
     public List<Doador> buscarTodos(String tipoSanguineo) {
         if (tipoSanguineo == null) {
