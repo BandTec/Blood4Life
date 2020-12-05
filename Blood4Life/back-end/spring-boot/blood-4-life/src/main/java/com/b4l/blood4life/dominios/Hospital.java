@@ -1,6 +1,7 @@
 package com.b4l.blood4life.dominios;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -49,6 +50,10 @@ public class Hospital {
             joinColumns = {@JoinColumn(name = "id_hospital")},
             inverseJoinColumns = {@JoinColumn(name = "id_doador")})
     private List<Doador> doadores = new ArrayList<>();
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="hospital")
+    private List<BancoDeSangue> bancoDeSangue;
 
     public Hospital() {
     }
@@ -115,6 +120,14 @@ public class Hospital {
 
     public void setDoadores(List<Doador> doadores) {
         this.doadores = doadores;
+    }
+
+    public List<BancoDeSangue> getBancoDeSangue() {
+        return bancoDeSangue;
+    }
+
+    public void setBancoDeSangue(List<BancoDeSangue> bancoDeSangue) {
+        this.bancoDeSangue = bancoDeSangue;
     }
 
     @Override

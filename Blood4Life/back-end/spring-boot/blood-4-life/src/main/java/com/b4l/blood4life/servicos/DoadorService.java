@@ -58,9 +58,9 @@ public class DoadorService {
     public Doador atualizarPeloId(Integer id, Doador doador) {
         verificarSeDoadorExiste(id);
 
-        Doador hospitalAtualizado = doadoresRepository.save(doador);
-        BeanUtils.copyProperties(doador, hospitalAtualizado, "id");
-        return hospitalAtualizado;
+        Doador doadorAtualizado = doadoresRepository.save(doador);
+        BeanUtils.copyProperties(doador, doadorAtualizado, "id");
+        return doadorAtualizado;
     }
 
     public void deletarPeloId(Integer id) {

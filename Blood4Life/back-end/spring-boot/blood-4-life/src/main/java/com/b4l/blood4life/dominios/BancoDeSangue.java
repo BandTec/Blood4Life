@@ -1,5 +1,7 @@
 package com.b4l.blood4life.dominios;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,8 +20,10 @@ public class BancoDeSangue {
     @NotNull
     private Double qtdAtual;
 
-    @NotNull
+    @JsonBackReference
+    @JoinColumn(name = "bancodesangueId")
     @ManyToOne
+
     private Hospital hospital;
 
     public Integer getId() {

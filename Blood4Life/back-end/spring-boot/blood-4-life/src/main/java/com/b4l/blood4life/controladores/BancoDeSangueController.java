@@ -3,13 +3,17 @@ package com.b4l.blood4life.controladores;
 import com.b4l.blood4life.dominios.BancoDeSangue;
 import com.b4l.blood4life.servicos.BancoDeSangueService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
+import static org.springframework.http.ResponseEntity.status;
+
+@Validated
 @RestController
 @RequestMapping("/tipos")
 public class BancoDeSangueController {
@@ -18,8 +22,30 @@ public class BancoDeSangueController {
     BancoDeSangueService bancoDeSangueService;
 
     @GetMapping
-    public ResponseEntity<List<BancoDeSangue>> buscarTodosBancosDeSangue() {
-        return bancoDeSangueService.buscarTodos();
+    public ResponseEntity<List<BancoDeSangue>> buscarTodos() {
+        List<BancoDeSangue> bancoDeSangue = bancoDeSangueService.buscarTodos();
+        return status(HttpStatus.OK).body(bancoDeSangue);
+    }
+
+    @GetMapping("/{tipo}")
+    public ResponseEntity<BancoDeSangue> buscarPeloTipoSanguineo(@PathVariable String tipo) {
+        BancoDeSangue bancoDeSangue = bancoDeSangueService.buscarBancoDeSanguePeloTipoSanguineo(tipo);
+        return status(HttpStatus.OK).body(bancoDeSangue);
+    }
+
+    @PostMapping
+    public ResponseEntity<BancoDeSangue> cadastrar(@Valid @RequestBody BancoDeSangue bancoDeSangue) {
+        BancoDeSangue bancoDeSangueCadastrado = bancoDeSangueService.cadastrarBancoDeSangue(bancoDeSangue);
+        return status(HttpStatus.CREATED).body(bancoDeSangueCadastrado);
+    }
+
+    @PutMapping("/{tipo}/{quantidade}")
+    public ResponseEntity atualizarBancoDeSangue(
+            @PathVariable String tipoSanguineo,
+            @PathVariable Double quantidade
+    ) {
+        BancoDeSangue bancoDeSangue = bancoDeSangueService.atualizarBancoDeSangue(tipoSanguineo, quantidade);
+        return ResponseEntity.status(HttpStatus.OK).body(bancoDeSangue);
     }
 
 }
