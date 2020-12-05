@@ -4,7 +4,7 @@ import NavBar from "../../components/NavBar";
 import NavBarSpacing from "../../components/NavBarSpacing";
 import MenuLateral from "../../components/MenuLateral";
 import UltimasDoacoes from "../../components/Graficos/ultimasDoacoes";
-import TipoSanguineo from "../../components/Graficos/tipoSanguineo";
+// import TipoSanguineo from "../../components/Graficos/tipoSanguineo";
 import TipoSanguineo2 from "../../components/Graficos/tipoSanguineo2";
 
 export default function Dashboard() {

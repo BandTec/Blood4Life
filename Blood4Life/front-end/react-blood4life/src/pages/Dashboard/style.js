@@ -38,12 +38,12 @@ export const upperCard = styled.div`
 export const upperCardTitle = styled.text`
     text-align: center;
     font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.8vw;
 `;
 export const upperCardValue = styled.text`
     text-align: center;
     font-weight: 900;
-    font-size: 2.5em;
+    font-size: 1.8vw
 `;
 
 export const lowerSection = styled.div`

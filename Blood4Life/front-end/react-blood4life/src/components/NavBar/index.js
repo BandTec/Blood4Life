@@ -23,7 +23,7 @@ export default function NavBar(props) {
                             <GiHamburgerMenu className="icon" />
                         </S.menuHamburguer>
                         <S.divInput>
-                            <S.input placeholder="Pesquise aqui"></S.input>
+                            <S.input placeholder="Pesquise Aqui"></S.input>
                             <S.divSearchIcon>
                                 <AiOutlineSearch className="icon" />
                             </S.divSearchIcon>
