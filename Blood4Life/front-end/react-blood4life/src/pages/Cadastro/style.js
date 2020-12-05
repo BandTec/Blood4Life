@@ -34,7 +34,7 @@ export const containerImagem = styled.div`
 export const containerForm = styled.div`
     background-color: #7DABFA;
     width: 80vw;
-    height: 85vh;
+    height: 162vh;
     border-radius: 30px;
     margin-top: 50px;
     margin-bottom: 2%;
@@ -66,10 +66,6 @@ export const containerForm = styled.div`
         outline: 0;
         font-family: 'Roboto';
         ::placeholder {
-            font-weight: bold;
-            margin-top: 5px;
-            font-size: 19px;
-            letter-spacing: 0.15em;
             color: rgba(0, 0, 0, 0.5);
         }
         ::-webkit-calendar-picker-indicator {
@@ -133,4 +129,9 @@ export const signUpButton = styled.div`
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
         outline: 0;
     }
+`;
+
+export const dicaInput = styled.p`
+    font-family: 'Roboto';
+    color: white;
 `;
