@@ -31,7 +31,7 @@ export const containerImagem = styled.div`
     }
 `;
 
-export const containerForm = styled.div`
+export const containerForm = styled.form`
     background-color: #7DABFA;
     width: 80vw;
     height: 162vh;
@@ -83,6 +83,7 @@ export const containerForm = styled.div`
         padding-left: 4%;
         outline: 0;
         font-family: 'Roboto';
+
         ::placeholder {
             font-weight: bold;
             margin-top: 5px;

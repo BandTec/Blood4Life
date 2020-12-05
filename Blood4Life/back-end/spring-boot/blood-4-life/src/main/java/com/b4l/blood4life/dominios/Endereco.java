@@ -17,6 +17,10 @@ public class Endereco {
     private String rua;
 
     @NotNull
+    @Length(max = 6)
+    private String numero;
+
+    @NotNull
     @Length(max = 30)
     private String bairro;
 
@@ -46,6 +50,14 @@ public class Endereco {
 
     public void setRua(String rua) {
         this.rua = rua;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getBairro() {

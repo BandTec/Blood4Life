@@ -31,10 +31,10 @@ export const containerImagem = styled.div`
     }
 `;
 
-export const containerForm = styled.div`
+export const containerForm = styled.form`
     background-color: #7DABFA;
     width: 80vw;
-    height: 155vh;
+    height: 158vh;
     border-radius: 30px;
     margin-top: 50px;
     margin-bottom: 2%;

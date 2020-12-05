@@ -48,7 +48,7 @@ public class Doador {
     @Size(min = 10, max = 11)
     private String telefone;
 
-    @Size(min = 2, max = 3)
+    @Size(max = 3)
     private String tipoSanguineo;
 
     private Character genero;
@@ -56,6 +56,9 @@ public class Doador {
     @JsonIgnore
     @ManyToMany(mappedBy = "doadores")
     private List<Hospital> hospitais = new ArrayList<>();
+
+    @Embedded
+    private Endereco endereco;
 
     // Construtor default necessário para NÃO gerar erro na query
     public Doador() {
@@ -184,6 +187,14 @@ public class Doador {
         this.genero = genero;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -195,66 +206,5 @@ public class Doador {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
-    }
-
-    public static class Builder {
-        Integer id;
-        @NotNull @Size(min = 2, max = 45) String nome;
-        @Email @NotNull @Size(min = 10, max = 60) String email;
-        @NotNull @Size(min = 8, max = 16) String senha;
-        @NotNull @Size(min = 11, max = 11) String cpf;
-        @Past @NotNull LocalDate dtNascimento;
-        @NotNull @Size(min = 10, max = 11) String telefone;
-        @Size(min = 2, max = 3) String tipoSanguineo;
-        Character genero;
-
-        public Builder setId(Integer id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setNome(String nome) {
-            this.nome = nome;
-            return this;
-        }
-
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder setSenha(String senha) {
-            this.senha = senha;
-            return this;
-        }
-
-        public Builder setCpf(String cpf) {
-            this.cpf = cpf;
-            return this;
-        }
-
-        public Builder setDtNascimento(LocalDate dtNascimento) {
-            this.dtNascimento = dtNascimento;
-            return this;
-        }
-
-        public Builder setTelefone(String telefone) {
-            this.telefone = telefone;
-            return this;
-        }
-
-        public Builder setTipoSanguineo(String tipoSanguineo) {
-            this.tipoSanguineo = tipoSanguineo;
-            return this;
-        }
-
-        public Builder setGenero(Character genero) {
-            this.genero = genero;
-            return this;
-        }
-
-//        public Doador build() {
-//            return new Doador(id, nome, email, senha, cpf, dtNascimento, telefone, tipoSanguineo, genero);
-//        }
     }
 }
