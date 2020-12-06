@@ -9,3 +9,13 @@ insert into hospital (id_hospital, nome, email, senha, cnpj, cidade, rua, numero
 (2, 'Santa Casa', 'santa@casa.com', 'senha123','10003060765823', 'São Paulo', 'R. Jardim São Francisco', '200', 'Alexandre Artrot', '02056500', '','SP', '1115112332');
 
 insert into doadores_hospital (id_hospital, id_doador) values (1, 1), (1, 2), (1, 3), (2 , 1);
+
+insert into banco_de_sangue (tipo_sangue, qtd_atual, bancodesangue_id) values
+('A+', 12.3,1),
+('A-', 8.7,1),
+('B+', 9.3,1),
+('B-', 7.6,1),
+('AB+', 13.8,1),
+('AB-', 12.7,1),
+('O+', 4.3,1),
+('O-', 1.3,1);

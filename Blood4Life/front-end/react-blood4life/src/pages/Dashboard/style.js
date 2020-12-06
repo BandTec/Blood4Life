@@ -16,17 +16,35 @@ export const bodyContainer = styled.div`
     align-items: center;
     overflow: hidden;
 `;
+
 export const upperSection = styled.div`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const rightLowerUp = styled.div`
     height: 50%;
     width: 100%;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-around;
 `;
-export const upperCard = styled.div`
+
+export const rightLowerBottom = styled.div`
     height: 50%;
-    width: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+`;
+
+export const upperCard = styled.div`
+    height: 60%;
+    width: 30%;
     background-color: ${props => props.backgroundC};
     box-shadow: 4px 7px 6px rgba(0, 0, 0, 0.1225);
     border-radius: 10px;
@@ -35,11 +53,13 @@ export const upperCard = styled.div`
     align-items: center;
     justify-content: space-around;
 `;
+
 export const upperCardTitle = styled.text`
     text-align: center;
     font-weight: bold;
     font-size: 1.8vw;
 `;
+
 export const upperCardValue = styled.text`
     text-align: center;
     font-weight: 900;
@@ -47,22 +67,25 @@ export const upperCardValue = styled.text`
 `;
 
 export const lowerSection = styled.div`
-    height: 50%;
+    height: 60%;    
     width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 `;
 export const leftLowerCard = styled.div`
-        height: 100%;
-    width: 100%;
+    height: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
 export const rightLowerCard = styled.div`
     height: 100%;
-    width: 100%;
+    width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction:column;
 `;
