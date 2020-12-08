@@ -4,9 +4,9 @@ insert into doador (id_doador, nome, email, senha, dt_nascimento, cpf, telefone,
 (3, 'Bachega', 'bachega@gmail.com', 'basenha', '2020-09-24', '24688631155', '11912678343', 'AB+', 'M', 'São Paulo', 'Rua Castelo Branco', '300', 'Parque Novo Santo Amaro', '05874260', '','SP'),
 (4, 'Ana', 'ana@gmail.com', '123senha', '2020-10-25', '48688631155', '11912678342', 'O-', 'F', 'São Paulo', 'Praça Florestan Fernandes', '400', 'Vila Santo Estevão', '03333025', '','SP');
 
-insert into hospital (id_hospital, nome, email, senha, cnpj, cidade, rua, numero, bairro, cep, complemento, uf, telefone) values
-(1, 'Albert Einstein', 'albert@einstein.com', 'senha123', '60765823000130', 'São Paulo', 'R. Albert Einstein', '100', 'Jardim Leonor', '05652000', 'Palácio dos Bandeirantes','SP', '1121511233'),
-(2, 'Santa Casa', 'santa@casa.com', 'senha123','10003060765823', 'São Paulo', 'R. Jardim São Francisco', '200', 'Alexandre Artrot', '02056500', '','SP', '1115112332');
+insert into hospital (id_hospital, nome, email, senha, cnpj, cidade, rua, numero, bairro, cep, complemento, uf, latitude, longitude, telefone) values
+(1, 'Albert Einstein', 'albert@einstein.com', 'senha123', '60765823000130', 'São Paulo', 'Av. Albert Einstein', '627', 'Jardim Leonor', '05652900', '','SP', -23.5999557, -46.7174434, '1121511233'),
+(2, 'Santa Casa', 'santa@casa.com', 'senha123','10003060765823', 'São Paulo', 'R. Dr. Cesário Mota Júnior', '112', 'Vila Buarque', '01221010', '','SP', -23.5427283, -46.6520222, '1115112332');
 
 insert into doadores_hospital (id_hospital, id_doador) values (1, 1), (1, 2), (1, 3), (2 , 1);
 

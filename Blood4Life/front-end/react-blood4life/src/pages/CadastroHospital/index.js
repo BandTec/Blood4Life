@@ -22,6 +22,8 @@ export default function Cadastro() {
     const [bairro, setBairro] = useState('');
     const [cidade, setCidade] = useState('');
     const [uf, setUf] = useState('');
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
 
     const onChangeNome = ev => {
         setNome(ev.target.value);
@@ -50,7 +52,7 @@ export default function Cadastro() {
     const onChangeTelefone = e => {
         setTelefone(e.target.rawValue);
     }
-    
+
     const onChangeCep = e => {
         setCep(e.target.rawValue);
     }
@@ -80,8 +82,9 @@ export default function Cadastro() {
     };
 
 
-    const onBlurCep = ev => {
+    const onBlurCep = async ev => {
         const { rawValue } = ev.target;
+        const key = "19e64d92a8c340099e467d4f2d1a60e2";
 
         if (rawValue?.length !== 8) {
             return;
@@ -90,17 +93,28 @@ export default function Cadastro() {
         fetch(`https://viacep.com.br/ws/${rawValue}/json/`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 setRua(data.logradouro);
                 setBairro(data.bairro);
                 setCidade(data.localidade);
                 setUf(data.uf);
             });
+
+        const address = await api.get(`https://brasilapi.com.br/api/cep/v1/${cep}`)
+            .then(({ data }) => encodeURIComponent(Object.values(data).reverse().join(" ")))
+            .catch(error => console.log("Erro ao obter endereço"));
+
+        const { lat, lng } = await api.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`)
+            .then(({ data }) => data.results[0].geometry)
+            .catch(error => console.log("Erro ao obter latitude e longitude"));
+
+        setLatitude(lat);
+        setLongitude(lng)
+
     }
 
 
 
-    async function handleRegister(){
+    async function handleRegister() {
 
         const Hospital = {
             nome,
@@ -115,7 +129,9 @@ export default function Cadastro() {
                 numero,
                 bairro,
                 cidade,
-                uf
+                uf,
+                latitude,
+                longitude
             }
         }
 
@@ -130,78 +146,78 @@ export default function Cadastro() {
         }
 
         await api.post('/hospitais', Hospital)
-        .then(res => {
-            alert('Hospital cadastrado com sucesso!');
-        })
-        .catch(err => {
-            if (nome === "") {
-                alert("Nome não pode ser em branco");
-            } else if (nome.length < 2 || nome.length > 45) {
-                alert("Nome tem que ter no mínimo 2 e no máximo 45 lecaracterestras");
-            }
+            .then(res => {
+                alert('Hospital cadastrado com sucesso!');
+            })
+            .catch(err => {
+                if (nome === "") {
+                    alert("Nome não pode ser em branco");
+                } else if (nome.length < 2 || nome.length > 45) {
+                    alert("Nome tem que ter no mínimo 2 e no máximo 45 lecaracterestras");
+                }
 
-            if (cnpj === ""){
-                alert("CNPJ não pode ser em branco");
-            }
+                if (cnpj === "") {
+                    alert("CNPJ não pode ser em branco");
+                }
 
-            if (telefone === ""){
-                alert("Telefone não pode ser em branco");
-            }
-            
-            if (email === "") {
-                alert("E-mail não pode ser em branco");
-            } else if (email.length < 10 || email.length > 60) {
-                alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
-            }
+                if (telefone === "") {
+                    alert("Telefone não pode ser em branco");
+                }
 
-            if (senha === ""){
-                alert("Senha não pode estar em branco");
-            } else if (senha.length < 8 || senha.length > 16) {
-                alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
-            }
+                if (email === "") {
+                    alert("E-mail não pode ser em branco");
+                } else if (email.length < 10 || email.length > 60) {
+                    alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
+                }
 
-            if (cep === ""){
-                alert("CEP não pode estar em branco");
-            } else if (cep.length < 8 || cep.length > 8) {
-                alert("CEP tem que ter 8 caracteres");
-            }
+                if (senha === "") {
+                    alert("Senha não pode estar em branco");
+                } else if (senha.length < 8 || senha.length > 16) {
+                    alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
+                }
 
-            if (complemento.length > 30) {
-                alert("Complemento tem que ter no máximo 30 caracteres");
-            }
+                if (cep === "") {
+                    alert("CEP não pode estar em branco");
+                } else if (cep.length < 8 || cep.length > 8) {
+                    alert("CEP tem que ter 8 caracteres");
+                }
 
-            if (rua === ""){
-                alert("Rua não pode estar em branco");
-            } else if (rua.length > 30) {
-                alert("Rua tem que ter no máximo 30 caracteres");
-            }
+                if (complemento.length > 30) {
+                    alert("Complemento tem que ter no máximo 30 caracteres");
+                }
 
-            if (numero === ""){
-                alert("Número não pode estar em branco");
-            } else if (numero.length > 6) {
-                alert("Número tem que ter no máximo 6 caracteres");
-            }
+                if (rua === "") {
+                    alert("Rua não pode estar em branco");
+                } else if (rua.length > 30) {
+                    alert("Rua tem que ter no máximo 30 caracteres");
+                }
 
-            if (bairro === ""){
-                alert("Bairro não pode estar em branco");
-            } else if (bairro.length > 30) {
-                alert("Bairro tem que ter no máximo 30 caracteres");
-            }
+                if (numero === "") {
+                    alert("Número não pode estar em branco");
+                } else if (numero.length > 6) {
+                    alert("Número tem que ter no máximo 6 caracteres");
+                }
 
-            if (cidade === ""){
-                alert("Cidade não pode estar em branco");
-            } else if (cidade.length > 30) {
-                alert("Cidade tem que ter no máximo 30 caracteres");
-            }
+                if (bairro === "") {
+                    alert("Bairro não pode estar em branco");
+                } else if (bairro.length > 30) {
+                    alert("Bairro tem que ter no máximo 30 caracteres");
+                }
 
-            if (uf === ""){
-                alert("Estado não pode estar em branco");
-            } else if (uf.length < 2 || uf.length > 2) {
-                alert("Estado tem que ter 2 caracteres");
-            }
-        });
+                if (cidade === "") {
+                    alert("Cidade não pode estar em branco");
+                } else if (cidade.length > 30) {
+                    alert("Cidade tem que ter no máximo 30 caracteres");
+                }
+
+                if (uf === "") {
+                    alert("Estado não pode estar em branco");
+                } else if (uf.length < 2 || uf.length > 2) {
+                    alert("Estado tem que ter 2 caracteres");
+                }
+            });
     }
-    
+
     return (
         <>
             <S.divSalsichao>
@@ -218,17 +234,17 @@ export default function Cadastro() {
                     <S.divDaDiv>
                         <S.divColuna style={{ width: '100%' }}>
                             <label htmlFor="">Nome do Hospital: *</label>
-                            <input style={{ paddingLeft: '2%'}} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
+                            <input style={{ paddingLeft: '2%' }} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
                         </S.divColuna>
-                        <S.divLinha>        
+                        <S.divLinha>
                             <S.divColuna>
                                 <label htmlFor="">CNPJ: *</label>
-                                <Cleave id="cnpj" placeholder="99.999.999/9999-99" options={{blocks: [2,3,3,4,2], delimiters: ['.','.','/','-'], numericOnly: true}} onChange={onChangeCnpj} value={cnpj} />
+                                <Cleave id="cnpj" placeholder="99.999.999/9999-99" options={{ blocks: [2, 3, 3, 4, 2], delimiters: ['.', '.', '/', '-'], numericOnly: true }} onChange={onChangeCnpj} value={cnpj} />
                             </S.divColuna>
 
                             <S.divColuna>
                                 <label htmlFor="">Telefone: *</label>
-                                <Cleave id="telefone" type="text" placeholder="(99) 9 9999-9999" options={{blocks: [0,2,0,1,4,4], delimiters: ['(',')',' ',' ','-'], numericOnly: true}} onChange={onChangeTelefone} value={telefone} />
+                                <Cleave id="telefone" type="text" placeholder="(99) 9 9999-9999" options={{ blocks: [0, 2, 0, 1, 4, 4], delimiters: ['(', ')', ' ', ' ', '-'], numericOnly: true }} onChange={onChangeTelefone} value={telefone} />
                             </S.divColuna>
                         </S.divLinha>
                         <S.divLinha>
@@ -279,7 +295,7 @@ export default function Cadastro() {
                         </S.divLinha>
                         <S.divColuna style={{ width: '100%' }}>
                             <label htmlFor="">Bairro: *</label>
-                            <input style={{ paddingLeft: '2%'}} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
+                            <input style={{ paddingLeft: '2%' }} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
                         </S.divColuna>
                         <S.divLinha>
                             <S.divColuna>
@@ -321,7 +337,7 @@ export default function Cadastro() {
                         </S.divLinha>
                     </S.divDaDiv>
                     <S.signUpButton>
-                         <button type="button" onClick={handleRegister}>Cadastrar</button>
+                        <button type="button" onClick={handleRegister}>Cadastrar</button>
                     </S.signUpButton>
                 </S.containerForm>
 
