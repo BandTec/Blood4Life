@@ -23,7 +23,6 @@ public class BancoDeSangue {
     @JsonBackReference
     @JoinColumn(name = "bancodesangueId")
     @ManyToOne
-
     private Hospital hospital;
 
     public Integer getId() {
