@@ -12,6 +12,8 @@ export default function NavBar(props) {
     console.log(props.childClick);
     console.log(props);
 
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
     return (
 
         <>
@@ -23,7 +25,7 @@ export default function NavBar(props) {
                             <GiHamburgerMenu className="icon" />
                         </S.menuHamburguer>
                         <S.divInput>
-                            <S.input placeholder="Pesquise Aqui"></S.input>
+                          i  <S.input placeholder="Pesquise Aqui"></S.input>
                             <S.divSearchIcon>
                                 <AiOutlineSearch className="icon" />
                             </S.divSearchIcon>
@@ -32,7 +34,7 @@ export default function NavBar(props) {
                         </S.divInput>
                         <S.divPerfil>
                             <S.divPersonaInfo>
-                                <S.personaName>NOME DO USUÁRIO</S.personaName>
+                                <S.personaName>{usuario.nome}</S.personaName>
                             </S.divPersonaInfo>
                             <S.divPersonaIcon>
                                 <S.personaIcon></S.personaIcon>
@@ -56,7 +58,7 @@ export default function NavBar(props) {
                         </S.divInput>
                         <S.divPerfil>
                             <S.divPersonaInfo>
-                                <S.personaName>NOME DO USUÁRIO</S.personaName>
+                                <S.personaName>{usuario.nome}</S.personaName>
                             </S.divPersonaInfo>
                             <S.divPersonaIcon>
                                 <S.personaIcon></S.personaIcon>

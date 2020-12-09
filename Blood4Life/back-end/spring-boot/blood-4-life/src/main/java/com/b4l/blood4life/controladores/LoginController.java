@@ -75,7 +75,7 @@ public class LoginController {
 
         if (email.equals(adm.getEmail()) && senha.equals(adm.getSenha())) {
             session.setAttribute("usuarioLogado", adm);
-            return ResponseEntity.ok("Usuário válido");
+            return ResponseEntity.ok(adm);
         }
 
         return ResponseEntity.ok("Email ou senha inválida!");
@@ -97,7 +97,7 @@ public class LoginController {
         }
 
         if (email.equals(hospital.getEmail()) && senha.equals(hospital.getSenha())) {
-            return ResponseEntity.ok("Usuário válido");
+            return ResponseEntity.ok(hospital);
         }
 
         return ResponseEntity.ok("Email ou senha inválida!");

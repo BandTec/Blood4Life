@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import * as S from './style.js';
 import logo from '../../assets/logo.svg';
 import imagemForm from '../../assets/imagem-form.svg';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api.js';
 import Cleave from 'cleave.js/react';
 
 export default function Cadastro() {
+
+    const hist = useHistory();
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -131,7 +133,8 @@ export default function Cadastro() {
 
         await api.post('/doadores', doador)
             .then(res => {
-                alert("Cadastrado com sucesso!");
+                alert("Cadastrado com sucesso!, você sera redirecionado para tela de Menu");
+                hist.push("/menu");
             })
             .catch(err => {
                 if (nome === "") {
@@ -210,7 +213,7 @@ export default function Cadastro() {
                     <S.divDaDiv>
                         <S.divColuna style={{ width: '100%' }}>
                             <label htmlFor="">Nome: *</label>
-                            <input style={{ paddingLeft: '2%'}} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
+                            <input style={{ paddingLeft: '2%' }} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
                         </S.divColuna>
                         <S.divLinha>
                             <S.divColuna>
@@ -279,9 +282,9 @@ export default function Cadastro() {
                                 <input id="numero" placeholder="" onChange={onChangeNumero} value={numero} />
                             </S.divColuna>
                         </S.divLinha>
-                        <S.divColuna style={{ width: '100%'}}>
+                        <S.divColuna style={{ width: '100%' }}>
                             <label htmlFor="">Bairro: *</label>
-                            <input style={{ paddingLeft: '2%'}} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
+                            <input style={{ paddingLeft: '2%' }} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
                         </S.divColuna>
                         <S.divLinha>
                             <S.divColuna>
