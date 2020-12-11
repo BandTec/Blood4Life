@@ -52,7 +52,7 @@ public class Hospital {
     private List<Doador> doadores = new ArrayList<>();
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="hospital")
+    @OneToMany(fetch = FetchType.LAZY)
     private List<BancoDeSangue> bancoDeSangue;
 
     public Hospital() {

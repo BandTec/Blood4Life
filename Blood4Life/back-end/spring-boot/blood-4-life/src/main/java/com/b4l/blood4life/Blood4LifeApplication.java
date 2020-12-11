@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableWebMvc
 @EnableScheduling
-@EnableFeignClients
+//@EnableFeignClients
 @SpringBootApplication
 public class Blood4LifeApplication implements WebMvcConfigurer {
 

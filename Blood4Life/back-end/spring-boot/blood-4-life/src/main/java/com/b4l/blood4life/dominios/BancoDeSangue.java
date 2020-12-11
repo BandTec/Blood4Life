@@ -20,7 +20,6 @@ public class BancoDeSangue {
     @NotNull
     private Double qtdAtual;
 
-    @JsonBackReference
     @JoinColumn(name = "bancodesangueId")
     @ManyToOne
     private Hospital hospital;
