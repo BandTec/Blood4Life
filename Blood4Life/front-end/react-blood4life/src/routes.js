@@ -10,6 +10,7 @@ import HomeDashboard from './pages/HomeDashboard';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import TesteBraian from './pages/ApiGoogle';
+import AlterarDoador from './pages/AlterarDoador';
 
 export default function Routes() {
     return (
@@ -22,6 +23,7 @@ export default function Routes() {
                 <Route path="/dashboard" exact component={Dashboard} />
                 <Route path="/menu" exact component={HomeDashboard} />
                 <Route path="/apiTeste" component={TesteBraian} />
+                <Route path="/alterarDoador" component={AlterarDoador} />
                 <Route path="/" component={NotFound} />
             </Switch>
         </Router>

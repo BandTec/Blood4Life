@@ -150,6 +150,7 @@ export const personaName = styled.span`
     max-width: 100%;
     color: #FFFFFF;
     font-weight: 500;
+    margin-left: 1vw;
 `;
 
 export const dropdownProfile = styled.div`

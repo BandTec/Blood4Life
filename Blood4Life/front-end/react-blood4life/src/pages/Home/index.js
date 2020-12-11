@@ -69,7 +69,7 @@ export default function Home() {
             },
           }}
         >
-          <S.buttonEntrarAdm>Hospital</S.buttonEntrarAdm>
+          <S.buttonEntrarAdm>Acessar como <br/> Hospital</S.buttonEntrarAdm>
         </Link>
 
         <Link
@@ -182,7 +182,7 @@ export default function Home() {
             <S.titleLorem>Doe Sangue</S.titleLorem>
             <S.subtitleLorem>Doe Vida</S.subtitleLorem>
             <S.pLorem>
-              Você sabe quantas gotas de sangue são necessárias para te manter
+               quantas gotas de sangue são necessárias para te manter
               vivo?
               <br />
               A mesma quantidade para salvar uma vida! Você não pode dar tudo o
