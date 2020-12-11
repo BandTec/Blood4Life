@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './style'
 import { Bar } from 'react-chartjs-2';
-import api from '../../../services/api';
+// import api from '../../../services/api';
 
 const options = {
 	
@@ -40,24 +40,26 @@ export default class TipoSanguineo extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			quantidade:[]
+			quantidade: []
 		}
 	}	
 	componentDidMount(){
-		this.bancoDeSangue();
+		// this.bancoDeSangue();
+	this.setState({quantidade: [...this.props.dados]})
+
 	}	
-	bancoDeSangue(){
-		api.get('/tipos').then(response =>{
-			let conteudo = response.data
-			let conteudoNumeros = []
-			conteudo.forEach(a=>{
-				conteudoNumeros.push(a.qtdAtual)
-			})
-			this.setState({quantidade: conteudoNumeros})
-		}).catch(error=>{		
-			console.log('erro')
-		})
-	}
+	// bancoDeSangue(){
+	// 	api.get('/tipos').then(response =>{
+	// 		let conteudo = response.data
+	// 		let conteudoNumeros = []
+	// 		conteudo.forEach(a=>{
+	// 			conteudoNumeros.push(a.qtdAtual)
+	// 		})
+	// 		this.setState({quantidade: conteudoNumeros})
+	// 	}).catch(error=>{		
+	// 		console.log('erro')
+	// 	})
+	// }
 	
 
 	render() {
@@ -79,16 +81,7 @@ export default class TipoSanguineo extends React.Component {
 						],
 						borderColor: 'rgba(0,0,0,0)',
 						borderWidth: 1,
-						data: [
-							this.state.quantidade[0],
-							this.state.quantidade[1],
-							this.state.quantidade[2],
-							this.state.quantidade[3],
-							this.state.quantidade[4],
-							this.state.quantidade[5],
-							this.state.quantidade[6],
-							this.state.quantidade[7],
-						]
+						data: [...this.state.quantidade]
 					},
 				]}}
 					options={options}

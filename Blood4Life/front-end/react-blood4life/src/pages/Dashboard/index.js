@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from './style';
 import NavBar from "../../components/NavBar";
 // import NavBarSpacing from "../../components/NavBarSpacing";
@@ -6,15 +6,73 @@ import MenuLateral from "../../components/MenuLateral";
 // import UltimasDoacoes from "../../components/Graficos/ultimasDoacoes";
 // import TipoSanguineo from "../../components/Graficos/tipoSanguineo";
 import TipoSanguineo2 from "../../components/Graficos/tipoSanguineo2";
+import api from '../../services/api.js';
 
 export default function Dashboard() {
 
     const [mostrarMenuLateral, setMostrarMenuLateral] = useState(false);
 
+    const [media, setMedia] = useState();
+    const [max, setMax] = useState();
+    const [min, setMin] = useState();
+    const [critico, setCritico] = useState();
+    const [litros,setLitros] = useState([]);
+    const [render, setRender] = useState(false);
+
+
     const onChildClicked = () => {
         setMostrarMenuLateral(!mostrarMenuLateral);
     }
 
+    useEffect(()=> {
+        api.get('/tipos').then(response =>{ 
+        let dados = response.data
+        let litrosSangue = []
+        dados.forEach(a=>{
+            litrosSangue.push(a.qtdAtual)
+        })
+        let soma = 0.0;
+        let contador = 0;
+        litrosSangue.forEach(a=>{
+        soma +=a
+        if(a <= 5){
+            contador++;
+            // console.log("contador", contador)
+        }
+        }) 
+        setLitros(litrosSangue)
+        setCritico(contador)
+        let media = soma/8;
+        setMedia(media);
+        let max = Math.max(...litrosSangue)
+        setMax(max)
+        let min = Math.min(...litrosSangue)
+        setMin(min)
+        setRender(true)
+
+    }).catch(error=>{
+        console.log('erro')
+    })},[])
+
+    let color = ""
+    let color2 = ""
+    let color3 = ""
+    let color4 = ""
+
+    media >= 9.0
+        ? color = "#7DABFA"
+        : media >= 5.0 && media < 9.0?color = "#F4B92D":color = "#AA372E"
+
+    critico >= 9.0? color2 = "#AA372E":
+    critico >= 5.0 && critico < 9.0?color2 = "#F4B92D":color2 = "#7DABFA"
+ 
+    max >= 9.0? color3 = "#7DABFA":
+    max >= 5.0 && max < 9.0?color3 = "#F4B92D":color3 = "#AA372E"
+
+    min >= 9.0? color4 = "#7DABFA":
+    min >= 5.0 && min < 9.0?color4 = "#F4B92D":color4 = "#AA372E"
+
+    console.log("teste2")
     return (
         <>
 
@@ -39,32 +97,31 @@ export default function Dashboard() {
                     {/* DIGITE AQUI ABAIXO*/}
 
                     <S.lowerSection>
-                        <S.leftLowerCard>
-                            {/* <TipoSanguineo /> */}
-                            <TipoSanguineo2 />
+                        <S.leftLowerCard>   
+                           {render && <TipoSanguineo2 dados={litros} />}
                         </S.leftLowerCard>
 
                         <S.rightLowerCard>
                                 {/* <TipoSanguineo /> */}
                                 <S.rightLowerUp>
-                                <S.upperCard backgroundC={"#B73B31"}>
-                                    <S.upperCardTitle>Usuários</S.upperCardTitle>
-                                    <S.upperCardValue>6</S.upperCardValue>
+                                <S.upperCard backgroundC={color}>
+                                    <S.upperCardTitle>Média</S.upperCardTitle>
+                                    <S.upperCardValue>{media}</S.upperCardValue>
                                 </S.upperCard>
-                                <S.upperCard backgroundC={"#5580CB"}>
-                                    <S.upperCardTitle>Crítico</S.upperCardTitle>
-                                    <S.upperCardValue>--</S.upperCardValue>
+                                <S.upperCard backgroundC={color2}>
+                                    <S.upperCardTitle>Crítico Total</S.upperCardTitle>
+                                <S.upperCardValue>{critico}</S.upperCardValue>
                                 </S.upperCard>
                                 </S.rightLowerUp>
                                
                                <S.rightLowerBottom>
-                                <S.upperCard backgroundC={"#E75D52"}>
-                                    <S.upperCardTitle>Meta Semanal</S.upperCardTitle>
-                                    <S.upperCardValue>65%</S.upperCardValue>
+                                <S.upperCard backgroundC={color3}>
+                                    <S.upperCardTitle>Maior quantia</S.upperCardTitle>
+                                <S.upperCardValue>{max}</S.upperCardValue>
                                 </S.upperCard>
-                                <S.upperCard backgroundC={"#5580CB"}>
-                                    <S.upperCardTitle>Colaboradores Online</S.upperCardTitle>
-                                    <S.upperCardValue>3</S.upperCardValue>
+                                <S.upperCard backgroundC={color4}>
+                                    <S.upperCardTitle>Menor quantia</S.upperCardTitle>
+                                <S.upperCardValue>{min}</S.upperCardValue>
                                 </S.upperCard>
                                </S.rightLowerBottom>
                             {/*UltimasDoacoes /*/}

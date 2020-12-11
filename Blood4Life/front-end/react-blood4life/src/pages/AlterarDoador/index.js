@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import * as S from "./style";
 import NavBar from "../../components/NavBar";
 import NavBarSpacing from "../../components/NavBarSpacing";
@@ -8,7 +8,7 @@ import MenuLateral from "../../components/MenuLateral";
 export default function AlterarDoador() {
   const [mostrarMenuLateral, setMostrarMenuLateral] = useState(false);
 
-  const hist = useHistory();
+  // const hist = useHistory();
 
   const onChildClicked = () => {
     setMostrarMenuLateral(!mostrarMenuLateral);
