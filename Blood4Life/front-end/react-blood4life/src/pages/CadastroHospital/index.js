@@ -147,6 +147,18 @@ export default function Cadastro() {
 
         await api.post('/hospitais', Hospital)
             .then(res => {
+                localStorage.setItem("usuario", JSON.stringify(res.data));
+                localStorage.setItem("tipo-usuario", "hospital");
+
+                const nome = res.data.nome;
+                const nomes = nome.split(' ');
+
+                if (nomes.length === 1) {
+                    localStorage.setItem("apelido", (nomes[0][0]).toUpperCase());
+                } else if (nomes.length > 1) {
+                    localStorage.setItem("apelido", (nomes[0][0] + nomes[1][0]).toUpperCase());
+                }
+
                 alert('Hospital cadastrado com sucesso!');
             })
             .catch(err => {
@@ -304,7 +316,7 @@ export default function Cadastro() {
                             </S.divColuna>
                             <S.divColuna>
                                 <label>Estado: </label>
-                                <select id="tipoSanguineo" onChange={onChangeUf} value={uf} >
+                                <select id="estado" onChange={onChangeUf} value={uf} >
                                     <option value="AC">AC</option>
                                     <option value="AL">AL</option>
                                     <option value="AP">AP</option>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import * as S from './style.js';
@@ -30,6 +30,7 @@ export default function Login(props) {
         await api.post(`/user/doador?email=${email}&senha=${senha}`)
             .then(res => {
                 localStorage.setItem("usuario", JSON.stringify(res.data));
+                localStorage.setItem("tipo-usuario", "doador");
 
                 const nome = res.data.nome;
                 const nomes = nome.split(' ');
@@ -57,6 +58,7 @@ export default function Login(props) {
         await api.post(`/user/hospital?email=${email}&senha=${senha}`)
             .then(res => {
                 localStorage.setItem("usuario", JSON.stringify(res.data));
+                localStorage.setItem("tipo-usuario", "hospital");
 
                 const nome = res.data.nome;
                 const nomes = nome.split(' ');

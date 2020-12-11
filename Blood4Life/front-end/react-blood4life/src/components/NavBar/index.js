@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './style';
-
+import { useHistory } from 'react-router-dom';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaSearch } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
+import api from '../../services/api.js';
 
 export default function NavBar(props) {
 
@@ -13,6 +14,31 @@ export default function NavBar(props) {
     console.log(props);
 
     const usuario = JSON.parse(localStorage.getItem("usuario"));
+    
+    const [display, setDisplay] = useState('none');
+
+    const hist = useHistory();
+
+    const expandirDropdown = () => {
+        if (display === 'none') {
+            setDisplay('block');
+        } else {
+            setDisplay('none');
+        }
+    }
+
+    const logout = async () => {
+
+        await api.post('/user/logout')
+            .then(res => {
+                localStorage.clear();
+                alert('Deslogado com sucesso!');
+                hist.push("/");
+            })
+            .catch(err => { 
+                alert('Erro ao deslogar');
+            });
+    }
 
     return (
 
@@ -37,8 +63,11 @@ export default function NavBar(props) {
                                 <S.personaName>{usuario.nome}</S.personaName>
                             </S.divPersonaInfo>
                             <S.divPersonaIcon>
-                                <S.personaIcon></S.personaIcon>
+                                <S.personaIcon onClick={expandirDropdown}></S.personaIcon>
                             </S.divPersonaIcon>
+                            <S.dropdownProfile style={{display: display}}>
+                                <div onClick={logout}>Logout</div>
+                            </S.dropdownProfile>
                         </S.divPerfil>
                     </S.navContainer>
 
@@ -61,8 +90,11 @@ export default function NavBar(props) {
                                 <S.personaName>{usuario.nome}</S.personaName>
                             </S.divPersonaInfo>
                             <S.divPersonaIcon>
-                                <S.personaIcon></S.personaIcon>
+                                <S.personaIcon onClick={expandirDropdown}></S.personaIcon>
                             </S.divPersonaIcon>
+                            <S.dropdownProfile style={{display: display}}>
+                                <div onClick={logout}>Logout</div>
+                            </S.dropdownProfile>
                         </S.divPerfil>
                     </S.navContainer>
             }
