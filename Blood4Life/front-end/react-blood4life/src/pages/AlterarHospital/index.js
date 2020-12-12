@@ -15,15 +15,13 @@ export default function AlterarDoador() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const apelido = localStorage.getItem("apelido");
 
-  const date = new Date(usuario.dtNascimento);
 
   const id = usuario.id;
   const [nome, setNome] = useState(usuario.nome);
+  const [cnpj, setCnjp] = useState(usuario.cnpj);
+  const [telefone, setTelefone] = useState(usuario.telefone);
   const [email, setEmail] = useState(usuario.email);
   const [emailConfirmado, setEmailConfirmado] = useState('');
-  const [dtNascimento, setDtNascimento] = useState(date);
-  const [tipoSanguineo, setTipoSanguineo] = useState(usuario.tipoSanguineo);
-  const [telefone, setTelefone] = useState(usuario.telefone);
   const [senha, setSenha] = useState(usuario.senha);
   const [senhaConfirmada, setSenhaConfirmada] = useState('');
   const [cep, setCep] = useState(usuario.endereco.cep);
@@ -42,59 +40,60 @@ export default function AlterarDoador() {
 
   const onChangeNome = ev => {
     setNome(ev.target.value);
-  };
+};
 
-  const onChangeEmail = ev => {
+const onChangeEmail = ev => {
     setEmail(ev.target.value);
-  };
+};
 
-  const onChangeEmailConfirmado = ev => {
+const onChangeEmailConfirmado = ev => {
     setEmailConfirmado(ev.target.value);
-  };
+};
 
-  const onChangeTipoSanguineo = ev => {
-    setTipoSanguineo(ev.target.value);
-  };
-
-  const onChangeTelefone = e => {
-    setTelefone(e.target.rawValue);
-  }
-
-  const onChangeSenha = ev => {
+const onChangeSenha = ev => {
     setSenha(ev.target.value);
-  };
+};
 
-  const onChangeSenhaConfirmada = ev => {
+const onChangeSenhaConfirmada = ev => {
     setSenhaConfirmada(ev.target.value);
-  };
+};
 
-  const onChangeCep = ev => {
-    setCep(ev.target.rawValue);
-  };
+const onChangeCnpj = e => {
+    setCnjp(e.target.rawValue);
+}
 
-  const onChangeComplemento = ev => {
+const onChangeTelefone = e => {
+    setTelefone(e.target.rawValue);
+}
+
+const onChangeCep = e => {
+    setCep(e.target.rawValue);
+}
+
+const onChangeComplemento = ev => {
     setComplemento(ev.target.value);
-  };
+};
 
-  const onChangeRua = ev => {
+const onChangeRua = ev => {
     setRua(ev.target.value);
-  };
+};
 
-  const onChangeNumero = ev => {
+const onChangeNumero = ev => {
     setNumero(ev.target.value);
-  };
+};
 
-  const onChangeBairro = ev => {
+const onChangeBairro = ev => {
     setBairro(ev.target.value);
-  };
+};
 
-  const onChangeCidade = ev => {
+const onChangeCidade = ev => {
     setCidade(ev.target.value);
-  };
+};
 
-  const onChangeUf = ev => {
+const onChangeUf = ev => {
     setUf(ev.target.value);
-  };
+};
+
 
   const onBlurCep = async ev => {
     const { rawValue } = ev.target;
@@ -125,116 +124,123 @@ export default function AlterarDoador() {
     setLongitude(lng)
   }
 
-  async function atualizarDados() {
+  async function atualizarDadosHospitais() {
 
-    const doador = {
-      id,
-      nome,
-      email,
-      senha,
-      dtNascimento,
-      tipoSanguineo,
-      telefone,
-      endereco: {
-        cep,
-        complemento,
-        rua,
-        numero,
-        bairro,
-        cidade,
-        uf,
-        latitude,
-        longitude
-      }
+    const hospital = {
+        id,
+        nome,
+        cnpj,
+        telefone,
+        email,
+        senha,
+        endereco: {
+            cep,
+            complemento,
+            rua,
+            numero,
+            bairro,
+            cidade,
+            uf,
+            latitude,
+            longitude
+        }
     }
 
     if (senha !== senhaConfirmada) {
-      alert("Senhas não correspondem");
-      return;
+        alert("Senhas não correspondem");
+        return;
     }
 
     if (email !== emailConfirmado) {
-      alert("E-mails não correspondem");
-      return;
+        alert("E-mails não correspondem");
+        return;
     }
 
-    await api.put(`/doadores/${id}`, doador)
-      .then(res => {
-        localStorage.setItem("usuario", JSON.stringify(res.data));
-        localStorage.setItem("tipo-usuario", "doador");
+    await api.put(`/hospitais/${id}`, hospital)
+        .then(res => {
+            localStorage.setItem("usuario", JSON.stringify(res.data));
+            localStorage.setItem("tipo-usuario", "hospital");
 
-        const nome = res.data.nome;
-        const nomes = nome.split(' ');
+            const nome = res.data.nome;
+            const nomes = nome.split(' ');
 
-        if (nomes.length === 1) {
-          localStorage.setItem("apelido", (nomes[0][0]).toUpperCase());
-        } else if (nomes.length > 1) {
-          localStorage.setItem("apelido", (nomes[0][0] + nomes[1][0]).toUpperCase());
-        }
+            if (nomes.length === 1) {
+                localStorage.setItem("apelido", (nomes[0][0]).toUpperCase());
+            } else if (nomes.length > 1) {
+                localStorage.setItem("apelido", (nomes[0][0] + nomes[1][0]).toUpperCase());
+            }
 
-        alert("Dados atualizados com sucesso!");
-        hist.push("/menu");
-      })
-      .catch(err => {
-        if (nome === "") {
-          alert("Nome não pode ser em branco");
-        } else if (nome.length < 2 || nome.length > 45) {
-          alert("Nome tem que ter no mínimo 2 e no máximo 45 caracteres");
-        }
+            alert('Hospital alterado com sucesso!');
+            hist.push("/menu");
+        })
+        .catch(err => {
+            if (nome === "") {
+                alert("Nome não pode ser em branco");
+            } else if (nome.length < 2 || nome.length > 45) {
+                alert("Nome tem que ter no mínimo 2 e no máximo 45 lecaracterestras");
+            }
 
-        if (email === "") {
-          alert("E-mail não pode ser em branco");
-        } else if (email.length < 10 || email.length > 60) {
-          alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
-        }
+            if (cnpj === "") {
+                alert("CNPJ não pode ser em branco");
+            }
 
-        if (senha === "") {
-          alert("Senha não pode estar em branco");
-        } else if (senha.length < 8 || senha.length > 16) {
-          alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
-        }
+            if (telefone === "") {
+                alert("Telefone não pode ser em branco");
+            }
 
-        if (cep === "") {
-          alert("CEP não pode estar em branco");
-        } else if (cep.length < 8 || cep.length > 8) {
-          alert("CEP tem que ter 8 caracteres");
-        }
+            if (email === "") {
+                alert("E-mail não pode ser em branco");
+            } else if (email.length < 10 || email.length > 60) {
+                alert("E-mail tem que ter no mínimo 10 e no máximo 60 caracteres");
+            }
 
-        if (complemento.length > 30) {
-          alert("Complemento tem que ter no máximo 30 caracteres");
-        }
+            if (senha === "") {
+                alert("Senha não pode estar em branco");
+            } else if (senha.length < 8 || senha.length > 16) {
+                alert("Senha tem que ter no mínimo 8 e no máximo 16 caracteres");
+            }
 
-        if (rua === "") {
-          alert("Rua não pode estar em branco");
-        } else if (rua.length > 30) {
-          alert("Rua tem que ter no máximo 30 caracteres");
-        }
+            if (cep === "") {
+                alert("CEP não pode estar em branco");
+            } else if (cep.length < 8 || cep.length > 8) {
+                alert("CEP tem que ter 8 caracteres");
+            }
 
-        if (numero === "") {
-          alert("Número não pode estar em branco");
-        } else if (numero.length > 6) {
-          alert("Número tem que ter no máximo 6 caracteres");
-        }
+            if (complemento.length > 30) {
+                alert("Complemento tem que ter no máximo 30 caracteres");
+            }
 
-        if (bairro === "") {
-          alert("Bairro não pode estar em branco");
-        } else if (bairro.length > 30) {
-          alert("Bairro tem que ter no máximo 30 caracteres");
-        }
+            if (rua === "") {
+                alert("Rua não pode estar em branco");
+            } else if (rua.length > 30) {
+                alert("Rua tem que ter no máximo 30 caracteres");
+            }
 
-        if (cidade === "") {
-          alert("Cidade não pode estar em branco");
-        } else if (cidade.length > 30) {
-          alert("Cidade tem que ter no máximo 30 caracteres");
-        }
+            if (numero === "") {
+                alert("Número não pode estar em branco");
+            } else if (numero.length > 6) {
+                alert("Número tem que ter no máximo 6 caracteres");
+            }
 
-        if (uf === "") {
-          alert("Estado não pode estar em branco");
-        } else if (uf.length < 2 || uf.length > 2) {
-          alert("Estado tem que ter 2 caracteres");
-        }
-      });
-  }
+            if (bairro === "") {
+                alert("Bairro não pode estar em branco");
+            } else if (bairro.length > 30) {
+                alert("Bairro tem que ter no máximo 30 caracteres");
+            }
+
+            if (cidade === "") {
+                alert("Cidade não pode estar em branco");
+            } else if (cidade.length > 30) {
+                alert("Cidade tem que ter no máximo 30 caracteres");
+            }
+
+            if (uf === "") {
+                alert("Estado não pode estar em branco");
+            } else if (uf.length < 2 || uf.length > 2) {
+                alert("Estado tem que ter 2 caracteres");
+            }
+        });
+}
 
   return (
     <>
@@ -257,16 +263,27 @@ export default function AlterarDoador() {
         <S.bodyContainer>
           <NavBarSpacing />
           <S.atualizacaoContainer>
-            <S.containerForm>
-              <S.divPersonaIcon>
-                <S.personaIcon><p>{apelido}</p></S.personaIcon>
-              </S.divPersonaIcon>
-              <h1>Informações Pessoais</h1>
+            <S.containerForm >
+            <S.divPersonaIcon>
+              <S.personaIcon><p>{apelido}</p></S.personaIcon>
+            </S.divPersonaIcon>
+              <h1>Informações Institucionais</h1>
               <S.divDaDiv>
                 <S.divColuna style={{ width: '100%' }}>
-                  <label htmlFor="">Nome: *</label>
+                  <label htmlFor="">Nome do Hospital: *</label>
                   <input style={{ paddingLeft: '2%' }} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
                 </S.divColuna>
+                <S.divLinha>
+                  <S.divColuna>
+                    <label htmlFor="">CNPJ: *</label>
+                    <Cleave id="cnpj" placeholder="99.999.999/9999-99" options={{ blocks: [2, 3, 3, 4, 2], delimiters: ['.', '.', '/', '-'], numericOnly: true }} onChange={onChangeCnpj} value={cnpj} />
+                  </S.divColuna>
+
+                  <S.divColuna>
+                    <label htmlFor="">Telefone: *</label>
+                    <Cleave id="telefone" type="text" placeholder="(99) 9 9999-9999" options={{ blocks: [0, 2, 0, 1, 4, 4], delimiters: ['(', ')', ' ', ' ', '-'], numericOnly: true }} onChange={onChangeTelefone} value={telefone} />
+                  </S.divColuna>
+                </S.divLinha>
                 <S.divLinha>
                   <S.divColuna>
                     <label htmlFor="">E-mail: *</label>
@@ -275,27 +292,7 @@ export default function AlterarDoador() {
 
                   <S.divColuna>
                     <label htmlFor="">Confirmar E-mail: *</label>
-                    <input id="emailConfirmado" type="email" placeholder="seu@email.com" onChange={onChangeEmailConfirmado} value={emailConfirmado} />
-                  </S.divColuna>
-                </S.divLinha>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label > Tipo Sanguíneo: </label>
-                    <select id="tipoSanguineo" onChange={onChangeTipoSanguineo} value={tipoSanguineo}>
-                      <option value="">Não sei meu tipo sanguíneo</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
-                  </S.divColuna>
-                  <S.divColuna>
-                    <label htmlFor="">Telefone: *</label>
-                    <Cleave id="telefone" type="text" placeholder="(99) 9 9999-9999" options={{ blocks: [0, 2, 0, 1, 4, 4], delimiters: ['(', ')', ' ', ' ', '-'], numericOnly: true }} onChange={onChangeTelefone} value={telefone} />
+                    <input id="emailConfirmado" type="email" placeholder="seu@email.com" onChange={onChangeEmailConfirmado} value={emailConfirmado}/>
                   </S.divColuna>
                 </S.divLinha>
                 <S.divLinha>
@@ -307,10 +304,11 @@ export default function AlterarDoador() {
 
                   <S.divColuna>
                     <label htmlFor="">Confirmar Senha: *</label>
-                    <input id="senhaConfirmada" type="password" placeholder="" onChange={onChangeSenhaConfirmada} value={senhaConfirmada} />
+                    <input id="senhaConfirmada" type="password" placeholder="" onChange={onChangeSenhaConfirmada}  value={senhaConfirmada}/>
                   </S.divColuna>
                 </S.divLinha>
               </S.divDaDiv>
+              {/* --------------------------------------------------------------------------------------------------------------------------------------- */}
               <h1>Informações de Contato</h1>
               <S.divDaDiv>
                 <S.divLinha>
@@ -326,21 +324,21 @@ export default function AlterarDoador() {
                 <S.divLinha>
                   <S.divColuna>
                     <label htmlFor="">Rua: *</label>
-                    <input id="rua" placeholder="" onChange={onChangeRua} value={rua} />
+                    <input id="rua" placeholder="" onChange={onChangeRua} value={rua}   />
                   </S.divColuna>
                   <S.divColuna>
                     <label htmlFor="">Número: *</label>
-                    <input id="numero" placeholder="" onChange={onChangeNumero} value={numero} />
+                    <input id="numero" placeholder="" onChange={onChangeNumero} value={numero}  />
                   </S.divColuna>
                 </S.divLinha>
                 <S.divColuna style={{ width: '100%' }}>
                   <label htmlFor="">Bairro: *</label>
-                  <input style={{ paddingLeft: '2%' }} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
+                  <input style={{ paddingLeft: '2%' }} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro}  />
                 </S.divColuna>
                 <S.divLinha>
                   <S.divColuna>
                     <label htmlFor="">Cidade: *</label>
-                    <input id="cidade" placeholder="" onChange={onChangeCidade} value={cidade} />
+                    <input id="cidade" placeholder="" onChange={onChangeCidade} value={cidade}  />
                   </S.divColuna>
                   <S.divColuna>
                     <label>Estado: </label>
@@ -377,7 +375,7 @@ export default function AlterarDoador() {
                 </S.divLinha>
               </S.divDaDiv>
               <S.signUpButton>
-                <button type="button" onClick={atualizarDados}>Salvar</button>
+                <button type="button" onClick={atualizarDadosHospitais}>Salvar</button>
               </S.signUpButton>
             </S.containerForm>
           </S.atualizacaoContainer>

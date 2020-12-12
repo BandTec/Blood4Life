@@ -19,6 +19,7 @@ export const bodyContainer = styled.div`
 
 export const atualizacaoContainer = styled.div`
   height: 100%;
+  background-color: white;
   width: 100%;
   display: flex;
   justify-content: space-around;

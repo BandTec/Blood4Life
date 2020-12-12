@@ -51,7 +51,6 @@ public class Hospital {
             inverseJoinColumns = {@JoinColumn(name = "id_doador")})
     private List<Doador> doadores = new ArrayList<>();
 
-    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY)
     private List<BancoDeSangue> bancoDeSangue;
 

@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import TesteBraian from './pages/ApiGoogle';
 import AlterarDoador from './pages/AlterarDoador';
+import AlterarHospital from './pages/AlterarHospital';
 
 export default function Routes() {
     return (
@@ -24,6 +25,7 @@ export default function Routes() {
                 <Route path="/menu" exact component={HomeDashboard} />
                 <Route path="/apiTeste" component={TesteBraian} />
                 <Route path="/alterarDoador" component={AlterarDoador} />
+                <Route path="/alterarHospital" component={AlterarHospital} />
                 <Route path="/" component={NotFound} />
             </Switch>
         </Router>

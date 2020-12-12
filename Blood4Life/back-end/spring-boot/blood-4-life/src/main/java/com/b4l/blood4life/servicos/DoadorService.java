@@ -23,9 +23,6 @@ public class DoadorService {
     @Autowired
     DoadoresRepository doadoresRepository;
 
-    @Autowired
-    private BrasilAPIService brasilAPIService;
-
     private FilaObj<String> filaEmails = new FilaObj<>(100);
 
     public List<Doador> buscarTodos(String tipoSanguineo) {

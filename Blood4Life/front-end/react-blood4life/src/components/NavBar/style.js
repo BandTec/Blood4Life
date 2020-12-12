@@ -143,7 +143,7 @@ export const personaIcon = styled.div`
 export const divPersonaInfo = styled.div`
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 `;
 export const divPersonaName = styled.div`
