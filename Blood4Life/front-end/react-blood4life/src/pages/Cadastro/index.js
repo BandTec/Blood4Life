@@ -25,6 +25,8 @@ export default function Cadastro() {
     const [bairro, setBairro] = useState('');
     const [cidade, setCidade] = useState('');
     const [uf, setUf] = useState('');
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
 
     const onChangeNome = ev => {
         setNome(ev.target.value);
@@ -82,8 +84,9 @@ export default function Cadastro() {
         setUf(ev.target.value);
     };
 
-    const onBlurCep = ev => {
+    const onBlurCep = async ev => {
         const { rawValue } = ev.target;
+        const key = "19e64d92a8c340099e467d4f2d1a60e2";
 
         if (rawValue?.length !== 8) {
             return;
@@ -92,12 +95,22 @@ export default function Cadastro() {
         fetch(`https://viacep.com.br/ws/${rawValue}/json/`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 setRua(data.logradouro);
                 setBairro(data.bairro);
                 setCidade(data.localidade);
                 setUf(data.uf);
             });
+
+        const address = await api.get(`https://brasilapi.com.br/api/cep/v1/${cep}`)
+            .then(({ data }) => encodeURIComponent(Object.values(data).reverse().join(" ")))
+            .catch(error => console.log("Erro ao obter endereço"));
+
+        const { lat, lng } = await api.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`)
+            .then(({ data }) => data.results[0].geometry)
+            .catch(error => console.log("Erro ao obter latitude e longitude"));
+
+        setLatitude(lat);
+        setLongitude(lng)
     }
 
     async function handleRegister() {
@@ -115,11 +128,11 @@ export default function Cadastro() {
                 numero,
                 bairro,
                 cidade,
-                uf
+                uf,
+                latitude,
+                longitude
             }
         }
-
-        debugger;
 
         if (senha !== senhaConfirmada) {
             alert("Senhas não correspondem");

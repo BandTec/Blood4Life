@@ -129,9 +129,15 @@ export const personaIcon = styled.div`
     border: 4px solid #5580CB; // bordinha vermeia
     border-radius: 100vh;
     cursor: pointer;
+    text-align: center;
+    font-family: 'Roboto';
 
     &&:hover{
         background-color: #DDDDFF;
+    }
+    
+    p {
+        margin-top: 25%;
     }
 `;
 export const divPersonaInfo = styled.div`
@@ -156,7 +162,7 @@ export const personaName = styled.span`
 export const dropdownProfile = styled.div`
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     right: 1%;
@@ -165,5 +171,24 @@ export const dropdownProfile = styled.div`
     div {
         padding: 12px 16px;
         cursor: pointer;
+        display: flex;
+        /* align-self: center;
+        justify-self: center; */
+        justify-content: flex-end;
     }
+
+    .logoutIcon {
+        margin-right: 5%;
+    }
+
+    &:hover {
+        
+        .logoutIcon {
+            margin-right: 5%;
+            color: black;
+        }
+
+        color: #5580cb;
+        text-decoration: underline;
+  }
 `;
