@@ -16,57 +16,39 @@ export const bodyContainer = styled.div`
     align-items: center;
     overflow: hidden;
 `;
+export const cardAll = styled.div`
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+`;
+
 export const cardContainer = styled.div`
     height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
+    width: 50%;
+    display: grid;
+    grid-template-rows:20% 20% 20% 20% 30%;
     align-items: center;
-    flex-wrap: wrap;
     @media (max-width: 700px) { 
         overflow: auto;
     }
 `;
-export const card = styled.div`
-    height: 30%;
-    width: 21%;
-    background-color: ${props => props.backgroundC};
-    box-shadow: 4px 7px 6px rgba(0, 0, 0, 0.1225);
-    border-radius: 10px;
-    display: flex;
+export const cardScroll = styled.div`
+    height: 80%;
+    width: 100%;
+    grid-row: 1/7;
+    display:grid;
+    grid-template-columns:20% 60% 20%;
+    grid-row-gap:10%;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    cursor: pointer;
+    overflow:scroll;
+    overflow-x:hidden;
 
-    &&:hover{
-        filter: brightness(80%);
-    }
-
-    @media (max-width: 700px) { 
-        height: 30%;
-        width: 40%;
-        margin: 2% auto;
+    ::-webkit-scrollbar{
+        display:none;
     }
 `;
-export const cardTitle = styled.text`
-    max-width: 100%;
-    word-wrap: break-word;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.7em;
-`;
-export const cardValue = styled.text`
-    max-width: 100%;
-    word-wrap: break-word;
-    text-align: center;
-    font-weight: 900;
-    font-size: 2.5em;
-`;
-export const cardDescription = styled.text`
-max-width: 100%;
-    word-wrap: break-word;
-    text-align: center;
-    font-weight: 600;
-    font-size: 1.4em;    
+export const textContainer = styled.div`
+    height: 120%;
+    width: 50%;
 `;

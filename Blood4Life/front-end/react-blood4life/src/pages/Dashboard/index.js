@@ -28,6 +28,7 @@ export default function Dashboard() {
         api.get('/tipos').then(response =>{ 
         let dados = response.data
         let litrosSangue = []
+        console.log("dados: ", response)
         dados.forEach(a=>{
             litrosSangue.push(a.qtdAtual)
         })
