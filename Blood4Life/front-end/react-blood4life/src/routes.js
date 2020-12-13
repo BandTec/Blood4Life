@@ -22,7 +22,7 @@ export default function Routes() {
                 <Route path="/login" exact component={Login} />
                 <Route path="/cadastro" exact component={Cadastro} />
                 <Route path="/cadastroHospital" component={CadastroHospital} />
-                <Route path="/dashboard" exact component={Dashboard} />
+                <Route path="/dashboard/hospitais/:id" exact component={Dashboard}/>
                 <Route path="/menu" exact component={HomeDashboard} />
                 <Route path="/apiTeste" component={TesteBraian} />
                 <Route path="/alterarDoador" component={AlterarDoador} />

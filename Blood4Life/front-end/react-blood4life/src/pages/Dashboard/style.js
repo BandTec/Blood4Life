@@ -58,12 +58,17 @@ export const upperCardTitle = styled.text`
     text-align: center;
     font-weight: bold;
     font-size: 1.8vw;
+    color:white;
+    word-wrap: break-word;
+    text-shadow:2px 2px 2px grey;
 `;
 
 export const upperCardValue = styled.text`
     text-align: center;
     font-weight: 900;
-    font-size: 1.8vw
+    font-size: 1.8vw;
+    color:white;
+    text-shadow:2px 2px 2px grey;
 `;
 
 export const lowerSection = styled.div`
@@ -88,4 +93,5 @@ export const rightLowerCard = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction:column;
+
 `;

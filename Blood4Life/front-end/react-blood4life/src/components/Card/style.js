@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const card = styled.div`
     height: 30vh;
     grid-column:2/3;
-    align-self:center;
+    /* align-self:center;   */
     /* background-color: ${props => props.backgroundC}; */
     background-color:#7DABFA;
     box-shadow: 4px 7px 6px rgba(0, 0, 0, 0.1225);
@@ -22,25 +22,20 @@ export const card = styled.div`
         margin: 2% auto;
     }
 `;
-
+export const cardIcon = styled.img`
+    height: 40%;
+`;
 export const cardTitle = styled.text`
     max-width: 100%;
-    word-wrap: break-word;
     text-align: center;
-    font-weight: bold;
-    font-size: 1.7em;
-`;
-export const cardValue = styled.text`
-    max-width: 100%;
-    word-wrap: break-word;
-    text-align: center;
-    font-weight: 900;
-    font-size: 2.5em;
+    font-size: 200%;
+    color:white;
+    text-shadow:2px 2px 2px #6388C8;
+
 `;
 export const cardDescription = styled.text`
-max-width: 100%;
-    word-wrap: break-word;
     text-align: center;
-    font-weight: 600;
-    font-size: 1.4em;    
+    font-size: 100%;    
+    color:white;
+    text-shadow:2px 2px 2px #6388C8;
 `;

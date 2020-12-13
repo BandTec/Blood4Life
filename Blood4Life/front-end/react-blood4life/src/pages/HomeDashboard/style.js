@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+
 export const container = styled.div`
     height: 100vh;
     width: 100vw;
@@ -49,6 +50,54 @@ export const cardScroll = styled.div`
     }
 `;
 export const textContainer = styled.div`
-    height: 120%;
+    height: 100%;
     width: 50%;
+    display: grid;
+    grid-template-rows:20% 20% 20% 20% 30%;
+    align-items: center;
+    /* background-color:yellow; */
+    @media (max-width: 1000px) { 
+        overflow: auto;
+    }
+`;
+export const containerVideo = styled.div`
+    height: 80%;
+    width: 100%;
+    grid-row: 1/7;
+    display:flex;
+    /* align-items:center; */
+    flex-direction:column;
+`;
+export const textTitle = styled.text`
+    font-family:'Roboto Condensed', sans-serif;
+    font-weight:100;
+    font-size:8vh;
+    /* padding-top:1%; */
+    padding-bottom:2.5%;
+    color:#3D547A;
+
+`;
+export const textSubTitle = styled.text`
+    font-family: 'Raleway', sans-serif;
+    font-weight:normal;
+    font-size:2.5vh;
+    padding-top:2.5%;
+    padding-right:20%;
+    padding-left:0.7%;
+    padding-bottom:2.5%;
+    color:#3D547A;
+
+`;
+
+export const video = styled.iframe`
+    border: none;
+    height:40vh;
+    width:35vw;
+    padding-left:0.7%;
+`;
+
+export const a = styled.a`
+    font-size:80%; 
+    padding-left:0.7%;
+    color:#3D547A;
 `;

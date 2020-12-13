@@ -8,7 +8,7 @@ import MenuLateral from "../../components/MenuLateral";
 import TipoSanguineo2 from "../../components/Graficos/tipoSanguineo2";
 import api from '../../services/api.js';
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 
     const [mostrarMenuLateral, setMostrarMenuLateral] = useState(false);
 
@@ -17,6 +17,7 @@ export default function Dashboard() {
     const [min, setMin] = useState();
     const [critico, setCritico] = useState();
     const [litros,setLitros] = useState([]);
+    const [tipo, setTipo] = useState([]);
     const [render, setRender] = useState(false);
 
 
@@ -24,32 +25,45 @@ export default function Dashboard() {
         setMostrarMenuLateral(!mostrarMenuLateral);
     }
 
+    let id = props.match.params.id;
+
     useEffect(()=> {
-        api.get('/tipos').then(response =>{ 
+        api.get('/tipos').then(response =>{     
         let dados = response.data
         let litrosSangue = []
-        console.log("dados: ", response)
-        dados.forEach(a=>{
-            litrosSangue.push(a.qtdAtual)
+        let tipo = []
+
+        dados.forEach(a => {  
+            if(a.hospital.id == id){   
+                litrosSangue.push(a.qtdAtual)
+                console.log("AQUI Ó!: ", litrosSangue)
+                if(a.qtdAtual <= 5.0){
+                tipo.push(a.tipoSangue)
+                }
+            }
+            
+
         })
         let soma = 0.0;
         let contador = 0;
+        
         litrosSangue.forEach(a=>{
-        soma +=a
-        if(a <= 5){
-            contador++;
-            // console.log("contador", contador)
-        }
-        }) 
-        setLitros(litrosSangue)
-        setCritico(contador)
-        let media = soma/8;
-        setMedia(media);
-        let max = Math.max(...litrosSangue)
-        setMax(max)
-        let min = Math.min(...litrosSangue)
-        setMin(min)
-        setRender(true)
+            soma +=a
+            if(a <= 5){
+                contador++; 
+            }
+        })
+        console.log("TIPOS SANGUÍNUEOS: ",tipo)
+            setLitros(litrosSangue)
+            setCritico(contador)
+            let media = (soma/8);
+            setMedia(media.toFixed(2));
+            let max = Math.max(...litrosSangue)
+            setMax(max.toFixed(2))
+            let min = Math.min(...litrosSangue)
+            setMin(min.toFixed(2))
+            setTipo(tipo);
+            setRender(true)
 
     }).catch(error=>{
         console.log('erro')
@@ -64,8 +78,8 @@ export default function Dashboard() {
         ? color = "#7DABFA"
         : media >= 5.0 && media < 9.0?color = "#F4B92D":color = "#AA372E"
 
-    critico >= 9.0? color2 = "#AA372E":
-    critico >= 5.0 && critico < 9.0?color2 = "#F4B92D":color2 = "#7DABFA"
+    critico > 5? color2 ="#AA372E":
+    critico <= 5 && critico > 2?color2 = "#F4B92D":color2 = "#7DABFA"
  
     max >= 9.0? color3 = "#7DABFA":
     max >= 5.0 && max < 9.0?color3 = "#F4B92D":color3 = "#AA372E"
@@ -73,7 +87,6 @@ export default function Dashboard() {
     min >= 9.0? color4 = "#7DABFA":
     min >= 5.0 && min < 9.0?color4 = "#F4B92D":color4 = "#AA372E"
 
-    console.log("teste2")
     return (
         <>
 
@@ -111,7 +124,7 @@ export default function Dashboard() {
                                 </S.upperCard>
                                 <S.upperCard backgroundC={color2}>
                                     <S.upperCardTitle>Crítico Total</S.upperCardTitle>
-                                <S.upperCardValue>{critico}</S.upperCardValue>
+                                <S.upperCardValue>{tipo}</S.upperCardValue>
                                 </S.upperCard>
                                 </S.rightLowerUp>
                                
