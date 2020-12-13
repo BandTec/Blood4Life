@@ -39,12 +39,13 @@ public class BancoDeSangueController {
         return status(HttpStatus.CREATED).body(bancoDeSangueCadastrado);
     }
 
-    @PutMapping("/{tipo}/{quantidade}")
+    @PutMapping("/{idHospital}/{tipo}")
     public ResponseEntity atualizarBancoDeSangue(
-            @PathVariable String tipoSanguineo,
-            @PathVariable Double quantidade
+            @PathVariable Integer idHospital,
+            @PathVariable String tipo,
+            @RequestParam Double quantidade
     ) {
-        BancoDeSangue bancoDeSangue = bancoDeSangueService.atualizarBancoDeSangue(tipoSanguineo, quantidade);
+        BancoDeSangue bancoDeSangue = bancoDeSangueService.atualizarBancoDeSangue(idHospital, tipo, quantidade);
         return ResponseEntity.status(HttpStatus.OK).body(bancoDeSangue);
     }
 

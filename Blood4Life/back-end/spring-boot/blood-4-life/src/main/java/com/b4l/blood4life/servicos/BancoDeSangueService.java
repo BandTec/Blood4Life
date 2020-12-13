@@ -41,13 +41,12 @@ public class BancoDeSangueService {
         return bancoDeSangueRepository.save(bancoDeSangue);
     }
 
-    public BancoDeSangue atualizarBancoDeSangue(String tipoSanguineo, Double quantidade) {
+    public BancoDeSangue atualizarBancoDeSangue(Integer idHospital, String tipoSanguineo, Double quantidade) {
         verificarSeTipoSanguineoExiste(tipoSanguineo);
 
-        BancoDeSangue bancoDeSangue = bancoDeSangueRepository.findByTipoSangue(tipoSanguineo);
-        Double qtdAtualizada = bancoDeSangue.getQtdAtual() + quantidade;
+        BancoDeSangue bancoDeSangue = bancoDeSangueRepository.findByTipoSangueAndHospitalId(tipoSanguineo, idHospital);
 
-        bancoDeSangue.setQtdAtual(qtdAtualizada);
+        bancoDeSangue.setQtdAtual(quantidade);
 
         return bancoDeSangueRepository.save(bancoDeSangue);
     }

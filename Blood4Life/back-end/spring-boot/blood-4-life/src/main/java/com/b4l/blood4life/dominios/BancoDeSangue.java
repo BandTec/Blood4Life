@@ -20,7 +20,7 @@ public class BancoDeSangue {
     @NotNull
     private Double qtdAtual;
 
-    @JoinColumn(name = "bancodesangueId")
+    @JoinColumn(name = "hospitalId")
     @ManyToOne
     private Hospital hospital;
 

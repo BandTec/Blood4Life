@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound';
 import TesteBraian from './pages/ApiGoogle';
 import AlterarDoador from './pages/AlterarDoador';
 import AlterarHospital from './pages/AlterarHospital';
+import AlterarQtdSangue from './pages/AlterarBancoDeSangue';
 
 export default function Routes() {
     return (
@@ -26,6 +27,7 @@ export default function Routes() {
                 <Route path="/apiTeste" component={TesteBraian} />
                 <Route path="/alterarDoador" component={AlterarDoador} />
                 <Route path="/alterarHospital" component={AlterarHospital} />
+                <Route path="/alterarQtdSangue" component={AlterarQtdSangue} />
                 <Route path="/" component={NotFound} />
             </Switch>
         </Router>

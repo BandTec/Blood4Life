@@ -10,7 +10,7 @@ insert into hospital (id_hospital, nome, email, senha, cnpj, cidade, rua, numero
 
 insert into doadores_hospital (id_hospital, id_doador) values (1, 1), (1, 2), (1, 3), (2 , 1);
 
-insert into banco_de_sangue (tipo_sangue, qtd_atual, bancodesangue_id) values
+insert into banco_de_sangue (tipo_sangue, qtd_atual, hospital_id) values
 ('A+', 12.3,1),
 ('A-', 8.7,1),
 ('B+', 9.3,1),
@@ -18,4 +18,5 @@ insert into banco_de_sangue (tipo_sangue, qtd_atual, bancodesangue_id) values
 ('AB+', 13.8,1),
 ('AB-', 12.7,1),
 ('O+', 4.3,1),
+('A+', 50.5,2),
 ('O-', 1.3,1);

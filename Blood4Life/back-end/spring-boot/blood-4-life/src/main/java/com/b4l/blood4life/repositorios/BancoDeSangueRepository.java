@@ -11,4 +11,5 @@ public interface BancoDeSangueRepository extends JpaRepository<BancoDeSangue, In
 
     BancoDeSangue findByTipoSangue(String tipoSangue);
 
+    BancoDeSangue findByTipoSangueAndHospitalId(String tipoSangue, Integer hospitalId);
 }
