@@ -4,6 +4,6 @@
 "private": true,
 "scripts":{
 "start": "./Blood4Life/front-end/react-blood4life",
-"postinstall": "cd ./Blood4Life/front-end/react-blood4life && npm install"
+"postinstall": "cd Blood4Life/front-end/react-blood4life && npm install"
 }
 }
