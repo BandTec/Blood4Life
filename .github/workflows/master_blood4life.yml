@@ -32,4 +32,4 @@ jobs:
         app-name: 'blood4life'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_e49b35fbe9b547d5802f7cb6c4dc43e0 }}
-        package: .
+        package: ./build
