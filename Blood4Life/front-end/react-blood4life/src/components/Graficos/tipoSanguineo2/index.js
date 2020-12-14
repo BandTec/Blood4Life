@@ -60,7 +60,6 @@ export default class TipoSanguineo extends React.Component {
 	// 		console.log('erro')
 	// 	})
 	// }
-	
 
 	render() {
 		return (
@@ -70,14 +69,14 @@ export default class TipoSanguineo extends React.Component {
 					datasets: [{
 						label: 'Tipos Sanguíneos',
 						backgroundColor: [
-							`${true ? '#6186c8': '#DFB7B4'}`,
-							`#6186c8`,
-							`#6186c8`,
-							`#6186c8`,
-							`#6186c8`,
-							`#6186c8`,
-							`#6186c8`,
-							`#6186c8`
+							`${true ? '#7DABFA': '#DFB7B4'}`,
+							`#7DABFA`,
+							`#7DABFA`,
+							`#7DABFA`,
+							`#7DABFA`,
+							`#7DABFA`,
+							`#7DABFA`,
+							`#7DABFA`
 						],
 						borderColor: 'rgba(0,0,0,0)',
 						borderWidth: 1,

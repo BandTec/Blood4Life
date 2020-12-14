@@ -165,3 +165,13 @@ export const leave = styled.p`
     font-weight: 600;
     font-size: 1.2em;
 `;
+
+export const divLogo = styled.div`
+    margin-left: 15%;
+    max-height: 100%;
+    align-self: center;
+`;
+export const logo = styled.img`
+    max-height: 8vh;
+    max-width: 100%;
+`;

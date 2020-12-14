@@ -1,13 +1,10 @@
 import styled from 'styled-components'
 
 export const card = styled.div`
-    height: 30%;
-    width: 100%;
-    grid-column:2/3;
-    /* align-self:center;   */
-    /* background-color: ${props => props.backgroundC}; */
+    max-height: 35vh;
+    width: 70%;
     background-color:#7DABFA;
-    box-shadow: 4px 7px 6px rgba(0, 0, 0, 0.1225);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     border-radius:10px;
     display: flex;
     align-items: center;
@@ -15,13 +12,17 @@ export const card = styled.div`
     justify-content: flex-start;
     word-wrap: break-word;
     cursor: pointer;
+    margin: 5% 0;
+    
     &&:hover{
-        filter: brightness(80%);
+        box-shadow: 4px 6px 8px rgba(0,0,0,0.3);
+        filter: brightness(90%);
+        color: #5580CB;
     }
     @media (max-width: 700px) { 
-        height: 30%;
-        width: 40%;
-        margin: 2% auto;
+        height: auto;
+        max-height: auto;
+        width: 70%;
     }
 `;
 export const cardIcon = styled.img`

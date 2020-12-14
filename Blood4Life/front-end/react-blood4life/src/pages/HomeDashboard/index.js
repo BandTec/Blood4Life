@@ -47,7 +47,7 @@ export default function HomeDashboard() {
                     null
             }
             <BodyNavMenu render={
-                <S.cardAll>
+                <S.divContainer>
                     <S.cardContainer>
                         <S.cardScroll>
                             {hospitais.map(
@@ -65,18 +65,12 @@ export default function HomeDashboard() {
                                 "Doar sangue é um gesto altruísta,
                                 que possibilita às pessoas que necessitam de
                                 transfusão ou de um dos seus hemoderivados
-                                uma chance real de sobreviver. Um gesto gratuito
-                                fundado na solidariedade, mas que de tempos em
-                                tempos a comemoração dá espaço às campanhas cujo
-                                objetivo é tirar o HEMOCE do estado crítico,
-                                buscando captar pessoas para recuperar seus estoques
-                                quase zerados, realidade também presente nos demais
-                                Estados do País."
+                                uma chance real de sobreviver."
                             </S.textSubTitle>
                             <S.a target="_blank" href="https://oabce.org.br/2018/06/artigo-a-importancia-da-doacao-de-sangue/">Fonte: OAB Ceará.</S.a>
                         </S.containerVideo>
                     </S.textContainer>
-                </S.cardAll>
+                </S.divContainer>
             } />
         </>
     );

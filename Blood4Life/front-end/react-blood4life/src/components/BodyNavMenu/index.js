@@ -15,7 +15,7 @@ export default function BodyNavMenu(props) {
     return (
         <>
             <S.container>
-                <NavBar teste={!hideSideMenu} selected={hideSideMenu ? true : false} whenClicked={onChildClicked} />
+                <NavBar closing={!hideSideMenu} selected={hideSideMenu ? true : false} whenClicked={onChildClicked} />
                 <S.divNavSpacing />
                 <S.bodyContainer>
                     {

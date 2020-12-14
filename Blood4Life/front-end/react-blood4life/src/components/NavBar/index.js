@@ -2,8 +2,8 @@ import React, {  useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './style';
 
+import logoHeart from "../../assets/logo-heart.png";
 import { GiHamburgerMenu } from 'react-icons/gi';
-// import { FaSearch } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
@@ -44,7 +44,7 @@ export default function NavBar(props) {
         <>
             <S.navContainer>
                 {
-                    props.teste
+                    props.closing
                         ?
                         <S.menuHamburguer className={props.selected ? "selected" : null} onClick={props.whenClicked}>
                             <MdClose className="icon" />
@@ -54,7 +54,7 @@ export default function NavBar(props) {
                             <GiHamburgerMenu className="icon" />
                         </S.menuHamburguer>
                 }
-                {
+                {/* {
                     showSearch && (
                         <S.divInput>
                             <S.input placeholder="Pesquise aqui"></S.input>
@@ -63,7 +63,12 @@ export default function NavBar(props) {
                             </S.divSearchIcon>
                         </S.divInput>
                     )
-                }
+                } */}
+
+                <S.divLogo>
+                    <S.logo src={logoHeart} />
+                </S.divLogo>
+
                 <S.divPerfil>
                     <S.divPersonaInfo>
                         <S.personaName>{usuario.nome}</S.personaName>

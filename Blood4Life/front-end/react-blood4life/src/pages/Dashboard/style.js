@@ -1,22 +1,25 @@
 import styled from 'styled-components';
 
-export const container = styled.div`
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-`;
-
-export const bodyContainer = styled.div`
+export const divContainer = styled.div`
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
 `;
-
+export const divNome = styled.div`
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const titleNome = styled.h1`
+    word-wrap: break-word;
+    color: #7DABFA;
+`;
 export const upperSection = styled.div`
     height: 100%;
     width: 100%;
@@ -25,7 +28,6 @@ export const upperSection = styled.div`
     align-items: center;
     justify-content: space-between;
 `;
-
 export const rightLowerUp = styled.div`
     height: 50%;
     width: 100%;
@@ -33,7 +35,6 @@ export const rightLowerUp = styled.div`
     align-items: center;
     justify-content: space-around;
 `;
-
 export const rightLowerBottom = styled.div`
     height: 50%;
     width: 100%;
@@ -41,9 +42,8 @@ export const rightLowerBottom = styled.div`
     align-items: center;
     justify-content: space-around;
 `;
-
 export const upperCard = styled.div`
-    height: 60%;
+    height: 70%;
     width: 30%;
     background-color: ${props => props.backgroundC};
     box-shadow: 4px 7px 6px rgba(0, 0, 0, 0.1225);
@@ -53,7 +53,6 @@ export const upperCard = styled.div`
     align-items: center;
     justify-content: space-around;
 `;
-
 export const upperCardTitle = styled.p`
     text-align: center;
     font-weight: bold;
@@ -62,7 +61,6 @@ export const upperCardTitle = styled.p`
     word-wrap: break-word;
     text-shadow:2px 2px 2px grey;
 `;
-
 export const upperCardValue = styled.p`
     text-align: center;
     font-weight: 900;
@@ -72,7 +70,7 @@ export const upperCardValue = styled.p`
 `;
 
 export const lowerSection = styled.div`
-    height: 60%;    
+    height: 80%;    
     width: 100%;
     display: flex;
     flex-direction: row;

@@ -12,8 +12,9 @@ export const container = styled.div`
     justify-content: space-between;
     border-left: 3px solid transparent;
     /* box-shadow: 1px 1px 1px 10px; */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     &&:hover {
+        box-shadow: 4px 6px 8px rgba(0,0,0,0.3);
         background-color:#DDDDFF;
         border-left-color: #5580CB;
     }
