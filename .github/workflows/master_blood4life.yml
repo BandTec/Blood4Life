@@ -25,6 +25,8 @@ jobs:
         npm install
         npm run build --if-present
         npm run test --if-present
+      working-directory: ./Blood4Life/front-end/react-blood4life
+
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
@@ -32,4 +34,4 @@ jobs:
         app-name: 'blood4life'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_3ac19698950341d2a1634c060309c69c }}
-        package: .
+        package: ./Blood4Life/front-end/react-blood4life/build
