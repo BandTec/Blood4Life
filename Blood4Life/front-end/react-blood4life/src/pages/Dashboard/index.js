@@ -36,7 +36,7 @@ export default function Dashboard(props) {
         let tipo = []
 
         dados.forEach(a => {  
-            if(a.hospital.id === id){   
+            if(a.hospital.id == id){   
                 litrosSangue.push(a.qtdAtual)
               //  console.log("AQUI Ó!: ", litrosSangue)
                 if(a.qtdAtual <= 5.0){
