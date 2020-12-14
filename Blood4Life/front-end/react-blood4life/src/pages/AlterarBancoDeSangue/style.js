@@ -33,7 +33,7 @@ export const atualizacaoContainer = styled.div`
 export const containerForm = styled.form`
   background-color: #7DABFA;
   width: 75vw;
-  height: 70vh;
+  height: 80vh;
   border-radius: 30px;
   margin-bottom: 2%;
   display: flex;
@@ -115,11 +115,9 @@ export const divColuna = styled.div`
   flex-direction: column;
   width: 45%;
 `;
-
 export const signUpButton = styled.div`
   margin-top: 3%;
   margin-bottom: 5%;
- 
   button {
     cursor: pointer;
     width: 17vw;
@@ -133,7 +131,6 @@ export const signUpButton = styled.div`
     outline: 0;
   }
 `;
-
 export const dicaInput = styled.p`
   font-family: 'Roboto';
   color: white;
@@ -145,7 +142,6 @@ export const divPersonaIcon = styled.div`
     justify-content: center;
     align-items: center;
 `;
-
 export const personaIcon = styled.div`
     width: 80px;
     height: 80px;
@@ -164,4 +160,25 @@ export const personaIcon = styled.div`
     img {
       margin-top: 10%;
     }
+`;
+export const divFileContainer = styled.div`
+  width: 100%;
+  padding: 3% 3% 0 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: space-around;
+`;
+export const fileInput = styled.input`
+  max-width: 100%;
+  margin: 0 auto;
+`;
+export const fileText = styled.h2`
+  max-width: 100%;
+  color: #FFFFFF;
+  padding-bottom: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;

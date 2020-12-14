@@ -8,6 +8,7 @@ import MenuLateral from "../../components/MenuLateral";
 import TipoSanguineo2 from "../../components/Graficos/tipoSanguineo2";
 import api from '../../services/api.js';
 import BodyNavMenu from "../../components/BodyNavMenu";
+import Loading from "../../components/Loading";
 
 export default function Dashboard(props) {
 
@@ -20,7 +21,7 @@ export default function Dashboard(props) {
     const [litros,setLitros] = useState([]);
     const [tipo, setTipo] = useState([]);
     const [render, setRender] = useState(false);
-
+    const [loading, setLoading] = useState(true);
 
     const onChildClicked = () => {
         setMostrarMenuLateral(!mostrarMenuLateral);
@@ -66,6 +67,7 @@ export default function Dashboard(props) {
             setTipo(tipo);
             setRender(true)
 
+            setLoading(false);
     }).catch(error=>{
         console.log('erro')
     })},[])
@@ -90,7 +92,13 @@ export default function Dashboard(props) {
 
     return (
         <>
-
+            {
+                loading
+                    ?
+                    <Loading />
+                    :
+                    null
+            }
             <BodyNavMenu render={
                     <S.lowerSection>
                         <S.leftLowerCard>   

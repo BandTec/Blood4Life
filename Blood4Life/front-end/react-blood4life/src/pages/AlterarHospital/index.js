@@ -13,7 +13,6 @@ export default function AlterarDoador() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const apelido = localStorage.getItem("apelido");
 
-
   const id = usuario.id;
   const [nome, setNome] = useState(usuario.nome);
   const [cnpj, setCnjp] = useState(usuario.cnpj);

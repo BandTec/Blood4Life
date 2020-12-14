@@ -107,6 +107,10 @@ export default function AlterarBancoDeSangue() {
                                 </S.divColuna>
                             </S.divLinha>
                         </S.divDaDiv>
+                        <S.divFileContainer>
+                            <S.fileText>Importar estoque de sangue</S.fileText>
+                            <S.fileInput type='file'/>
+                        </S.divFileContainer>
                         <S.signUpButton>
                             <button type="button" >Atualizar</button>
                         </S.signUpButton>

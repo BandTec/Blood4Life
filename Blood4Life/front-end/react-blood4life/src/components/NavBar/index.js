@@ -4,6 +4,7 @@ import * as S from './style';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaSearch } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import api from '../../services/api';
@@ -42,9 +43,17 @@ export default function NavBar(props) {
     return (
         <>
             <S.navContainer>
-                <S.menuHamburguer className={props.selected ? "selected" : null} onClick={props.whenClicked}>
-                    <GiHamburgerMenu className="icon" />
-                </S.menuHamburguer>
+                {
+                    props.teste
+                        ?
+                        <S.menuHamburguer className={props.selected ? "selected" : null} onClick={props.whenClicked}>
+                            <MdClose className="icon" />
+                        </S.menuHamburguer>
+                        :
+                        <S.menuHamburguer onClick={props.whenClicked}>
+                            <GiHamburgerMenu className="icon" />
+                        </S.menuHamburguer>
+                }
                 {
                     showSearch && (
                         <S.divInput>
