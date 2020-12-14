@@ -24,6 +24,15 @@ public class BancoDeSangue {
     @ManyToOne
     private Hospital hospital;
 
+    public BancoDeSangue() {
+    }
+
+    public BancoDeSangue(String tipoSangue, Double qtdAtual, Hospital hospital) {
+        this.tipoSangue = tipoSangue;
+        this.qtdAtual = qtdAtual;
+        this.hospital = hospital;
+    }
+
     public Integer getId() {
         return id;
     }

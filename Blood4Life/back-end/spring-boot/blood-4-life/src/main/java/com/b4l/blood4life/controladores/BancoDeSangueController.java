@@ -7,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.springframework.http.ResponseEntity.status;
+import static org.springframework.http.ResponseEntity.*;
 
 @Validated
 @RestController
@@ -53,6 +56,16 @@ public class BancoDeSangueController {
     ) {
         BancoDeSangue bancoDeSangue = bancoDeSangueService.atualizarBancoDeSangue(idHospital, tipo, quantidade);
         return ResponseEntity.status(HttpStatus.OK).body(bancoDeSangue);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity enviar(@RequestParam("arquivo") MultipartFile arquivo) throws IOException {
+        if (arquivo.isEmpty()) {
+            return badRequest().body("Arquivo não enviado!");
+        }
+
+        bancoDeSangueService.atualizarBancoDeSanguePorDocumento(arquivo);
+        return ok().build();
     }
 
 }

@@ -129,19 +129,4 @@ public class Hospital {
         this.bancoDeSangue = bancoDeSangue;
     }
 
-    @Override
-    public String toString() {
-        return String.format(
-                "01%-45s%-14s%-30s%-30s%-30s%8s%-30s%-2s%-11s%n",
-                getNome(),
-                getCnpj(),
-                getEndereco().getCidade(),
-                getEndereco().getRua(),
-                getEndereco().getBairro(),
-                getEndereco().getCep(),
-                getEndereco().getComplemento(),
-                getEndereco().getUf(),
-                getTelefone()
-        );
-    }
 }
