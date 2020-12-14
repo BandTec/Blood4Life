@@ -88,7 +88,7 @@ export default function AlterarBancoDeSangue() {
   // 		.catch(error => console.log(error))
   // }
 
-  function teste() {
+  function upload() {
     const formData = new FormData();
     const config = {
       headers: {
@@ -102,7 +102,6 @@ export default function AlterarBancoDeSangue() {
 
     console.log(formData);
 
-    debugger;
     api.post("/tipos/upload", formData, config)
       .then((data) => {
             console.log(data);
@@ -181,15 +180,10 @@ export default function AlterarBancoDeSangue() {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    teste();
-                    // var teste = document.getElementById("fileInput");
-                    // window.alert(teste.value);
-                    // console.log("OBJECT " + teste);
-                    // console.log(teste);
-                    // console.log("VALOR DA TAG: " + teste.value);
+                    upload();
                   }}
                 >
-                  TESTAR
+                  Upload
                 </button>
               </S.signUpButton>
             </S.containerForm>

@@ -116,19 +116,28 @@ export const divColuna = styled.div`
   width: 45%;
 `;
 export const signUpButton = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;  
   margin-top: 3%;
   margin-bottom: 5%;
   button {
     cursor: pointer;
-    width: 17vw;
-    padding: 5%;
-    font-size: 32px;
+    width: 20%;
+    padding: 1%;
+    font-size: 1.5em;
     color: #FFF;
     background-color: #E75D52;
     border-radius: 100px;
     border-style: none;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
     outline: 0;
+
+    &:hover{
+      filter: brightness(80%);
+    }
+
   }
 `;
 export const dicaInput = styled.p`

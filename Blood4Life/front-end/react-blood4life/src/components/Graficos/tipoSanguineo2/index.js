@@ -16,7 +16,7 @@ const options = {
 		  },
 		  scaleLabel: {
 			display: true,
-			labelString: 'Mil litros'
+			labelString: 'Litros'
 		  }
 		},
 	  ],
