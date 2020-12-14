@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import * as S from './style';
 import api from '../../services/api';
 
-import logo from "../../assets/logo.svg";
+// import logo from "../../assets/logo.svg";
 import logoVermelho from "../../assets/img-logo-vermelho.svg";
 import { AiFillHome } from 'react-icons/ai';
 import { FaMapMarkerAlt } from 'react-icons/fa';
@@ -24,7 +24,7 @@ export default function MenuLateral(props) {
         await api.post('/user/logout')
             .then(res => {
                 localStorage.clear();
-                alert('Deslogado com sucesso!');
+             //   alert('Deslogado com sucesso!');
                 redirect("/");
             })
             .catch(err => {

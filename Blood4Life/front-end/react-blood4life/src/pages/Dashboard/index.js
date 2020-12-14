@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as S from './style';
-import NavBar from "../../components/NavBar";
+// import NavBar from "../../components/NavBar";
 // import NavBarSpacing from "../../components/NavBarSpacing";
-import MenuLateral from "../../components/MenuLateral";
+// import MenuLateral from "../../components/MenuLateral";
 // import UltimasDoacoes from "../../components/Graficos/ultimasDoacoes";
 // import TipoSanguineo from "../../components/Graficos/tipoSanguineo";
 import TipoSanguineo2 from "../../components/Graficos/tipoSanguineo2";
@@ -36,9 +36,9 @@ export default function Dashboard(props) {
         let tipo = []
 
         dados.forEach(a => {  
-            if(a.hospital.id == id){   
+            if(a.hospital.id === id){   
                 litrosSangue.push(a.qtdAtual)
-                console.log("AQUI Ó!: ", litrosSangue)
+              //  console.log("AQUI Ó!: ", litrosSangue)
                 if(a.qtdAtual <= 5.0){
                 tipo.push(a.tipoSangue)
                 }
@@ -55,7 +55,7 @@ export default function Dashboard(props) {
                 contador++; 
             }
         })
-        console.log("TIPOS SANGUÍNUEOS: ",tipo)
+     //   console.log("TIPOS SANGUÍNUEOS: ",tipo)
             setLitros(litrosSangue)
             setCritico(contador)
             let media = (soma/8);

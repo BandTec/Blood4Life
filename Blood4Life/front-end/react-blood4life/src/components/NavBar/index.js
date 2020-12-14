@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import * as S from './style';
 
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { FaSearch } from 'react-icons/fa';
+// import { FaSearch } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
@@ -31,7 +31,7 @@ export default function NavBar(props) {
         await api.post('/user/logout')
             .then(res => {
                 localStorage.clear();
-                alert('Deslogado com sucesso!');
+               // alert('Deslogado com sucesso!');
                 hist.push("/");
             })
             .catch(err => {

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import * as S from './style';
 import ReactStars from "react-rating-stars-component";
-import Restaurante from '../../assets/restaurante-fake.png';
 import { useHistory } from 'react-router-dom';
 
 export default function MapCard(props) {

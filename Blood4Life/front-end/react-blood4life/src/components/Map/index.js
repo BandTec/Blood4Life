@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvent, useMapEvents, ZoomControl, } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer, ZoomControl, } from 'react-leaflet';
 import L from 'leaflet';
 
 export default function Map(props) {
 
-    const hist = useHistory();
     const [viewPosition, setViewPosition] = useState([props.coordinates.lat, props.coordinates.lng]);
     const [hospitals, setHospitals] = useState([]);
 

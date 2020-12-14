@@ -41,7 +41,7 @@ export default function Login(props) {
                     localStorage.setItem("apelido", nomes[0][0] + nomes[1][0]);
                 }
 
-                alert('Logado com sucesso!');
+            //    alert('Logado com sucesso!');
                 hist.push("/menu");
             }).catch(error => {
                 if (error !== undefined && error.response.status === 404) {
@@ -69,7 +69,7 @@ export default function Login(props) {
                     localStorage.setItem("apelido", (nomes[0][0] + nomes[1][0]).toUpperCase());
                 }
 
-                alert('Logado com sucesso!');
+            //    alert('Logado com sucesso!');
                 hist.push('/menu');
             }).catch(error => {
                 if (error !== undefined && error.response.status === 404) {
