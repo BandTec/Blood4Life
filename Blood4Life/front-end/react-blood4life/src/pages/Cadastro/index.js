@@ -28,6 +28,9 @@ export default function Cadastro() {
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
 
+    let addressData = {};
+    let responseStatusBrasilApi = 0;
+
     const onChangeNome = ev => {
         setNome(ev.target.value);
     };
@@ -102,15 +105,21 @@ export default function Cadastro() {
             });
 
         const address = await api.get(`https://brasilapi.com.br/api/cep/v1/${cep}`)
-            .then(({ data }) => encodeURIComponent(Object.values(data).reverse().join(" ")))
+            .then(res => {
+                res.data = encodeURIComponent(Object.values(res.data).reverse().join(" "));
+                addressData = res.data;
+                responseStatusBrasilApi = res.status;
+            })
             .catch(error => console.log("Erro ao obter endereço"));
 
-        const { lat, lng } = await api.get(`https://api.opencagedata.com/geocode/v1/json?q=${address}&key=${key}`)
-            .then(({ data }) => data.results[0].geometry)
-            .catch(error => console.log("Erro ao obter latitude e longitude"));
+        if (responseStatusBrasilApi === 200) {
+            const { lat, lng } = await api.get(`https://api.opencagedata.com/geocode/v1/json?q=${addressData}&key=${key}`)
+                .then(({ data }) => data.results[0].geometry)
+                .catch(error => console.log("Erro ao obter latitude e longitude"));
 
-        setLatitude(lat);
-        setLongitude(lng)
+            setLatitude(lat);
+            setLongitude(lng)
+        }
     }
 
     async function handleRegister() {
