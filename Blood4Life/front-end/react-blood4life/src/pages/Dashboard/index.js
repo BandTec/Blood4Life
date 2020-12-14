@@ -7,6 +7,7 @@ import MenuLateral from "../../components/MenuLateral";
 // import TipoSanguineo from "../../components/Graficos/tipoSanguineo";
 import TipoSanguineo2 from "../../components/Graficos/tipoSanguineo2";
 import api from '../../services/api.js';
+import BodyNavMenu from "../../components/BodyNavMenu";
 
 export default function Dashboard(props) {
 
@@ -90,26 +91,7 @@ export default function Dashboard(props) {
     return (
         <>
 
-            <S.container>
-                {
-                    mostrarMenuLateral
-                        ?
-                        <MenuLateral />
-                        :
-                        <>
-                        </>
-                }
-                {
-                    mostrarMenuLateral
-                        ?
-                        <NavBar onClicked={onChildClicked} mostrandoMenu />
-                        :
-                        <NavBar onClicked={onChildClicked} />
-                }
-                <S.bodyContainer>
-                    {/* <NavBarSpacing /> */}
-                    {/* DIGITE AQUI ABAIXO*/}
-
+            <BodyNavMenu render={
                     <S.lowerSection>
                         <S.leftLowerCard>   
                            {render && <TipoSanguineo2 dados={litros} />}
@@ -142,10 +124,7 @@ export default function Dashboard(props) {
                         </S.rightLowerCard>
                     
                     </S.lowerSection>
-
-                    {/* DIGITE AQUI ACIMA */}
-                </S.bodyContainer>
-            </S.container>
+                }/>
         </>
     );
 }

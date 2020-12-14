@@ -13,6 +13,7 @@ import TesteBraian from './pages/ApiGoogle';
 import AlterarDoador from './pages/AlterarDoador';
 import AlterarHospital from './pages/AlterarHospital';
 import AlterarQtdSangue from './pages/AlterarBancoDeSangue';
+import Localizar from './pages/LocalizarHospitais';
 
 export default function Routes() {
     return (
@@ -28,6 +29,7 @@ export default function Routes() {
                 <Route path="/alterarDoador" component={AlterarDoador} />
                 <Route path="/alterarHospital" component={AlterarHospital} />
                 <Route path="/alterarQtdSangue" component={AlterarQtdSangue} />
+                <Route path="/localizar" component={Localizar} />
                 <Route path="/" component={NotFound} />
             </Switch>
         </Router>

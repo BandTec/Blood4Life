@@ -54,7 +54,7 @@ export const upperCard = styled.div`
     justify-content: space-around;
 `;
 
-export const upperCardTitle = styled.text`
+export const upperCardTitle = styled.p`
     text-align: center;
     font-weight: bold;
     font-size: 1.8vw;
@@ -63,7 +63,7 @@ export const upperCardTitle = styled.text`
     text-shadow:2px 2px 2px grey;
 `;
 
-export const upperCardValue = styled.text`
+export const upperCardValue = styled.p`
     text-align: center;
     font-weight: 900;
     font-size: 1.8vw;

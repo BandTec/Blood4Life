@@ -1,25 +1,21 @@
-import React, { useState } from 'react';
-import * as S from './style';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import * as S from './style';
+
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { FaSearch } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
-import api from '../../services/api.js';
+import api from '../../services/api';
 
 export default function NavBar(props) {
 
-    console.log("props.onClicked");
-    console.log(props.onClicked);
-    console.log(props.childClick);
-    console.log(props);
+    const hist = useHistory();
+    const [showSearch, setShowSearch] = useState(false);
+    const [display, setDisplay] = useState('none');
 
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const apelido = localStorage.getItem("apelido");
-
-    const [display, setDisplay] = useState('none');
-
-    const hist = useHistory();
 
     const expandirDropdown = () => {
         if (display === 'none') {
@@ -42,64 +38,38 @@ export default function NavBar(props) {
             });
     }
 
+
     return (
-
         <>
-            {
-                props.mostrandoMenu
-                    ?
-                    <S.navContainer style={{ width: "80%" }}>
-                        <S.menuHamburguer onClick={props.onClicked}>
-                            <GiHamburgerMenu className="icon" />
-                        </S.menuHamburguer>
-                        <S.divInput>
-                            <S.input placeholder="Pesquise Aqui"></S.input>
-                            <S.divSearchIcon>
-                                <AiOutlineSearch className="icon" />
-                            </S.divSearchIcon>
-                            {/* <S.divSearch>
-                            </S.divSearch> */}
-                        </S.divInput>
-                        <S.divPerfil>
-                            <S.divPersonaInfo>
-                                <S.personaName>{usuario.nome}</S.personaName>
-                            </S.divPersonaInfo>
-                            <S.divPersonaIcon>
-                                <S.personaIcon onClick={expandirDropdown}><p>{apelido}</p></S.personaIcon>
-                            </S.divPersonaIcon>
-                            <S.dropdownProfile style={{ display: display }}>
-                                <div onClick={logout}>Logout</div>
-                            </S.dropdownProfile>
-                        </S.divPerfil>
-                    </S.navContainer>
-
-                    :
-
-                    <S.navContainer>
-                        <S.menuHamburguer onClick={props.onClicked}>
-                            <GiHamburgerMenu className="icon" />
-                        </S.menuHamburguer>
+            <S.navContainer>
+                <S.menuHamburguer className={props.selected ? "selected" : null} onClick={props.whenClicked}>
+                    <GiHamburgerMenu className="icon" />
+                </S.menuHamburguer>
+                {
+                    showSearch && (
                         <S.divInput>
                             <S.input placeholder="Pesquise aqui"></S.input>
                             <S.divSearchIcon>
-                                <FaSearch className="icon" />
+                                <AiOutlineSearch className="icon" />
                             </S.divSearchIcon>
-                            {/* <S.divSearch>
-                            </S.divSearch> */}
                         </S.divInput>
-                        <S.divPerfil>
-                            <S.divPersonaInfo>
-                                <S.personaName>{usuario.nome}</S.personaName>
-                            </S.divPersonaInfo>
-                            <S.divPersonaIcon>
-                                <S.personaIcon onClick={expandirDropdown}><p>{apelido}</p></S.personaIcon>
-                            </S.divPersonaIcon>
-                            <S.dropdownProfile style={{ display: display }}>
-                                <div onClick={logout}><FiLogOut className="logoutIcon" />Logout</div>
-                            </S.dropdownProfile>
-                        </S.divPerfil>
-                    </S.navContainer>
-            }
+                    )
+                }
+                <S.divPerfil>
+                    <S.divPersonaInfo>
+                        <S.personaName>{usuario.nome}</S.personaName>
+                    </S.divPersonaInfo>
+                    <S.divPersonaIcon>
+                        <S.personaIcon onClick={expandirDropdown}>{apelido}</S.personaIcon>
+                    </S.divPersonaIcon>
+                    <S.dropdownProfile style={{ display: display }}>
+                        <S.divLogout onClick={logout}>
+                            <FiLogOut className="logoutIcon" />
+                            <S.leave>Sair</S.leave>
+                        </S.divLogout>
+                    </S.dropdownProfile>
+                </S.divPerfil>
+            </S.navContainer>
         </>
     );
 

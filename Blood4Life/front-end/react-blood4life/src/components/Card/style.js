@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const card = styled.div`
-    height: 30vh;
+    height: 30%;
+    width: 100%;
     grid-column:2/3;
     /* align-self:center;   */
     /* background-color: ${props => props.backgroundC}; */
@@ -11,7 +12,8 @@ export const card = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
+    word-wrap: break-word;
     cursor: pointer;
     &&:hover{
         filter: brightness(80%);

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as S from "./style";
-import NavBar from "../../components/NavBar";
-import NavBarSpacing from "../../components/NavBarSpacing";
-import MenuLateral from "../../components/MenuLateral";
 import api from '../../services/api.js';
 import Cleave from 'cleave.js/react';
+import BodyNavMenu from "../../components/BodyNavMenu";
 
 export default function AlterarDoador() {
   const [mostrarMenuLateral, setMostrarMenuLateral] = useState(false);
@@ -238,151 +236,133 @@ export default function AlterarDoador() {
 
   return (
     <>
-      <S.container>
-        {
-          mostrarMenuLateral
-            ?
-            <MenuLateral />
-            :
-            <>
-            </>
-        }
-        {
-          mostrarMenuLateral
-            ?
-            <NavBar onClicked={onChildClicked} mostrandoMenu />
-            :
-            <NavBar onClicked={onChildClicked} />
-        }
-        <S.bodyContainer>
-          <NavBarSpacing />
-          <S.atualizacaoContainer>
-            <S.containerForm>
-              <S.divPersonaIcon>
-                <S.personaIcon><p>{apelido}</p></S.personaIcon>
-              </S.divPersonaIcon>
-              <h1>Informações Pessoais</h1>
-              <S.divDaDiv>
-                <S.divColuna style={{ width: '100%' }}>
-                  <label htmlFor="">Nome: *</label>
-                  <input style={{ paddingLeft: '2%' }} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
+      <BodyNavMenu render={
+        <S.atualizacaoContainer>
+          <S.containerForm>
+            <S.divPersonaIcon>
+              <S.personaIcon><p>{apelido}</p></S.personaIcon>
+            </S.divPersonaIcon>
+            <h1>Informações Pessoais</h1>
+            <S.divDaDiv>
+              <S.divColuna style={{ width: '100%' }}>
+                <label htmlFor="">Nome: *</label>
+                <input style={{ paddingLeft: '2%' }} id="nome" type="text" placeholder="" onChange={onChangeNome} value={nome} />
+              </S.divColuna>
+              <S.divLinha>
+                <S.divColuna>
+                  <label htmlFor="">E-mail: *</label>
+                  <input id="email" type="email" placeholder="seu@email.com" onChange={onChangeEmail} value={email} />
                 </S.divColuna>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label htmlFor="">E-mail: *</label>
-                    <input id="email" type="email" placeholder="seu@email.com" onChange={onChangeEmail} value={email} />
-                  </S.divColuna>
 
-                  <S.divColuna>
-                    <label htmlFor="">Confirmar E-mail: *</label>
-                    <input id="emailConfirmado" type="email" placeholder="seu@email.com" onChange={onChangeEmailConfirmado} value={emailConfirmado} />
-                  </S.divColuna>
-                </S.divLinha>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label > Tipo Sanguíneo: </label>
-                    <select id="tipoSanguineo" onChange={onChangeTipoSanguineo} value={tipoSanguineo}>
-                      <option value="">Não sei meu tipo sanguíneo</option>
-                      <option value="A+">A+</option>
-                      <option value="A-">A-</option>
-                      <option value="B+">B+</option>
-                      <option value="B-">B-</option>
-                      <option value="AB+">AB+</option>
-                      <option value="AB-">AB-</option>
-                      <option value="O+">O+</option>
-                      <option value="O-">O-</option>
-                    </select>
-                  </S.divColuna>
-                  <S.divColuna>
-                    <label htmlFor="">Telefone: *</label>
-                    <Cleave id="telefone" type="text" placeholder="(99) 9 9999-9999" options={{ blocks: [0, 2, 0, 1, 4, 4], delimiters: ['(', ')', ' ', ' ', '-'], numericOnly: true }} onChange={onChangeTelefone} value={telefone} />
-                  </S.divColuna>
-                </S.divLinha>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label htmlFor="">Senha: *</label>
-                    <input id="senha" type="password" placeholder="" onChange={onChangeSenha} value={senha} />
-                    <S.dicaInput>(Min: 8 Caracteres)</S.dicaInput>
-                  </S.divColuna>
-
-                  <S.divColuna>
-                    <label htmlFor="">Confirmar Senha: *</label>
-                    <input id="senhaConfirmada" type="password" placeholder="" onChange={onChangeSenhaConfirmada} value={senhaConfirmada} />
-                  </S.divColuna>
-                </S.divLinha>
-              </S.divDaDiv>
-              <h1>Informações de Contato</h1>
-              <S.divDaDiv>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label htmlFor="">CEP: *</label>
-                    <Cleave id="cep" type="text" placeholder="99999-999" options={{ blocks: [5, 3], delimiter: '-', numericOnly: true }} onChange={onChangeCep} onBlur={onBlurCep} value={cep} />
-                  </S.divColuna>
-                  <S.divColuna>
-                    <label htmlFor="">Complemento:</label>
-                    <input id="complemento" placeholder="" onChange={onChangeComplemento} value={complemento} />
-                  </S.divColuna>
-                </S.divLinha>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label htmlFor="">Rua: *</label>
-                    <input id="rua" placeholder="" onChange={onChangeRua} value={rua} />
-                  </S.divColuna>
-                  <S.divColuna>
-                    <label htmlFor="">Número: *</label>
-                    <input id="numero" placeholder="" onChange={onChangeNumero} value={numero} />
-                  </S.divColuna>
-                </S.divLinha>
-                <S.divColuna style={{ width: '100%' }}>
-                  <label htmlFor="">Bairro: *</label>
-                  <input style={{ paddingLeft: '2%' }} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
+                <S.divColuna>
+                  <label htmlFor="">Confirmar E-mail: *</label>
+                  <input id="emailConfirmado" type="email" placeholder="seu@email.com" onChange={onChangeEmailConfirmado} value={emailConfirmado} />
                 </S.divColuna>
-                <S.divLinha>
-                  <S.divColuna>
-                    <label htmlFor="">Cidade: *</label>
-                    <input id="cidade" placeholder="" onChange={onChangeCidade} value={cidade} />
-                  </S.divColuna>
-                  <S.divColuna>
-                    <label>Estado: </label>
-                    <select id="estado" onChange={onChangeUf} value={uf} >
-                      <option value="AC">AC</option>
-                      <option value="AL">AL</option>
-                      <option value="AP">AP</option>
-                      <option value="AM">AM</option>
-                      <option value="BA">BA</option>
-                      <option value="CE">CE</option>
-                      <option value="DF">DF</option>
-                      <option value="ES">ES</option>
-                      <option value="GO">GO</option>
-                      <option value="MA">MA</option>
-                      <option value="MT">MT</option>
-                      <option value="MS">MS</option>
-                      <option value="MG">MG</option>
-                      <option value="PA">PA</option>
-                      <option value="PB">PB</option>
-                      <option value="PR">PR</option>
-                      <option value="PE">PE</option>
-                      <option value="PI">PI</option>
-                      <option value="RJ">RJ</option>
-                      <option value="RN">RN</option>
-                      <option value="RS">RS</option>
-                      <option value="RO">RO</option>
-                      <option value="RR">RR</option>
-                      <option value="SC">SC</option>
-                      <option value="SP">SP</option>
-                      <option value="SE">SE</option>
-                      <option value="TO">TO</option>
-                    </select>
-                  </S.divColuna>
-                </S.divLinha>
-              </S.divDaDiv>
-              <S.signUpButton>
-                <button type="button" onClick={atualizarDados}>Salvar</button>
-              </S.signUpButton>
-            </S.containerForm>
-          </S.atualizacaoContainer>
-        </S.bodyContainer>
-      </S.container>
+              </S.divLinha>
+              <S.divLinha>
+                <S.divColuna>
+                  <label > Tipo Sanguíneo: </label>
+                  <select id="tipoSanguineo" onChange={onChangeTipoSanguineo} value={tipoSanguineo}>
+                    <option value="">Não sei meu tipo sanguíneo</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                  </select>
+                </S.divColuna>
+                <S.divColuna>
+                  <label htmlFor="">Telefone: *</label>
+                  <Cleave id="telefone" type="text" placeholder="(99) 9 9999-9999" options={{ blocks: [0, 2, 0, 1, 4, 4], delimiters: ['(', ')', ' ', ' ', '-'], numericOnly: true }} onChange={onChangeTelefone} value={telefone} />
+                </S.divColuna>
+              </S.divLinha>
+              <S.divLinha>
+                <S.divColuna>
+                  <label htmlFor="">Senha: *</label>
+                  <input id="senha" type="password" placeholder="" onChange={onChangeSenha} value={senha} />
+                  <S.dicaInput>(Min: 8 Caracteres)</S.dicaInput>
+                </S.divColuna>
+
+                <S.divColuna>
+                  <label htmlFor="">Confirmar Senha: *</label>
+                  <input id="senhaConfirmada" type="password" placeholder="" onChange={onChangeSenhaConfirmada} value={senhaConfirmada} />
+                </S.divColuna>
+              </S.divLinha>
+            </S.divDaDiv>
+            <h1>Informações de Contato</h1>
+            <S.divDaDiv>
+              <S.divLinha>
+                <S.divColuna>
+                  <label htmlFor="">CEP: *</label>
+                  <Cleave id="cep" type="text" placeholder="99999-999" options={{ blocks: [5, 3], delimiter: '-', numericOnly: true }} onChange={onChangeCep} onBlur={onBlurCep} value={cep} />
+                </S.divColuna>
+                <S.divColuna>
+                  <label htmlFor="">Complemento:</label>
+                  <input id="complemento" placeholder="" onChange={onChangeComplemento} value={complemento} />
+                </S.divColuna>
+              </S.divLinha>
+              <S.divLinha>
+                <S.divColuna>
+                  <label htmlFor="">Rua: *</label>
+                  <input id="rua" placeholder="" onChange={onChangeRua} value={rua} />
+                </S.divColuna>
+                <S.divColuna>
+                  <label htmlFor="">Número: *</label>
+                  <input id="numero" placeholder="" onChange={onChangeNumero} value={numero} />
+                </S.divColuna>
+              </S.divLinha>
+              <S.divColuna style={{ width: '100%' }}>
+                <label htmlFor="">Bairro: *</label>
+                <input style={{ paddingLeft: '2%' }} id="bairro" placeholder="" onChange={onChangeBairro} value={bairro} />
+              </S.divColuna>
+              <S.divLinha>
+                <S.divColuna>
+                  <label htmlFor="">Cidade: *</label>
+                  <input id="cidade" placeholder="" onChange={onChangeCidade} value={cidade} />
+                </S.divColuna>
+                <S.divColuna>
+                  <label>Estado: </label>
+                  <select id="estado" onChange={onChangeUf} value={uf} >
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+                  </select>
+                </S.divColuna>
+              </S.divLinha>
+            </S.divDaDiv>
+            <S.signUpButton>
+              <button type="button" onClick={atualizarDados}>Salvar</button>
+            </S.signUpButton>
+          </S.containerForm>
+        </S.atualizacaoContainer>
+      } />
     </>
   );
 }

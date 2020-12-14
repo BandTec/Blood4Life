@@ -24,9 +24,7 @@ export const atualizacaoContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  @media (max-width: 700px) {
-    overflow: auto;
-  }
+  overflow: auto;
 `;
 
 export const containerForm = styled.form`
