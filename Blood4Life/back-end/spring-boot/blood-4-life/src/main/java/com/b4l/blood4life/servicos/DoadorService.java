@@ -80,7 +80,7 @@ public class DoadorService {
         }
     }
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 60000)
     public void registrador() throws Exception {
         if (!filaEmails.isEmpty()) {
             System.out.println("Iniciando envio de e-mails...");

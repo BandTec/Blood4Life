@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BancoDeSangueService {
@@ -83,10 +84,9 @@ public class BancoDeSangueService {
             Double qtdAtual = Double.parseDouble(registros[i].substring(18, 38).trim());
             Integer idHospital = Integer.parseInt(registros[i].substring(37, 48).trim());
 
-            Hospital hospital = new Hospital();
-            hospital.setId(idHospital);
+            BancoDeSangue bancoDeSangue = bancoDeSangueRepository.findByTipoSangueAndHospitalId(tipoSangue, idHospital);
+            bancoDeSangue.setQtdAtual(qtdAtual);
 
-            BancoDeSangue bancoDeSangue = new BancoDeSangue(tipoSangue, qtdAtual, hospital);
             bancoDeSangueRepository.save(bancoDeSangue);
         }
     }
