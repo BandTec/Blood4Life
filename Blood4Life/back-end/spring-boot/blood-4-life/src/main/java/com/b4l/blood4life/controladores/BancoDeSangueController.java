@@ -39,6 +39,12 @@ public class BancoDeSangueController {
         return status(HttpStatus.CREATED).body(bancoDeSangueCadastrado);
     }
 
+    @PostMapping("/lista")
+    public ResponseEntity<List<BancoDeSangue>> cadastrarLista(@Valid @RequestBody List<BancoDeSangue> bancosDeSangue) {
+        List<BancoDeSangue> bancosDeSangueCadastrados = bancoDeSangueService.cadastrarBancosDeSangue(bancosDeSangue);
+        return status(HttpStatus.CREATED).body(bancosDeSangueCadastrados);
+    }
+
     @PutMapping("/{idHospital}/{tipo}")
     public ResponseEntity atualizarBancoDeSangue(
             @PathVariable Integer idHospital,

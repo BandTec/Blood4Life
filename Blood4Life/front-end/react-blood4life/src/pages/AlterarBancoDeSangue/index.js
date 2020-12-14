@@ -1,20 +1,17 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import * as S from "./style";
 import Cleave from 'cleave.js/react';
 import Hospital from '../../assets/icone-hospital-nomerge.svg';
 import BodyNavMenu from "../../components/BodyNavMenu";
+import api from '../../services/api.js';
 
 
 export default function AlterarBancoDeSangue() {
     const [mostrarMenuLateral, setMostrarMenuLateral] = useState(false);
 
-    const hist = useHistory();
-
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-    const apelido = localStorage.getItem("apelido");
 
-    const [tipoSanguineo, setTipoSanguineo] = useState('');
+    const [tipoSanguineo, setTipoSanguineo] = useState('A+');
     const [quantidade, setQuantidade] = useState(0);
 
     const onChildClicked = () => {
@@ -29,51 +26,20 @@ export default function AlterarBancoDeSangue() {
         setQuantidade(ev.target.value);
     };
 
-    // async function atualizarDadosBancoDeSangue() {
+    async function atualizarDadosBancoDeSangue() {
 
-    // const hospital = {
-    //     id,
-    //     nome,
-    //     cnpj,
-    //     telefone,
-    //     email,
-    //     senha,
-    //     endereco: {
-    //         cep,
-    //         complemento,
-    //         rua,
-    //         numero,
-    //         bairro,
-    //         cidade,
-    //         uf,
-    //         latitude,
-    //         longitude
-    //     }
-    // }
+        const tipoSanguineoTratado = tipoSanguineo.replace('+', '%2B').replace('-', '%2D');
 
-    // await api.put(`/hospitais/${id}`, hospital)
-    //     .then(res => {
-    //         localStorage.setItem("usuario", JSON.stringify(res.data));
-    //         localStorage.setItem("tipo-usuario", "hospital");
+        const quantidadeTratada = quantidade.replace('.', '').replace(',', '.');
 
-    //         const nome = res.data.nome;
-    //         const nomes = nome.split(' ');
-
-    //         if (nomes.length === 1) {
-    //             localStorage.setItem("apelido", (nomes[0][0]).toUpperCase());
-    //         } else if (nomes.length > 1) {
-    //             localStorage.setItem("apelido", (nomes[0][0] + nomes[1][0]).toUpperCase());
-    //         }
-
-    //         alert('Hospital alterado com sucesso!');
-    //         hist.push("/menu");
-    //     })
-    //     .catch(err => {
-    //         if (quantidade === "") {
-    //             alert("Quantidade de sangue não pode ser em branco");
-    //         }
-    //     });
-    // }
+        await api.put(`tipos/${usuario.id}/${tipoSanguineoTratado}?quantidade=${quantidadeTratada}`)
+            .then(res => {
+                alert('Quantidade atualizada com sucesso!');
+            })
+            .catch(err => {
+                alert("Erro ao atualizar quantidade");
+            });
+    }
 
     return (
         <>
@@ -109,10 +75,10 @@ export default function AlterarBancoDeSangue() {
                         </S.divDaDiv>
                         <S.divFileContainer>
                             <S.fileText>Importar estoque de sangue</S.fileText>
-                            <S.fileInput type='file'/>
+                            <S.fileInput type='file' />
                         </S.divFileContainer>
                         <S.signUpButton>
-                            <button type="button" >Atualizar</button>
+                            <button type="button" onClick={atualizarDadosBancoDeSangue} >Atualizar</button>
                         </S.signUpButton>
                     </S.containerForm>
                 </S.atualizacaoContainer>
@@ -120,5 +86,3 @@ export default function AlterarBancoDeSangue() {
         </>
     );
 }
-
-/*onClick={atualizarDadosBancoDeSangue} */

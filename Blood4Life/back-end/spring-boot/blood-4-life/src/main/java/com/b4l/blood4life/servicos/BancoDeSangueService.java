@@ -41,6 +41,11 @@ public class BancoDeSangueService {
         return bancoDeSangueRepository.save(bancoDeSangue);
     }
 
+    @Transactional
+    public List<BancoDeSangue> cadastrarBancosDeSangue(List<BancoDeSangue> bancosDeSangue) {
+        return bancoDeSangueRepository.saveAll(bancosDeSangue);
+    }
+
     public BancoDeSangue atualizarBancoDeSangue(Integer idHospital, String tipoSanguineo, Double quantidade) {
         verificarSeTipoSanguineoExiste(tipoSanguineo);
 

@@ -116,6 +116,8 @@ export default function Cadastro() {
 
     async function handleRegister() {
 
+        let hospitalId = 0;
+
         const Hospital = {
             nome,
             cnpj,
@@ -159,6 +161,7 @@ export default function Cadastro() {
                     localStorage.setItem("apelido", (nomes[0][0] + nomes[1][0]).toUpperCase());
                 }
 
+                hospitalId = res.data.id;
                 alert('Hospital cadastrado com sucesso!');
             })
             .catch(err => {
@@ -227,6 +230,80 @@ export default function Cadastro() {
                 } else if (uf.length < 2 || uf.length > 2) {
                     alert("Estado tem que ter 2 caracteres");
                 }
+            });
+
+        const tiposSanguineos = [
+            {
+                tipoSangue: 'A+',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'A-',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'B+',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'B-',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'AB+',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'AB-',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'O+',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            },
+
+            {
+                tipoSangue: 'O-',
+                qtdAtual: 0,
+                hospital: {
+                    id: hospitalId
+                }
+            }
+        ];
+
+        await api.post('/tipos/lista', tiposSanguineos)
+            .then(res => {
+                alert('Estoques de Sangue criados com sucesso!');
+            })
+            .catch(err => {
+                alert('Erro ao criar Estoques de Sangue');
             });
     }
 
