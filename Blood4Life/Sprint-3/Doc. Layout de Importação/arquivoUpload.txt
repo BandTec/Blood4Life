@@ -1,6 +1,10 @@
 id       tsangue  qtdAtual            hospitalid 
-1        A+       25.2                1          
-2        B+       27.2                1          
-3        AB+      25.8                1          
-4        O+       20.2                1          
-qtdRegistros      4
+1        A+       99.9                1          
+2        B+       99.9                1          
+3        AB+      99.9                1          
+4        O+       99.9                1          
+5        A-       99.9                1          
+6        B-       99.9                1          
+7        AB-      99.9                1          
+8        O-       99.9                1          
+qtdRegistros      8
