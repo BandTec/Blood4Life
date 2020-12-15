@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as S from './style.js';
 import logo from '../../assets/logo.svg';
 import imagemLoginAdm from '../../assets/img-login-adm.svg';
@@ -7,6 +8,8 @@ import api from '../../services/api.js';
 import Cleave from 'cleave.js/react';
 
 export default function Cadastro() {
+
+    const hist = useHistory();
 
     const [nome, setNome] = useState('');
     const [cnpj, setCnjp] = useState('');
@@ -170,7 +173,8 @@ export default function Cadastro() {
                 }
 
                 hospitalId = res.data.id;
-                alert('Hospital cadastrado com sucesso!');
+                alert('Hospital cadastrado com sucesso! Você será redirecionado à tela inicial.');
+                hist.push("/");
             })
             .catch(err => {
                 if (nome === "") {

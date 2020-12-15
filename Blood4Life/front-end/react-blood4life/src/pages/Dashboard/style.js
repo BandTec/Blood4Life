@@ -91,5 +91,21 @@ export const rightLowerCard = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction:column;
+`;
+
+export const icon = styled.div`
+    height: 40%;
+    width: 10%; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    cursor: pointer;
+
+    .icon {
+        color: #7DABFA;
+        width: 100%;
+        height: 100%;
+    }
 
 `;
+
